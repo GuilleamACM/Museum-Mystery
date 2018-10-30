@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
+  <Tracking>
+    <ImageTarget name="IMG_20181010_154602012" size="0.600000 0.351476" />
+    <ImageTarget name="IMG_20181010_154502534" size="0.450000 0.269093" />
+    <ImageTarget name="IMG_20181010_153127569" size="1.000000 0.978739" />
+    <ImageTarget name="IMG_20181006_144828" size="0.800000 0.600000" />
+    <ImageTarget name="IMG_20181010_155408418" size="0.600000 0.820792" />
+    <ImageTarget name="IMG_20181010_161641663" size="0.500000 0.401313" />
+    <ImageTarget name="IMG_0294" size="0.700000 0.815545" />
+    <ImageTarget name="IMG_0282" size="1.000000 0.750000" />
+    <ImageTarget name="Chapelota" size="0.650000 0.715468" />
+    <ImageTarget name="Arvore" size="0.900000 1.199747" />
+    <ImageTarget name="Gonzaga" size="0.750000 1.402735" />
+    <ImageTarget name="Dualshock" size="0.200000 0.120238" />
+    <ImageTarget name="Chapeu" size="0.500000 0.535644" />
+    <ImageTarget name="Safona" size="0.500000 0.537433" />
+    <ImageTarget name="K_Diamond" size="0.060000 0.084000" />
+    <ImageTarget name="Q_Paus" size="0.060000 0.084000" />
+  </Tracking>
+</QCARConfig>
