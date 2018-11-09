@@ -6,16 +6,21 @@ using UnityEngine;
 public class MainMenu : MonoBehaviour
 {
 
-    GameObject MenuCanvas;
-    GameObject ChatCanvas;
-    GameObject PistasCanvas;
-    GameObject ChatNotification;
-    GameObject ARNotification;
-    GameObject DicasNotification;
-    GameObject AR;
-    GameObject Targets;
-    GameObject ARTextNotification;
-
+    public GameObject MenuCanvas;
+    public GameObject ChatCanvas;
+    public GameObject PistasCanvas;
+    public static GameObject ChatNotification;
+    public static GameObject ARNotification;
+    public static GameObject DicasNotification;
+    public GameObject AR;
+    public GameObject Targets;
+    public static GameObject Etapa1;
+    public static GameObject Etapa2;
+    public static GameObject Etapa3;
+    public static GameObject Etapa4;
+    public GameObject ARTextNotification;
+    public PlayerInfo Player;
+    
     void Awake()
     {
         Debug.Log("Awake called");
@@ -27,8 +32,12 @@ public class MainMenu : MonoBehaviour
         DicasNotification = GameObject.Find("DicasNotification");
         AR = GameObject.Find("AR");
         Targets = GameObject.Find("Targets");
+        Etapa1 = GameObject.Find("Etapa 1");
+        Etapa2 = GameObject.Find("Etapa 2");
+        Etapa3 = GameObject.Find("Etapa 3");
+        Etapa4 = GameObject.Find("Etapa 4");
         ARTextNotification = GameObject.Find("ARNotificationText");
-
+        Player = new PlayerInfo();
     }
 
     void Start()
@@ -37,6 +46,10 @@ public class MainMenu : MonoBehaviour
         PistasCanvas.SetActive(false);
         ARTextNotification.SetActive(false);
         AR.SetActive(false);
+        Etapa1.SetActive(false);
+        Etapa2.SetActive(false);
+        Etapa3.SetActive(false);
+        Etapa4.SetActive(false);
     }
 
     void Update()
@@ -80,7 +93,7 @@ public class MainMenu : MonoBehaviour
         MenuCanvas.SetActive(true);
     }
 
-    public void TurnOnChatNofication()
+    public static void TurnOnChatNofication()
     {
         ChatNotification.SetActive(true);
     }
@@ -90,7 +103,7 @@ public class MainMenu : MonoBehaviour
         ChatNotification.SetActive(false);
     }
 
-    public void TurnOnARNofication()
+    public static void TurnOnARNofication()
     {
         ARNotification.SetActive(true);
     }
@@ -100,7 +113,7 @@ public class MainMenu : MonoBehaviour
         ARNotification.SetActive(false);
     }
 
-    public void TurnOnDicasNofication()
+    public static void TurnOnDicasNofication()
     {
         DicasNotification.SetActive(true);
     }

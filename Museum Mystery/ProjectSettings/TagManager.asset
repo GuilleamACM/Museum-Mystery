@@ -4,12 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Etapa 1
-  - Etapa 2
-  - Etapa 3
-  - PlayerType 1
-  - PlayerType 2
-  - AR
+  - Etapa
   layers:
   - Default
   - TransparentFX

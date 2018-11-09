@@ -8,13 +8,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Main Menu.unity
     guid: ca4e0f36fdb69ff45a73831016af6dac
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/AR Demo.unity
     guid: 481acf5c434a65d4f9d52ce2493a29c3
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Chat.unity
     guid: 15f7be4892ee8d542b71e54eb7ae0434
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Pistas.unity
     guid: 1c78e81d2cc88d249b19b3a7c3d755b3
   m_configObjects: {}

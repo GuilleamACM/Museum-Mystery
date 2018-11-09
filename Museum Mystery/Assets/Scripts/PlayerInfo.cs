@@ -3,34 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerInfo : MonoBehaviour {
-    
+
     public class Pista
     {
         public string id;
-        public int etapa;
         public bool descoberta;
 
-        public Pista(string id, int etapa)
+        public Pista(string id)
         {
             this.id = id;
-            this.etapa = etapa;
             this.descoberta = false;
         }
     }
 
     public int etapaAtual;
     public Pista[] pistas;
-    
-	// Use this for initialization
-	void Start () {
+
+    public PlayerInfo ()
+    {
         etapaAtual = 0;
-        Pista pista1 = new Pista ("Dale", 1);
-        //Todas as pistas serão inicializadas aqui
-        pistas = new Pista[] {pista1, };
-        //O array de pistas será inicializado aqui
-
-	}
-
+        //Todas as pistas serão criadas aqui junto com o array de pistas
+        pistas = new Pista[] { new Pista("Dale"), };
+    }
     public int ProcurarPista (string id)
     {
         for(int i = 0; i < pistas.Length; i++)
@@ -46,13 +40,29 @@ public class PlayerInfo : MonoBehaviour {
 
     public void DesobrirPista (int index)
     {
-        pistas[index].descoberta = true;
-        //Inserir aqui código para habilitar o botão dessa pista na database
+        if(pistas[index].descoberta == false)
+        {
+            pistas[index].descoberta = true;
+            MainMenu.DicasNotification.SetActive(true);
+            //Inserir aqui código para habilitar o botão dessa pista na database
+        }
     }
     
     public void AumentarEtapa()
     {
         etapaAtual++;
-        //Inserir aqui código pra habilitar a próxima etapa
+        if(etapaAtual == 1)
+        {
+            MainMenu.Etapa1.SetActive(true);
+        } else if (etapaAtual == 2)
+        {
+            MainMenu.Etapa2.SetActive(true);
+        } else if (etapaAtual == 3)
+        {
+            MainMenu.Etapa3.SetActive(true);
+        } else
+        {
+            MainMenu.Etapa4.SetActive(true);
+        }
     }
 }
