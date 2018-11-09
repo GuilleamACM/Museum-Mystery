@@ -16,16 +16,16 @@ public class PlayerInfo : MonoBehaviour {
         }
     }
 
-    public int etapaAtual;
-    public Pista[] pistas;
+    public static int etapaAtual;
+    public static Pista[] pistas;
 
     public PlayerInfo ()
     {
         etapaAtual = 0;
         //Todas as pistas serão criadas aqui junto com o array de pistas
-        pistas = new Pista[] { new Pista("Dale"), };
+        pistas = new Pista[] { new Pista("Chapeu"), };
     }
-    public int ProcurarPista (string id)
+    public static int ProcurarPista (string id)
     {
         for(int i = 0; i < pistas.Length; i++)
         {
@@ -38,17 +38,18 @@ public class PlayerInfo : MonoBehaviour {
         return 999;
     }
 
-    public void DesobrirPista (int index)
+    public static void DescobrirPista (int index)
     {
         if(pistas[index].descoberta == false)
         {
             pistas[index].descoberta = true;
             MainMenu.DicasNotification.SetActive(true);
-            //Inserir aqui código para habilitar o botão dessa pista na database
+            Debug.Log(pistas[index].id);
+            MainMenu.BotaoPista0.SetActive(true);
         }
     }
     
-    public void AumentarEtapa()
+    public static void AumentarEtapa()
     {
         etapaAtual++;
         if(etapaAtual == 1)

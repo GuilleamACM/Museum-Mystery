@@ -18,8 +18,8 @@ public class MainMenu : MonoBehaviour
     public static GameObject Etapa2;
     public static GameObject Etapa3;
     public static GameObject Etapa4;
+    public static GameObject BotaoPista0;
     public GameObject ARTextNotification;
-    public PlayerInfo Player;
     
     void Awake()
     {
@@ -36,15 +36,14 @@ public class MainMenu : MonoBehaviour
         Etapa2 = GameObject.Find("Etapa 2");
         Etapa3 = GameObject.Find("Etapa 3");
         Etapa4 = GameObject.Find("Etapa 4");
-        ARTextNotification = GameObject.Find("ARNotificationText");
-        Player = new PlayerInfo();
+        BotaoPista0 = GameObject.Find("Button0");
     }
 
     void Start()
     {
+        BotaoPista0.SetActive(false);
         ChatCanvas.SetActive(false);
         PistasCanvas.SetActive(false);
-        ARTextNotification.SetActive(false);
         AR.SetActive(false);
         Etapa1.SetActive(false);
         Etapa2.SetActive(false);

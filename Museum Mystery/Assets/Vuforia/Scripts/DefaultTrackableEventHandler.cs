@@ -25,7 +25,6 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
 
     #endregion // PROTECTED_MEMBER_VARIABLES
 
-    public GameObject ARNotificationText;
 
     #region UNITY_MONOBEHAVIOUR_METHODS
 
@@ -50,7 +49,7 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
     ///     Implementation of the ITrackableEventHandler function called when the
     ///     tracking state changes.
     /// </summary>
-    public void OnTrackableStateChanged(
+    public virtual void OnTrackableStateChanged(
         TrackableBehaviour.Status previousStatus,
         TrackableBehaviour.Status newStatus)
     {
@@ -62,16 +61,12 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
             newStatus == TrackableBehaviour.Status.EXTENDED_TRACKED)
         {
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
-            //É aqui onde as funções ProcurarPistas e DescobrirPista serão chamadas
-            //Antes disso será feita uma verificação pra testar se a pista já foi descoberta
-            ARNotificationText.gameObject.SetActive(true);
             OnTrackingFound();
         }
         else if (previousStatus == TrackableBehaviour.Status.TRACKED &&
                  newStatus == TrackableBehaviour.Status.NO_POSE)
         {
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " lost");
-            ARNotificationText.gameObject.SetActive(false);
             OnTrackingLost();
         }
         else
@@ -81,11 +76,6 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
             // Call OnTrackingLost() to hide the augmentations
             OnTrackingLost();
         }
-    }
-
-    public void Awake()
-    {
-        ARNotificationText = GameObject.Find("ARNotificationText");
     }
 
     #endregion // PUBLIC_METHODS
