@@ -23,7 +23,7 @@ public class PlayerInfo : MonoBehaviour {
     {
         etapaAtual = 0;
         //Todas as pistas serão criadas aqui junto com o array de pistas
-        pistas = new Pista[] { new Pista("Chapeu"), };
+        pistas = new Pista[] { new Pista("EnzoCamera1"),new Pista("Criptografia1"), new Pista("Criptografia2"), new Pista("Criptografia3"), new Pista("MapaCigarro"), new Pista("Chapeu"), };
     }
     public static int ProcurarPista (string id)
     {
