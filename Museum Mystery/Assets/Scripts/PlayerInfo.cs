@@ -46,6 +46,7 @@ public class PlayerInfo : MonoBehaviour {
             MainMenu.DicasNotification.SetActive(true);
             Debug.Log(pistas[index].id);
             MainMenu.BotaoPista0.SetActive(true);
+            MainMenu.animator.SetBool("Playing", true);
         }
     }
     
