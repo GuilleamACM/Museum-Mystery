@@ -83,7 +83,7 @@ public class MainMenu : MonoBehaviour
         if (PlayerInfo.etapaAtual == 0)
         {
             Detetive.StartIntro();
-            Invoke("AumentarEtapaIntro", 5); // como invoke não pode ser chamado num static, criei uma funcao start para comecar e dps de 5 segundos chamar a funcao aumentarEtapa para o jogador avançar no jogo.
+            //Invoke("AumentarEtapaIntro", 5); // como invoke não pode ser chamado num static, criei uma funcao start para comecar e dps de 5 segundos chamar a funcao aumentarEtapa para o jogador avançar no jogo.
         }
 
         else if (Detetive.etapa == 1)

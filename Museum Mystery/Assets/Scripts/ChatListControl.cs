@@ -6,41 +6,33 @@ using UnityEngine.UI;
 public class ChatListControl : MonoBehaviour {
 
     [SerializeField]
-    public GameObject msgTemplate;
-    public Sprite sprite1;
-    public Sprite sprite2;
-    public Sprite sprite3;
-    int i = 1;
+    public GameObject template;
+    public static GameObject msgTemplate;
+    public static Sprite[] sprites;
+    public Sprite [] sprites2;
 
-    public void Dale()
+
+    void Awake()
     {
-        GameObject button = Instantiate(msgTemplate) as GameObject;
-        button.SetActive(true);
-        if (i == 1)
-        {
-            button.GetComponent<ChatList>().SetImage(sprite1);
-        } else if (i == 2)
-        {
-            button.GetComponent<ChatList>().SetImage(sprite2);
-        } else if (i == 3)
-        {
-            button.GetComponent<ChatList>().SetImage(sprite3);
-        } else if (i == 4)
-        {
-            button.GetComponent<ChatList>().SetText("Dale");
-            var tempColor = button.GetComponent<Image>().color;
-            tempColor.a = 0f;
-            button.GetComponent<ChatList>().myImage.color = tempColor;
-            button.GetComponent<Image>().color = tempColor;
-        } else if (i == 5)
-        {
-            button.GetComponent<ChatList>().SetText("Deus é GOD");
-            var tempColor = button.GetComponent<Image>().color;
-            tempColor.a = 0f;
-            button.GetComponent<ChatList>().myImage.color = tempColor;
-            button.GetComponent<Image>().color = tempColor;
-        }
-        button.transform.SetParent(msgTemplate.transform.parent, false);
-        i++;
+        msgTemplate = template;
+        sprites = sprites2;
+    }
+
+    public static void RenderizarImagem(int img, bool isLeft)
+    {
+        GameObject msg = Instantiate(msgTemplate) as GameObject;
+        msg.SetActive(true);
+        msg.GetComponent<ChatList>().SetImage(sprites[img]);
+        msg.transform.GetChild(1).gameObject.SetActive(false);
+        msg.transform.SetParent(msgTemplate.transform.parent, false);
+    }
+
+    public static void RenderizarTexto(string text, bool isLeft) 
+    {
+        GameObject msg = Instantiate(msgTemplate) as GameObject;
+        msg.SetActive(true);
+        msg.GetComponent<ChatList>().SetText(text);
+        msg.transform.GetChild(0).gameObject.SetActive(false);
+        msg.transform.SetParent(msgTemplate.transform.parent, false);
     }
 }

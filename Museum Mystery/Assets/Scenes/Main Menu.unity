@@ -2673,7 +2673,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &413199526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5611,10 +5611,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62903ef61973c4d458d0b4c8021b9b6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  msgTemplate: {fileID: 1918330758}
-  sprite1: {fileID: 21300000, guid: 084131793523cc04886b1c53d9fced42, type: 3}
-  sprite2: {fileID: 21300000, guid: 7541583879360b2489437577ff1f89fc, type: 3}
-  sprite3: {fileID: 21300000, guid: 11b0093a35cbd6345a62dbed244cc9e6, type: 3}
+  template: {fileID: 1918330758}
+  sprites2:
+  - {fileID: 21300000, guid: 084131793523cc04886b1c53d9fced42, type: 3}
+  - {fileID: 21300000, guid: 7541583879360b2489437577ff1f89fc, type: 3}
+  - {fileID: 21300000, guid: d8e9bd14e2d84244a877b4f091b89947, type: 3}
+  - {fileID: 21300000, guid: 11b0093a35cbd6345a62dbed244cc9e6, type: 3}
 --- !u!1 &919617740
 GameObject:
   m_ObjectHideFlags: 0
@@ -7750,12 +7752,12 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 3cf9c31fe0e50574fbf3419290233693, type: 3}
     m_FontSize: 20
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 1
     m_AlignByGeometry: 0
-    m_RichText: 1
+    m_RichText: 0
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
@@ -9671,7 +9673,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1606818664
 Transform:
   m_ObjectHideFlags: 0
@@ -11038,7 +11040,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 911732172}
-        m_MethodName: Dale
+        m_MethodName: RenderizarMensagem
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11819,7 +11821,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

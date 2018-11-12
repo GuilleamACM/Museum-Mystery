@@ -24,37 +24,60 @@ public class Detetive : MonoBehaviour
     public class Mensagem
     {
         public string id;
-        public string text; //"Virtus Atlas"
-        public string text2; //"A organização se chama virtus atlas....
+        public ImgOrTxt[] imgOrTxt;
         public bool enviado;
 
-        public Mensagem(string id, string text)
+        public Mensagem(string id, ImgOrTxt[] iot)
         {
             this.id = id;
-            this.text = text;
+            this.imgOrTxt = iot;
             this.enviado = false;
         }
 
-        public Mensagem(string id, string text, string text2)
+    }
+
+    public class ImgOrTxt
+    {
+        public int img;
+        public string txt;
+
+        public ImgOrTxt(int img)
         {
-            this.id = id;
-            this.text = text;
-            this.text2 = text2;
-            this.enviado = false;
+            this.img = img;
+            this.txt = null;
+        }
+        
+        public ImgOrTxt(string text)
+        {
+            this.img = -1;
+            this.txt = text;
+        }
+
+        public bool isImg()
+        {
+            if (this.img != -1)
+                return true;
+            else
+                return false;
         }
     }
 
 
-    public static Mensagem[] dicas = new Mensagem[] { new Mensagem("teste", "você achou a pista teste", "você já achou essa pista"), };
-    public static Mensagem[] feedback = new Mensagem[] { new Mensagem("id", "Parabéns você acertou"), };
-    public static Mensagem[] intro = new Mensagem[] { new Mensagem("id", "Comecou game"), };
-    public static Mensagem[] automatico = new Mensagem[] { new Mensagem("id", "mensagem automatica qdo descobrir as criptografias"), };
-    public static Mensagem[] resposta = new Mensagem[] { new Mensagem("id", "resposta", "A resposta é: pega na minha e balança"), };
+    public static Mensagem[] dicas = new Mensagem[4];
+    public static Mensagem[] feedback = new Mensagem[4];
+    public static Mensagem[] intro = new Mensagem[4];
+    public static Mensagem[] automatico = new Mensagem[4];
+    public static Mensagem[] resposta = new Mensagem[4];
     public static pistaDetetive[] pistasDetetive = new pistaDetetive[] { new pistaDetetive("Criptografia1"), new pistaDetetive("Criptografia2"), new pistaDetetive("Criptografia3"), }; // esse array deve ser mapeado igualmente a o array de dicas.
     public static bool exploracao = false; // para bloquear e desbloquear o envio de RESPOSTAS
     public static int etapa = 0;
     public static string answer;
 
+    void Awake()
+    {
+        Mensagem msg1 = new Mensagem("id", new ImgOrTxt[2] { new ImgOrTxt("dale"), new ImgOrTxt(1)});
+        intro[0] = msg1;
+    }
 
     public void getTextInput(string input)
     {
@@ -96,7 +119,7 @@ public class Detetive : MonoBehaviour
         return -1;
     }
 
-    public void EnviarMsgDicas(string id)
+    public void EnviarMsgDicas(string id) //ela só envia a mensagem do detetive (resposta para quando o jogador envia uma pista), só envia textos e as dicas são sempre uma mensagem
     {
         for (int i = 0; i <= dicas.Length; i++)
         {
@@ -104,13 +127,13 @@ public class Detetive : MonoBehaviour
             {
                 if (dicas[i].enviado)
                 {
-                    Debug.Log(dicas[i].text2);
+                    ChatListControl.RenderizarTexto("Você perguntou isso antes",true);
                     return;
                 }
                 else
                 {
                     pistasDetetive[i].enviado = true;
-                    Debug.Log(dicas[i].text);
+                    ChatListControl.RenderizarTexto(dicas[i].imgOrTxt[0].txt, true);
                     dicas[i].enviado = true;
                     return;
                 }
@@ -122,7 +145,17 @@ public class Detetive : MonoBehaviour
     {
         if (PlayerInfo.etapaAtual == 0)
         {
-            Debug.Log(intro[PlayerInfo.etapaAtual].text);
+            for(int i = 0; i < intro[PlayerInfo.etapaAtual].imgOrTxt.Length; i++)
+            {
+                Debug.Log("Entrou no primeiro if");
+                if (intro[PlayerInfo.etapaAtual].imgOrTxt[i].isImg()) {
+                    ChatListControl.RenderizarImagem(intro[PlayerInfo.etapaAtual].imgOrTxt[i].img, true);
+                }
+                else
+                {
+                    ChatListControl.RenderizarTexto(intro[PlayerInfo.etapaAtual].imgOrTxt[i].txt, true);
+                }
+            }
             intro[PlayerInfo.etapaAtual].enviado = true;
             exploracao = false;
             PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("EnzoCamera"));
@@ -133,22 +166,42 @@ public class Detetive : MonoBehaviour
         }
     }
 
-    public void EnviarMsgResposta(string input)
+    public void EnviarMsgResposta(string input) //primeira celula eh sempre a validacao, a segunda eh sempre a mensagem real
     {
-        if (resposta[etapa].text.Equals(input))
+        if (resposta[etapa].imgOrTxt[0].Equals(input)) //pesquisar Ignore Case
         {
-            Debug.Log(resposta[etapa].text2);
+            for (int i = 1; 1 < resposta[etapa].imgOrTxt.Length; i++)
+            {
+                if (resposta[etapa].imgOrTxt[i].isImg())
+                {
+                    ChatListControl.RenderizarImagem(resposta[etapa].imgOrTxt[i].img, false);
+                }
+                else
+                {
+                    ChatListControl.RenderizarTexto(resposta[etapa].imgOrTxt[i].txt, false);
+                }
+            }
             EnviarMsgFeedback();
         }
         else
         {
-            Debug.Log("Errou! - Faustão"); // DEFINIR QUAL É A MENSAGEM DE ERRO
+            ChatListControl.RenderizarTexto("Errou! - Faustão", false); // DEFINIR QUAL É A MENSAGEM DE ERRO
         }
     }
 
     public void EnviarMsgFeedback()
     {
-        Debug.Log(feedback[etapa].text);
+        for(int i = 0; i < feedback[etapa].imgOrTxt.Length; i++)
+        {
+            if (feedback[etapa].imgOrTxt[i].isImg())
+            {
+                ChatListControl.RenderizarImagem(feedback[etapa].imgOrTxt[i].img, true);
+            }
+            else
+            {
+                ChatListControl.RenderizarTexto(feedback[etapa].imgOrTxt[i].txt, true);
+            }
+        }
         etapa++;
         PlayerInfo.AumentarEtapa();
         MainMenu.check = false;    // um boolean que é resetado toda vez que passa de fase, pra controlar, qdo o jogador deve descobrir algo.
@@ -165,15 +218,35 @@ public class Detetive : MonoBehaviour
     public void EnviarMsgIntro() // a primeira vez que essa funcao for chamada, sera no menu, quando vc apertar no chat. Lembrar de habilitar a pista introdutoria no banco de dados
     {
 
-        if (etapa == 1)
+        if (etapa == 1) //verificar pista cameraezno se foi habilitada
         {
-            Debug.Log(intro[etapa].text);
+            for(int i = 0; i < intro[etapa].imgOrTxt.Length; i++)
+            {
+                if (intro[etapa].imgOrTxt[i].isImg())
+                {
+                    ChatListControl.RenderizarImagem(intro[etapa].imgOrTxt[i].img, true);
+                }
+                else
+                {
+                    ChatListControl.RenderizarTexto(intro[etapa].imgOrTxt[i].txt, true);
+                }
+            }
             intro[etapa].enviado = true;
             exploracao = false;
         }
         else if (etapa == 2)
         {
-            Debug.Log(intro[etapa].text);
+            for (int i = 0; i < intro[etapa].imgOrTxt.Length; i++)
+            {
+                if (intro[etapa].imgOrTxt[i].isImg())
+                {
+                    ChatListControl.RenderizarImagem(intro[etapa].imgOrTxt[i].img, true);
+                }
+                else
+                {
+                    ChatListControl.RenderizarTexto(intro[etapa].imgOrTxt[i].txt, true);
+                }
+            }
             intro[etapa].enviado = true;
             exploracao = false;
             PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("MapaCalor"));
@@ -181,19 +254,49 @@ public class Detetive : MonoBehaviour
 
         else if (etapa == 3)
         {
-            Debug.Log(intro[etapa].text);
+            for (int i = 0; i < intro[etapa].imgOrTxt.Length; i++)
+            {
+                if (intro[etapa].imgOrTxt[i].isImg())
+                {
+                    ChatListControl.RenderizarImagem(intro[etapa].imgOrTxt[i].img, true);
+                }
+                else
+                {
+                    ChatListControl.RenderizarTexto(intro[etapa].imgOrTxt[i].txt, true);
+                }
+            }
             intro[etapa].enviado = true;
             exploracao = false; // OBS: Essa etapa a introducao ja pede uma resposta, ja tem que estar liberado
         }
         else if (etapa == 4)
         {
-            Debug.Log(intro[etapa].text);
+            for (int i = 0; i < intro[etapa].imgOrTxt.Length; i++)
+            {
+                if (intro[etapa].imgOrTxt[i].isImg())
+                {
+                    ChatListControl.RenderizarImagem(intro[etapa].imgOrTxt[i].img, true);
+                }
+                else
+                {
+                    ChatListControl.RenderizarTexto(intro[etapa].imgOrTxt[i].txt, true);
+                }
+            }
             intro[etapa].enviado = true;
             exploracao = false;
         }
         else if (etapa == 5)
         {
-            Debug.Log(intro[etapa].text);
+            for (int i = 0; i < intro[etapa].imgOrTxt.Length; i++)
+            {
+                if (intro[etapa].imgOrTxt[i].isImg())
+                {
+                    ChatListControl.RenderizarImagem(intro[etapa].imgOrTxt[i].img, true);
+                }
+                else
+                {
+                    ChatListControl.RenderizarTexto(intro[etapa].imgOrTxt[i].txt, true);
+                }
+            }
             intro[etapa].enviado = true;
             exploracao = false;
         }
@@ -209,7 +312,17 @@ public class Detetive : MonoBehaviour
             int index = PlayerInfo.ProcurarPista("Criptografia1");
             if ((PlayerInfo.pistas[index].descoberta && PlayerInfo.pistas[index + 1].descoberta && PlayerInfo.pistas[index + 2].descoberta) && !(automatico[etapa].enviado)) //as pistas 1,2,3 = Criptografia1,Criptografia2,Criptografia3
             {
-                Debug.Log(automatico[etapa].text);
+                for(int i = 0; i < automatico[etapa].imgOrTxt.Length; i++)
+                {
+                    if (automatico[etapa].imgOrTxt[i].isImg())
+                    {
+                        ChatListControl.RenderizarImagem(automatico[etapa].imgOrTxt[i].img, true);
+                    }
+                    else
+                    {
+                        ChatListControl.RenderizarTexto(automatico[etapa].imgOrTxt[i].txt, true);
+                    }
+                }
                 automatico[etapa].enviado = true;
                 MainMenu.TurnOnChatNofication();
                 // PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("MapaCigarro"));  essa linha terá que ser chamada ao abrir o chat, para só adicionar ao banco de pistas se voce tiver entrado no chat              
@@ -233,7 +346,17 @@ public class Detetive : MonoBehaviour
             int index = PlayerInfo.ProcurarPista("Digital1");
             if ((PlayerInfo.pistas[index].descoberta) && (PlayerInfo.pistas[index + 1].descoberta) && (PlayerInfo.pistas[index + 2].descoberta) && !(automatico[etapa].enviado))
             {
-                Debug.Log(automatico[etapa].text);
+                for (int i = 0; i < automatico[etapa].imgOrTxt.Length; i++)
+                {
+                    if (automatico[etapa].imgOrTxt[i].isImg())
+                    {
+                        ChatListControl.RenderizarImagem(automatico[etapa].imgOrTxt[i].img, true);
+                    }
+                    else
+                    {
+                        ChatListControl.RenderizarTexto(automatico[etapa].imgOrTxt[i].txt, true);
+                    }
+                }
                 automatico[etapa].enviado = true;
                 MainMenu.TurnOnChatNofication();
                 // PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("Suspeito1"));  essa linha terá que ser chamada ao abrir o chat, para só adicionar ao banco de pistas se voce tiver entrado no chat
@@ -256,7 +379,17 @@ public class Detetive : MonoBehaviour
             int index = PlayerInfo.ProcurarPista("MapaNordeste");
             if ((PlayerInfo.pistas[index].descoberta) && !(automatico[etapa].enviado))
             {
-                Debug.Log(automatico[etapa].text);
+                for (int i = 0; i < automatico[etapa].imgOrTxt.Length; i++)
+                {
+                    if (automatico[etapa].imgOrTxt[i].isImg())
+                    {
+                        ChatListControl.RenderizarImagem(automatico[etapa].imgOrTxt[i].img, true);
+                    }
+                    else
+                    {
+                        ChatListControl.RenderizarTexto(automatico[etapa].imgOrTxt[i].txt, true);
+                    }
+                }
                 automatico[etapa].enviado = true;
                 exploracao = false;
                 MainMenu.TurnOnChatNofication();
