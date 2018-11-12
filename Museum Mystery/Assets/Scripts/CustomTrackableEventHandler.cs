@@ -43,6 +43,6 @@ public class CustomTrackableEventHandler : DefaultTrackableEventHandler {
 
     public void PararAnimacao()
     {
-        MainMenu.animator.SetBool("Playing", false);
+        MainMenu.ARTextNotification.SetActive(false);
     }
 }

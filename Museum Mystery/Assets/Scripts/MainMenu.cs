@@ -44,7 +44,7 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     {
-        animator = ARTextNotification.GetComponent<Animator>();
+        ARTextNotification.SetActive(false);
         BotaoPista0.SetActive(false);
         ChatCanvas.SetActive(false);
         PistasCanvas.SetActive(false);
