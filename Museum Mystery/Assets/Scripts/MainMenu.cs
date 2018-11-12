@@ -21,6 +21,7 @@ public class MainMenu : MonoBehaviour
     public static GameObject BotaoPista0;
     public static GameObject ARTextNotification;
     public static Animator animator;
+    public static bool check = false;
 
     void Awake()
     {
@@ -78,6 +79,52 @@ public class MainMenu : MonoBehaviour
         ChatCanvas.SetActive(true);
         MenuCanvas.SetActive(false);
         TurnOffChatNofication();
+
+        if (PlayerInfo.etapaAtual == 0)
+        {
+            Detetive.StartIntro();
+            Invoke("AumentarEtapaIntro", 5); // como invoke não pode ser chamado num static, criei uma funcao start para comecar e dps de 5 segundos chamar a funcao aumentarEtapa para o jogador avançar no jogo.
+        }
+
+        else if (Detetive.etapa == 1)
+        {
+            if (Detetive.automatico[Detetive.etapa].enviado && !check)
+            {
+                PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("MapaCigarro"));
+                check = true;
+            }
+        }
+        else if (Detetive.etapa == 2)
+        {
+
+            if (Detetive.automatico[Detetive.etapa].enviado && !check)
+            {
+                int aux = PlayerInfo.ProcurarPista("Suspeito1");
+                PlayerInfo.DescobrirPista(aux);
+                PlayerInfo.DescobrirPista(aux + 1);
+                PlayerInfo.DescobrirPista(aux + 2);
+                check = true;
+            }
+        }
+
+        /* else if(Detetive.etapa == 3)
+        {
+            não tem nada para habilitar.
+        } */
+        else if (Detetive.etapa == 4)
+        {
+            if (Detetive.automatico[Detetive.etapa].enviado && !check)
+            {
+                PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("Cordel"));
+                check = true;
+            }
+        }
+
+        /* else if(Detetive.etapa == 5)
+        {
+            não tem nada para habilitar.
+        } */
+
     }
 
     public void OpenDatabase()
