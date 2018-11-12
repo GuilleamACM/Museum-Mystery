@@ -24,7 +24,6 @@ public class CustomTrackableEventHandler : DefaultTrackableEventHandler {
             //É aqui onde as funções ProcurarPistas e DescobrirPista serão chamadas
             //Antes disso será feita uma verificação pra testar se a pista já foi descoberta
             OnTrackingFound();
-            Invoke("PararAnimacao", 2);
         }
         else if (previousStatus == TrackableBehaviour.Status.TRACKED &&
                  newStatus == TrackableBehaviour.Status.NO_POSE)

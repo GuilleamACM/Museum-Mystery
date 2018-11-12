@@ -54,6 +54,7 @@ public class PlayerInfo : MonoBehaviour
             Debug.Log(pistas[index].id);
             MainMenu.BotaoPista0.SetActive(true);
             MainMenu.ARTextNotification.SetActive(true);
+            StaticCoroutine.DoCoroutine(2);
         }
     }
 
