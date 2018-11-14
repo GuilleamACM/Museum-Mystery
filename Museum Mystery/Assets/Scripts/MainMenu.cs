@@ -18,10 +18,13 @@ public class MainMenu : MonoBehaviour
     public static GameObject Etapa2;
     public static GameObject Etapa3;
     public static GameObject Etapa4;
-    public static GameObject BotaoPista0;
+    public GameObject[] BotaoPista;
+    public GameObject[] BotaoDicas;
     public static GameObject ARTextNotification;
     public static Animator animator;
     public static bool check = false;
+    public static GameObject[] staticBotaoPista;
+    public static GameObject[] staticBotaoDicas;
 
     void Awake()
     {
@@ -38,14 +41,14 @@ public class MainMenu : MonoBehaviour
         Etapa2 = GameObject.Find("Etapa 2");
         Etapa3 = GameObject.Find("Etapa 3");
         Etapa4 = GameObject.Find("Etapa 4");
-        BotaoPista0 = GameObject.Find("Button0");
+        staticBotaoPista = BotaoPista;       
         ARTextNotification = GameObject.Find("PopupNotification");
+        staticBotaoDicas = BotaoDicas;
     }
 
     void Start()
     {
         ARTextNotification.SetActive(false);
-        BotaoPista0.SetActive(false);
         ChatCanvas.SetActive(false);
         PistasCanvas.SetActive(false);
         AR.SetActive(false);
@@ -82,8 +85,12 @@ public class MainMenu : MonoBehaviour
 
         if (PlayerInfo.etapaAtual == 0)
         {
-            Detetive.StartIntro();
-            //Invoke("AumentarEtapaIntro", 5); // como invoke não pode ser chamado num static, criei uma funcao start para comecar e dps de 5 segundos chamar a funcao aumentarEtapa para o jogador avançar no jogo.
+            if (!check)
+            {
+                Detetive.StartIntro();
+                check = true;
+                //Invoke("AumentarEtapaIntro", 5); // como invoke não pode ser chamado num static, criei uma funcao start para comecar e dps de 5 segundos chamar a funcao aumentarEtapa para o jogador avançar no jogo.
+            }
         }
 
         else if (Detetive.etapa == 1)

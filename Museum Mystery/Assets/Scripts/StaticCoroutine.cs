@@ -17,9 +17,20 @@ public class StaticCoroutine : MonoBehaviour {
 
     }
 
+    IEnumerator Wait2(string resp)
+    {
+        yield return new WaitForSeconds(1);
+        ChatListControl.RenderizarTexto(resp, true);
+    }
+
     static public void DoCoroutine(float time)
     {
         instance.StartCoroutine("Wait", time);
+    }
+
+    static public void DoCoroutineDelayMsgDetetive(string resp)
+    {
+        instance.StartCoroutine("Wait2", resp);
     }
 
 }

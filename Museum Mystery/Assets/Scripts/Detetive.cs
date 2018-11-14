@@ -63,7 +63,7 @@ public class Detetive : MonoBehaviour
     }
 
 
-    public static Mensagem[] dicas = new Mensagem[4];
+    public static Mensagem[] dicas = new Mensagem[4]; // qdo o jogador envia uma pista habilitada ao detetive, o detetive responde com um breve texto, falando melhor sobre a pista enviada.
     public static Mensagem[] feedback = new Mensagem[] { new Mensagem("0",new ImgOrTxt[]{ new ImgOrTxt("Está foi a única imagem de Sanfonatti que conseguimos restaurar das câmeras desegurança. Tente analisar o local com as ferramentas que lhe demos, talvez vocêencontre algo relevante."),
                                                          new ImgOrTxt ("Estranho, acho que nunca vi essas marcas antes, elas parecem ter sido colocadas alipelo próprio Sanfonatti, continue procurando, talvez isso signifique algo."),
                                                          //new ImgOrTxt (""), imagem heraldica
@@ -72,12 +72,13 @@ public class Detetive : MonoBehaviour
                                                          new ImgOrTxt ("Me perdoe, jovem, mas estou um tanto ocupado no momento para lhe ajudar. Vou lhe mandar uma ferramenta que pode ser útil www.google.com")
 
                                                        })};
-    public static Mensagem[] intro = new Mensagem[4];
-    public static Mensagem[] automatico = new Mensagem[4];
-    public static Mensagem[] resposta = new Mensagem[4];
+    public static Mensagem[] intro = new Mensagem[4]; // introducoes do ciclo
+    public static Mensagem[] automatico = new Mensagem[4]; // msgs automaticas que o detetive manda ao jogador completar alguma coisa
+    public static Mensagem[] resposta = new Mensagem[4]; // a posicao 0 desse array eh a palavra para validar, e as posicoes adiante sao as mensagens que o jogador enviara para o detetive caso tenha acertado a validacao
     public static bool exploracao = false; // para bloquear e desbloquear o envio de RESPOSTAS
     public static int etapa = 0;
-    public static string answer;
+    public static string answer; // msg escrita no input
+    public static int imgDicas; // referencia da img clicada em anexos.
     public static pistaDetetive[] pistasDetetive = new pistaDetetive[] { new pistaDetetive("EnzoCamera"),new pistaDetetive("Criptografia1"), new pistaDetetive("Criptografia2"),
                                                                          new pistaDetetive("Criptografia3"), new pistaDetetive("MapaCigarro"), new pistaDetetive("Suspeito1"),
                                                                          new pistaDetetive("Suspeito2"), new pistaDetetive("Suspeito3"),
@@ -120,14 +121,16 @@ public class Detetive : MonoBehaviour
         });
         intro[1] = msg2;
 
-     
 
+        Mensagem msg3 = new Mensagem("2", new ImgOrTxt[2] { new ImgOrTxt("Descobre ai trouxa"), new ImgOrTxt("hahaha") });
+        dicas[0] = msg3;
     }
 
     public void getTextInput(string input)
     {
         answer = input;
     }
+
 
     public void sendButton()
     {
@@ -145,7 +148,7 @@ public class Detetive : MonoBehaviour
             }
             else
             {
-                Debug.Log("escreva alguma coisa brtoher");
+                Debug.Log("escreva alguma coisa brother");
             }
         }
     }
@@ -164,27 +167,36 @@ public class Detetive : MonoBehaviour
         return -1;
     }
 
-    public void EnviarMsgDicas(string id) //ela só envia a mensagem do detetive (resposta para quando o jogador envia uma pista), só envia textos e as dicas são sempre uma mensagem
+    public void EnviarMsgDicas(int img) //ela só envia a mensagem do detetive (resposta para quando o jogador envia uma pista), só envia textos e as dicas são sempre uma mensagem
     {
-        for (int i = 0; i <= dicas.Length; i++)
+        Debug.Log(img);
+        Debug.Log(dicas[img]);
+
+        if (dicas[img].enviado)
         {
-            if (dicas[i].id.Equals(id))
+            ChatListControl.RenderizarImagem(img, false);
+            StaticCoroutine.DoCoroutineDelayMsgDetetive("Você perguntou isso antes");
+            ChatListControl.closePanelDicasStatic();
+            return;
+        }
+        else
+        {
+            dicas[img].enviado = true;
+            pistasDetetive[img].enviado = true;
+            ChatListControl.RenderizarImagem(img, false);
+            for (int i = 0; i < dicas[img].imgOrTxt.Length; i++)
             {
-                if (dicas[i].enviado)
-                {
-                    ChatListControl.RenderizarTexto("Você perguntou isso antes",true);
-                    return;
-                }
-                else
-                {
-                    pistasDetetive[i].enviado = true;
-                    ChatListControl.RenderizarTexto(dicas[i].imgOrTxt[0].txt, true);
-                    dicas[i].enviado = true;
-                    return;
-                }
+                StaticCoroutine.DoCoroutineDelayMsgDetetive(dicas[img].imgOrTxt[i].txt);                              
             }
+            ChatListControl.closePanelDicasStatic();
+            return;
         }
     }
+
+    
+
+
+
 
     public static void StartIntro()  //por invoke não poder chamar static, tive que criar essa classe auxiliar, e o invoke que eu chamo para aumentar a etapa, é chamado no menu.
     {

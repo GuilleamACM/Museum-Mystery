@@ -13,6 +13,8 @@ public class ChatListControl : MonoBehaviour {
     public GameObject playerImgTemplate;
     public Image img;
     public GameObject panel;
+    public GameObject panelDicas;
+    public static GameObject staticPanelDicas;
     public static GameObject staticDetetiveTxtTemplate;
     public static GameObject staticPlayerTxtTemplate;
     public static GameObject staticDetetiveImgTemplate;
@@ -21,6 +23,23 @@ public class ChatListControl : MonoBehaviour {
     public Sprite [] sprites2;
 
 
+
+    public static void closePanelDicasStatic()
+    {
+        staticPanelDicas.SetActive(false);
+    }
+
+    public void openPanelDicas()
+    {
+       panelDicas.SetActive(true);
+
+    }
+
+    public void closePanelDicas()
+    {
+        panelDicas.SetActive(false);
+    }
+
     void Awake()
     {
         staticDetetiveTxtTemplate = detetiveTxtTemplate;
@@ -28,6 +47,7 @@ public class ChatListControl : MonoBehaviour {
         staticDetetiveImgTemplate = detetiveImgTemplate;
         staticPlayerImgTemplate = playerImgTemplate;
         sprites = sprites2;
+        staticPanelDicas = panelDicas;
         
     }
 

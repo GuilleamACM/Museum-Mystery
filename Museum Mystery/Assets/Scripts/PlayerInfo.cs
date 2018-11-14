@@ -24,12 +24,12 @@ public class PlayerInfo : MonoBehaviour
     {
         etapaAtual = 0;
         //Todas as pistas serão criadas aqui junto com o array de pistas
-        pistas = new Pista[] { new Pista("EnzoCamera"),new Pista("Criptografia1"), new Pista("Criptografia2"),
+        pistas = new Pista[] { new Pista("EnzoCamera"), new Pista("Chapeu"),new Pista("Criptografia1"), new Pista("Criptografia2"),
                                new Pista("Criptografia3"), new Pista("MapaCigarro"), new Pista("Suspeito1"),
                                new Pista("Suspeito2"), new Pista("Suspeito3"),
                                new Pista("MapaCalor"), new Pista("Digital1"), new Pista("Digital2"),
                                new Pista("Digital3"), new Pista("SimboloVirtusAtlas"), new Pista("PistaFinal"),
-                               new Pista("MapaNordeste"), new Pista("Chapeu"), new Pista("QuebradaSertao"),
+                               new Pista("MapaNordeste"), new Pista("QuebradaSertao"),
                                new Pista("Cordel"),};
     }
     public static int ProcurarPista(string id)
@@ -52,7 +52,8 @@ public class PlayerInfo : MonoBehaviour
             pistas[index].descoberta = true;
             MainMenu.DicasNotification.SetActive(true);
             Debug.Log(pistas[index].id);
-            MainMenu.BotaoPista0.SetActive(true);
+            MainMenu.staticBotaoDicas[index].SetActive(true);
+            MainMenu.staticBotaoPista[index].SetActive(true);
             MainMenu.ARTextNotification.SetActive(true);
             StaticCoroutine.DoCoroutine(2);
         }
