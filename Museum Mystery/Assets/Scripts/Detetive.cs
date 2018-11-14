@@ -393,7 +393,7 @@ public class Detetive : MonoBehaviour
                 automatico[etapa].enviado = true;
                 exploracao = false;
                 MainMenu.TurnOnChatNofication();
-                // PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("Cordel"));  essa linha terá que ser chamada ao abrir o chat, para só adicionar ao banco de pistas se voce tiver entrado no chat
+                //PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("Cordel"));  essa linha terá que ser chamada ao abrir o chat, para só adicionar ao banco de pistas se voce tiver entrado no chat
             }
 
             //aqui coincidentemente a mensagem automatica e a liberação de exploração são iguais
