@@ -46,7 +46,7 @@ public class Detetive : MonoBehaviour
             this.img = img;
             this.txt = null;
         }
-        
+
         public ImgOrTxt(string text)
         {
             this.img = -1;
@@ -64,7 +64,14 @@ public class Detetive : MonoBehaviour
 
 
     public static Mensagem[] dicas = new Mensagem[4];
-    public static Mensagem[] feedback = new Mensagem[4];
+    public static Mensagem[] feedback = new Mensagem[] { new Mensagem("0",new ImgOrTxt[]{ new ImgOrTxt("Está foi a única imagem de Sanfonatti que conseguimos restaurar das câmeras desegurança. Tente analisar o local com as ferramentas que lhe demos, talvez vocêencontre algo relevante."),
+                                                         new ImgOrTxt ("Estranho, acho que nunca vi essas marcas antes, elas parecem ter sido colocadas alipelo próprio Sanfonatti, continue procurando, talvez isso signifique algo."),
+                                                         //new ImgOrTxt (""), imagem heraldica
+                                                         //new ImgOrTxt (""), imagem texto e numero
+                                                         new ImgOrTxt ("Nenhum de nossos especialistas parece saber o que essas marcas significam. Vocêacha que consegue descobrir?"),
+                                                         new ImgOrTxt ("Me perdoe, jovem, mas estou um tanto ocupado no momento para lhe ajudar. Vou lhe mandar uma ferramenta que pode ser útil www.google.com")
+
+                                                       })};
     public static Mensagem[] intro = new Mensagem[4];
     public static Mensagem[] automatico = new Mensagem[4];
     public static Mensagem[] resposta = new Mensagem[4];
@@ -81,8 +88,40 @@ public class Detetive : MonoBehaviour
 
     void Awake()
     {
-        Mensagem msg1 = new Mensagem("id", new ImgOrTxt[2] { new ImgOrTxt("dale"), new ImgOrTxt(1)});
+        Mensagem msg1 = new Mensagem("0", new ImgOrTxt[16] { new ImgOrTxt("Olá, você deve ser um dos novatos, não? Eu sou Jerry, detetive chefe responsável pela supervisão do caso em questão."),
+                                    new ImgOrTxt("Infelizmente, não posso estar aí com você neste momento, tenho que cuidar de toda a papelada da investigação aqui no escritório, mas não se preocupe, tentarei ajudá - lo o máximo que puder daqui."),
+                                    new ImgOrTxt("Muito bem, o negócio é o seguinte: duas semanas atrás um jovem turista de 22 anos, de nome Enzo Sanfonatti, veio para a cidade do Recife."),
+                                    new ImgOrTxt("Tudo parecia normal até que alguns dias atrás ele simplesmente desapareceu, e ninguém parece fazer ideia do que aconteceu."),
+                                    new ImgOrTxt("Nossos especialistas estão neste momento trabalhando para conseguir novas informações. Tentarei manter você o mais atualizado possível com o que for chegando por aqui."),
+                                    new ImgOrTxt("O último lugar em que Sanfonatti foi visto foi no Museu Cais do Sertão, e é lá onde começa seu trabalho"),
+                                    new ImgOrTxt("Para isso, Instalamos em seu dispositivo algumas ferramentas para auxiliar na investigação. Preste atenção, isso vai ser importante. A câmera do seu celular, agora, pode utilizar uma luz negra, capaz de revelar coisas que os olhos humanos não podem ver."),
+                                    new ImgOrTxt("Adicionalmente, instalamos também um banco de dados com pistas e informações em estado bruto recolhidas até agora sobre o caso."),
+                                    new ImgOrTxt("Como nós, infelizmente não pudemos enviar mais agentes para ir com você ao museu, vai caber a você descobrir o significado dessas pistas sozinho."),
+                                    new ImgOrTxt("Como eu falei antes, eu vou tentar ajudar o máximo que posso, porém estou muito ocupado, então sempre que possível, tente utilizar seus conhecimentos e outras coisas ao seu alcance para solucionar esse caso."),
+                                    new ImgOrTxt("Vale salientar que eu tenho acesso ao seu banco de dados de pistas, mas as deduções que você possa vir a fazer vai ser necessário que você as envie para mim, para eu poder comunicá-las aos nossos especialistas."),
+                                    new ImgOrTxt("Mas não se preocupe, sempre que eu achar que tem algo relevante a ser deduzido eu pergunto."),
+                                    new ImgOrTxt("Lembre-se: se achar alguma evidência, não toque, além de ser contra as práticas do museu, alguma informação pode acabar sendo perdida, então cuidado."),
+                                    new ImgOrTxt("Então é isso aí. A última evidência que temos de Sanfonatti é esta (imagem da câmera de segurança), as gravações da câmera de segurança do museu estão corrompidas, e isso foi tudo que conseguimos de relevante."),
+                                    new ImgOrTxt("Nossos especialistas estão trabalhando em restaurá-las. Mas até lá sugiro que comece tentando seguir seus passos e ver se encontra algo relevante."),
+                                    new ImgOrTxt("Boa sorte jovem!")
+                                    //falta a imagem de introdução 
+                                    });
         intro[0] = msg1;
+
+
+        Mensagem msg2 = new Mensagem("1", new ImgOrTxt[7] { new ImgOrTxt("Humm, isso parece mais sério do que eu imaginava. Ele parece indicar que estavasendo perseguido ou algo assim. Isso muda algumas coisas, deixe-me ver o que euconsigo fazer."),
+                                                            new ImgOrTxt("Vejamos. Não conseguimos reconstruir muitas imagens satisfatórias das câmeras desegurança ainda, o processo é um tanto complicado, mas conseguimos identificaralgumas coisas que talvez possam ajudar."),
+                                                            new ImgOrTxt("Traçamos um mapa que indica os lugares de maior atividade de Sanfonatti nomuseu, em particular aqueles onde havia alguém por perto que possamosconsiderar um suspeito."),
+                                                            new ImgOrTxt("O horário em que ele foi visitar o museu não era de muito movimento, então não tinha muita gente para observar, mas devido as câmeras estarem corrompidas, nãoé possível identificar nenhuma dessas pessoas."),
+                                                            new ImgOrTxt("Tente investigar esses lugares, talvez seja possível encontrar alguma informaçãoque possa nos levar a um suspeito."),
+                                                            new ImgOrTxt("Vou atualizar o seu software para que ele possa ter mais precisão."),
+                                                            new ImgOrTxt("Ah, desculpe, já ia esquecendo. Aqui está o mapa:")
+                                                            //falta a imagem mapa de calor
+        });
+        intro[1] = msg2;
+
+     
+
     }
 
     public void getTextInput(string input)
