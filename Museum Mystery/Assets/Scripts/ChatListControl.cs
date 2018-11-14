@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class ChatListControl : MonoBehaviour {
@@ -10,6 +11,8 @@ public class ChatListControl : MonoBehaviour {
     public GameObject playerTxtTemplate;
     public GameObject detetiveImgTemplate;
     public GameObject playerImgTemplate;
+    public Image img;
+    public GameObject panel;
     public static GameObject staticDetetiveTxtTemplate;
     public static GameObject staticPlayerTxtTemplate;
     public static GameObject staticDetetiveImgTemplate;
@@ -25,16 +28,8 @@ public class ChatListControl : MonoBehaviour {
         staticDetetiveImgTemplate = detetiveImgTemplate;
         staticPlayerImgTemplate = playerImgTemplate;
         sprites = sprites2;
+        
     }
-
-   /* public static void RenderizarImagem(int img, bool isLeft)
-    {
-        GameObject msg = Instantiate(msgTemplate) as GameObject;
-        msg.SetActive(true);
-        msg.GetComponent<ChatList>().SetImage(sprites[img]);
-        msg.transform.GetChild(1).gameObject.SetActive(false);
-        msg.transform.SetParent(msgTemplate.transform.parent, false);
-    }*/
 
     public static void RenderizarTexto(string text, bool isLeft)
     {
@@ -69,6 +64,19 @@ public class ChatListControl : MonoBehaviour {
             msg.GetComponent<ChatList>().SetImage(sprites[img]);
             msg.transform.SetParent(staticPlayerTxtTemplate.transform.parent, false);
         }
+    }
+
+    public void AumentarImagem()
+    {
+        GameObject go = EventSystem.current.currentSelectedGameObject;
+        panel.SetActive(true);
+        img.sprite = go.GetComponent<Image>().sprite;
+        
+    }
+
+    public void DiminuirImagem()
+    {
+        panel.SetActive(false);
     }
 
 }

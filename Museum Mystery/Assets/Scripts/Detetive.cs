@@ -68,10 +68,16 @@ public class Detetive : MonoBehaviour
     public static Mensagem[] intro = new Mensagem[4];
     public static Mensagem[] automatico = new Mensagem[4];
     public static Mensagem[] resposta = new Mensagem[4];
-    public static pistaDetetive[] pistasDetetive = new pistaDetetive[] { new pistaDetetive("Criptografia1"), new pistaDetetive("Criptografia2"), new pistaDetetive("Criptografia3"), }; // esse array deve ser mapeado igualmente a o array de dicas.
     public static bool exploracao = false; // para bloquear e desbloquear o envio de RESPOSTAS
     public static int etapa = 0;
     public static string answer;
+    public static pistaDetetive[] pistasDetetive = new pistaDetetive[] { new pistaDetetive("EnzoCamera"),new pistaDetetive("Criptografia1"), new pistaDetetive("Criptografia2"),
+                                                                         new pistaDetetive("Criptografia3"), new pistaDetetive("MapaCigarro"), new pistaDetetive("Suspeito1"),
+                                                                         new pistaDetetive("Suspeito2"), new pistaDetetive("Suspeito3"),
+                                                                         new pistaDetetive("MapaCalor"), new pistaDetetive("Digital1"), new pistaDetetive("Digital2"),
+                                                                         new pistaDetetive("Digital3"), new pistaDetetive("SimboloVirtusAtlas"), new pistaDetetive("PistaFinal"),
+                                                                         new pistaDetetive("MapaNordeste"), new pistaDetetive("Chapeu"), new pistaDetetive("QuebradaSertao"),
+                                                                         new pistaDetetive("Cordel"),}; // esse array deve ser mapeado igualmente a o array de dicas.
 
     void Awake()
     {
