@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
   <Tracking>
+    <ImageTarget name="IMG_0360" size="1.000000 1.896481" />
+    <ImageTarget name="IMG_0359" size="1.000000 1.621232" />
+    <ImageTarget name="IMG_0358" size="1.000000 1.604753" />
+    <ImageTarget name="IMG_0357" size="1.000000 1.717551" />
+    <ImageTarget name="IMG_20181006_143309" size="1.000000 0.652514" />
+    <ImageTarget name="IMG_20181010_155318949" size="1.000000 0.933428" />
+    <ImageTarget name="IMG_20181010_155549675" size="1.000000 1.110271" />
+    <ImageTarget name="IMG_20181010_155545829" size="1.000000 0.869318" />
+    <ImageTarget name="IMG_20181010_160608973" size="1.000000 1.005732" />
+    <ImageTarget name="IMG_20181006_142524" size="1.000000 1.333333" />
+    <ImageTarget name="Cais-do-Sertao-Territorio-Viver" size="1.000000 0.700000" />
+    <ImageTarget name="pp" size="0.500000 0.500000" />
+    <ImageTarget name="IMG_0347" size="0.500000 1.066402" />
+    <ImageTarget name="IMG_0345" size="0.300000 0.623994" />
+    <ImageTarget name="IMG_0344" size="0.600000 0.450093" />
+    <ImageTarget name="IMG_0343" size="0.600000 0.450093" />
+    <ImageTarget name="IMG_0342" size="0.600000 0.450093" />
+    <ImageTarget name="IMG_0341" size="0.600000 0.450000" />
     <ImageTarget name="IMG_20181010_154602012" size="0.600000 0.351476" />
     <ImageTarget name="IMG_20181010_154502534" size="0.450000 0.269093" />
     <ImageTarget name="IMG_20181010_153127569" size="1.000000 0.978739" />
