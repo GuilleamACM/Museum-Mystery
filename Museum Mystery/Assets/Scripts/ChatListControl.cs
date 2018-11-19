@@ -91,7 +91,6 @@ public class ChatListControl : MonoBehaviour {
         GameObject go = EventSystem.current.currentSelectedGameObject;
         panel.SetActive(true);
         img.sprite = go.GetComponent<Image>().sprite;
-        
     }
 
     public void DiminuirImagem()

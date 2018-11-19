@@ -1,30 +1,34 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
 
+    public Image img;
     public GameObject MenuCanvas;
     public GameObject ChatCanvas;
     public GameObject PistasCanvas;
+    public GameObject panel;
+    public GameObject AR;
+    public GameObject Targets;
+    public GameObject[] BotaoPista;
+    public GameObject[] BotaoDicas;
+    public GameObject[] telasPistas; 
     public static GameObject ChatNotification;
     public static GameObject ARNotification;
     public static GameObject DicasNotification;
-    public GameObject AR;
-    public GameObject Targets;
     public static GameObject Etapa1;
     public static GameObject Etapa2;
     public static GameObject Etapa3;
     public static GameObject Etapa4;
-    public GameObject[] BotaoPista;
-    public GameObject[] BotaoDicas;
     public static GameObject ARTextNotification;
     public static Animator animator;
-    public static bool check = false;
     public static GameObject[] staticBotaoPista;
     public static GameObject[] staticBotaoDicas;
+    public static bool check = false;
 
     void Awake()
     {
@@ -143,10 +147,23 @@ public class MainMenu : MonoBehaviour
 
     public void BacktoMainMenu()
     {
-        PistasCanvas.SetActive(false);
         AR.SetActive(false);
         ChatCanvas.SetActive(false);
+        for (int i = 0; i < telasPistas.Length; i++)
+        {
+            if (telasPistas[i].activeSelf)
+            {
+                telasPistas[i].SetActive(false);
+                return;
+            }
+        }
+        PistasCanvas.SetActive(false);
         MenuCanvas.SetActive(true);
+    }
+
+    public void OpenPista(int i)
+    {
+        telasPistas[i].SetActive(true);
     }
 
     public static void TurnOnChatNofication()
@@ -177,5 +194,18 @@ public class MainMenu : MonoBehaviour
     public void TurnOffDicasNofication()
     {
         DicasNotification.SetActive(false);
+    }
+
+    public void AumentarImagem()
+    {
+        GameObject go = EventSystem.current.currentSelectedGameObject;
+        panel.SetActive(true);
+        img.sprite = go.GetComponent<Image>().sprite;
+        img.SetNativeSize();
+    }
+
+    public void DiminuirImagem()
+    {
+        panel.SetActive(false);
     }
 }
