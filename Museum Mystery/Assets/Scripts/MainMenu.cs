@@ -11,8 +11,9 @@ public class MainMenu : MonoBehaviour
     public Text title;
     public Text titleAmpliado;
     public Sprite[] sprites;
+    public Text descricao;
     public string[] titles;
-    public string[] descricao;
+    public string[] descricoes;
     public GameObject MenuCanvas;
     public GameObject ChatCanvas;
     public GameObject PistasCanvas;
@@ -21,7 +22,7 @@ public class MainMenu : MonoBehaviour
     public GameObject Targets;
     public GameObject[] BotaoPista;
     public GameObject[] BotaoDicas;
-    public GameObject telaPista; 
+    public GameObject telaPista;
     public static GameObject ChatNotification;
     public static GameObject ARNotification;
     public static GameObject DicasNotification;
@@ -34,6 +35,10 @@ public class MainMenu : MonoBehaviour
     public static GameObject[] staticBotaoPista;
     public static GameObject[] staticBotaoDicas;
     public static bool check = false;
+    public static int staticRefBotao;
+    public bool firstOpenchat = true;
+    public Button arBotao;
+    public Button arquivoBotao;
 
     void Awake()
     {
@@ -46,9 +51,11 @@ public class MainMenu : MonoBehaviour
         Etapa2 = GameObject.Find("Etapa 2");
         Etapa3 = GameObject.Find("Etapa 3");
         Etapa4 = GameObject.Find("Etapa 4");
-        staticBotaoPista = BotaoPista;       
         ARTextNotification = GameObject.Find("PopupNotification");
+        staticBotaoPista = BotaoPista;
         staticBotaoDicas = BotaoDicas;
+        DicasNotification.SetActive(false);
+        ARNotification.SetActive(false);
     }
 
     void Start()
@@ -61,6 +68,8 @@ public class MainMenu : MonoBehaviour
         Etapa2.SetActive(false);
         Etapa3.SetActive(false);
         Etapa4.SetActive(false);
+        
+
     }
 
     void Update()
@@ -84,6 +93,15 @@ public class MainMenu : MonoBehaviour
 
     public void OpenChat()
     {
+        if (firstOpenchat)
+        {
+            arBotao.interactable = true;
+            arquivoBotao.interactable = true;
+            firstOpenchat = false;
+            TurnOnARNofication();
+            TurnOnChatNofication();
+        }
+
         ChatCanvas.SetActive(true);
         MenuCanvas.SetActive(false);
         TurnOffChatNofication();
@@ -168,8 +186,10 @@ public class MainMenu : MonoBehaviour
     {
         img.sprite = sprites[i];
         title.text = titles[i];
+        descricao.text = descricoes[i];
         telaPista.SetActive(true);
         titleAmpliado.text = titles[i];
+        atualizarReferencia(i);
 
     }
 
@@ -215,4 +235,11 @@ public class MainMenu : MonoBehaviour
     {
         panel.SetActive(false);
     }
+
+    public static void atualizarReferencia(int i)
+    {
+        staticRefBotao = i;
+    }
 }
+
+

@@ -62,7 +62,11 @@ public class Detetive : MonoBehaviour
         }
     }
 
-
+    public Boolean firstTimePopup = true;
+    public GameObject popupAllow;
+    public GameObject popupDeny;
+    public GameObject popupTutorial;
+    public GameObject popupEncaminhado;
     public static Mensagem[] dicas = new Mensagem[4]; // qdo o jogador envia uma pista habilitada ao detetive, o detetive responde com um breve texto, falando melhor sobre a pista enviada.
     public static Mensagem[] feedback = new Mensagem[] { new Mensagem("0",new ImgOrTxt[]{ new ImgOrTxt("Está foi a única imagem de Sanfonatti que conseguimos restaurar das câmeras desegurança. Tente analisar o local com as ferramentas que lhe demos, talvez vocêencontre algo relevante."),
                                                          new ImgOrTxt ("Estranho, acho que nunca vi essas marcas antes, elas parecem ter sido colocadas alipelo próprio Sanfonatti, continue procurando, talvez isso signifique algo."),
@@ -136,7 +140,9 @@ public class Detetive : MonoBehaviour
     {
         if (exploracao) // pop-up de que você não pode responder, nesse momento voce deve explorar
         {
+            popupDeny.SetActive(true);
             Debug.Log("Pop-up de você não pode enviar mensagem agora");
+            Invoke("desativarPopupDeny",3);
         }
 
         else
@@ -148,7 +154,9 @@ public class Detetive : MonoBehaviour
             }
             else
             {
+                popupAllow.SetActive(true);
                 Debug.Log("escreva alguma coisa brother");
+                Invoke("desativarPopupAllow", 3);
             }
         }
     }
@@ -193,9 +201,69 @@ public class Detetive : MonoBehaviour
         }
     }
 
-    
+    public void EncaminharPista() //ela só envia a mensagem do detetive (resposta para quando o jogador envia uma pista), só envia textos e as dicas são sempre uma mensagem
+    {
+        int img = MainMenu.staticRefBotao;
+        Debug.Log(img);
+        Debug.Log(dicas[img]);
 
+        if (dicas[img].enviado)
+        {
+            ChatListControl.RenderizarImagem(img, false);
+            StaticCoroutine.DoCoroutineDelayMsgDetetive("Você perguntou isso antes");
+            ChatListControl.closePanelDicasStatic();
+            
+           
+        }
+        else
+        {
+            dicas[img].enviado = true;
+            pistasDetetive[img].enviado = true;
+            ChatListControl.RenderizarImagem(img, false);
+            for (int i = 0; i < dicas[img].imgOrTxt.Length; i++)
+            {
+                StaticCoroutine.DoCoroutineDelayMsgDetetive(dicas[img].imgOrTxt[i].txt);
+            }
+            ChatListControl.closePanelDicasStatic();
+            
+        }
 
+        popupEncaminhado.SetActive(true);
+        Invoke("desativarPopupEncaminhado",2);
+        MainMenu.TurnOnChatNofication();
+    }
+
+    public void desativarPopupEncaminhado()
+    {
+        popupEncaminhado.SetActive(false);
+    }
+
+    public void ativarTutorialPopup()
+    {
+        if (firstTimePopup)
+        {
+            popupTutorial.SetActive(true);
+            Invoke("desativarPopupTutorial", 5);
+            firstTimePopup = false;
+        }
+
+    }
+
+    public void desativarPopupTutorial()
+    {
+        popupTutorial.SetActive(false);
+        Destroy(popupTutorial);
+    }
+
+    public void desativarPopupDeny()
+    {
+        popupDeny.SetActive(false);
+    }
+
+    public void desativarPopupAllow()
+    {
+        popupAllow.SetActive(false);
+    }
 
 
     public static void StartIntro()  //por invoke não poder chamar static, tive que criar essa classe auxiliar, e o invoke que eu chamo para aumentar a etapa, é chamado no menu.
@@ -214,7 +282,7 @@ public class Detetive : MonoBehaviour
                 }
             }
             intro[PlayerInfo.etapaAtual].enviado = true;
-            exploracao = false;
+            exploracao = true;
             PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("EnzoCamera"));
         }
         else
@@ -289,7 +357,7 @@ public class Detetive : MonoBehaviour
                 }
             }
             intro[etapa].enviado = true;
-            exploracao = false;
+            exploracao = true;
         }
         else if (etapa == 2)
         {
@@ -305,7 +373,7 @@ public class Detetive : MonoBehaviour
                 }
             }
             intro[etapa].enviado = true;
-            exploracao = false;
+            exploracao = true;
             PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("MapaCalor"));
         }
 
@@ -355,7 +423,7 @@ public class Detetive : MonoBehaviour
                 }
             }
             intro[etapa].enviado = true;
-            exploracao = false;
+            exploracao = true;
         }
 
     }
