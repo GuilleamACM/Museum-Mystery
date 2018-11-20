@@ -6,8 +6,13 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-
     public Image img;
+    public Image imgAmpliada;
+    public Text title;
+    public Text titleAmpliado;
+    public Sprite[] sprites;
+    public string[] titles;
+    public string[] descricao;
     public GameObject MenuCanvas;
     public GameObject ChatCanvas;
     public GameObject PistasCanvas;
@@ -16,7 +21,7 @@ public class MainMenu : MonoBehaviour
     public GameObject Targets;
     public GameObject[] BotaoPista;
     public GameObject[] BotaoDicas;
-    public GameObject[] telasPistas; 
+    public GameObject telaPista; 
     public static GameObject ChatNotification;
     public static GameObject ARNotification;
     public static GameObject DicasNotification;
@@ -33,13 +38,9 @@ public class MainMenu : MonoBehaviour
     void Awake()
     {
         Debug.Log("Awake called");
-        MenuCanvas = GameObject.Find("MenuCanvas");
-        ChatCanvas = GameObject.Find("ChatCanvas");
-        PistasCanvas = GameObject.Find("PistasCanvas");
         ChatNotification = GameObject.Find("ChatNotification");
         ARNotification = GameObject.Find("ARNotification");
         DicasNotification = GameObject.Find("DicasNotification");
-        AR = GameObject.Find("AR");
         Targets = GameObject.Find("Targets");
         Etapa1 = GameObject.Find("Etapa 1");
         Etapa2 = GameObject.Find("Etapa 2");
@@ -149,13 +150,15 @@ public class MainMenu : MonoBehaviour
     {
         AR.SetActive(false);
         ChatCanvas.SetActive(false);
-        for (int i = 0; i < telasPistas.Length; i++)
+        if (panel.activeSelf)
         {
-            if (telasPistas[i].activeSelf)
-            {
-                telasPistas[i].SetActive(false);
-                return;
-            }
+            panel.SetActive(false);
+            return;
+        }
+        if (telaPista.activeSelf)
+        {
+            telaPista.SetActive(false);
+            return;
         }
         PistasCanvas.SetActive(false);
         MenuCanvas.SetActive(true);
@@ -163,7 +166,11 @@ public class MainMenu : MonoBehaviour
 
     public void OpenPista(int i)
     {
-        telasPistas[i].SetActive(true);
+        img.sprite = sprites[i];
+        title.text = titles[i];
+        telaPista.SetActive(true);
+        titleAmpliado.text = titles[i];
+
     }
 
     public static void TurnOnChatNofication()
@@ -200,8 +207,8 @@ public class MainMenu : MonoBehaviour
     {
         GameObject go = EventSystem.current.currentSelectedGameObject;
         panel.SetActive(true);
-        img.sprite = go.GetComponent<Image>().sprite;
-        img.SetNativeSize();
+        imgAmpliada.sprite = go.GetComponent<Image>().sprite;
+        imgAmpliada.SetNativeSize();
     }
 
     public void DiminuirImagem()
