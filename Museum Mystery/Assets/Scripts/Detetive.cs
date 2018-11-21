@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -74,8 +74,15 @@ public class Detetive : MonoBehaviour
                                                          //new ImgOrTxt (""), imagem texto e numero
                                                          new ImgOrTxt ("Nenhum de nossos especialistas parece saber o que essas marcas significam. Vocêacha que consegue descobrir?"),
                                                          new ImgOrTxt ("Me perdoe, jovem, mas estou um tanto ocupado no momento para lhe ajudar. Vou lhe mandar uma ferramenta que pode ser útil www.google.com")
-
-                                                       })};
+                                                         }),
+                                                         new Mensagem("1",new ImgOrTxt[]{ new ImgOrTxt("Este é um mapa de calor que traçamos das atividades de Sanfonatti no museu, asáreas com cor mais intensa indicam os setores de maior atividade.Recomendo você tentar investigar essas áreas."),
+                                                                                          new ImgOrTxt("De acordo com o banco de dados de digitas da nossa agência. Essa digital pertence a Atila Saverin. Vejamos: Atila Saverin, 27 anos, solteiro, sem antecedentes criminais, residente na cidade de Exu, trabalha como vendedor em uma loja de produtos agropecuários."),
+                                                                                          new ImgOrTxt("Deixe-me ver. Essa digital pertence a Rajish Al-Habib.25 anos, casado.Humm, tem ficha na delegacia por porte ilegal de arma. Nasceu nos emirados árabes, mas reside na cidade do Recife, trabalha como professor de história em escola pública."),
+                                                                                          new ImgOrTxt("Pelo que consegui verificar no nosso banco de dados de digitais, essa digital pertencea Nariadna Gleycielly. Nariadna, 22 anos, casada, sem antecedentes criminais, reside em Salgueiro e é dona de uma loja de tecidos."),
+                                                                                          new ImgOrTxt(" Estranho esse símbolo. Pelo que eu consegui analisar aqui, ele não foi feito por Sanfonatti.Talvez esteja relacionado com algum dos suspeitos, pode significar algo.")
+                                                                                         
+                                                         }) 
+    };
     public static Mensagem[] intro = new Mensagem[4]; // introducoes do ciclo
     public static Mensagem[] automatico = new Mensagem[4]; // msgs automaticas que o detetive manda ao jogador completar alguma coisa
     public static Mensagem[] resposta = new Mensagem[4]; // a posicao 0 desse array eh a palavra para validar, e as posicoes adiante sao as mensagens que o jogador enviara para o detetive caso tenha acertado a validacao
@@ -126,8 +133,32 @@ public class Detetive : MonoBehaviour
         intro[1] = msg2;
 
 
-        Mensagem msg3 = new Mensagem("2", new ImgOrTxt[2] { new ImgOrTxt("Descobre ai trouxa"), new ImgOrTxt("hahaha") });
-        dicas[0] = msg3;
+        Mensagem msg3 = new Mensagem("2", new ImgOrTxt[7] { new ImgOrTxt("Virtus Atlas? Curioso.Isso é, ou pelo menos deveria ser, uma lenda."),
+                                                            new ImgOrTxt("É uma história antiga que contavam nas cidades do interior. Alguma coisa sobre umgrupo de poderosos do ramo da agropecuária, que pretendia dominar todo omercado controlando toda a produção da região."),
+                                                            new ImgOrTxt("Ninguém nunca descobriu o quanto disso era verdade ou não, só se sabe que issorendeu várias histórias ao longo dos anos, uma delas era algo sobre elescontratarem os capangas para fazerem o trabalho sujo deles, e todos esses erammarcados como gado."),
+                                                            new ImgOrTxt("Talvez daí que tenha surgido a tatuagem desse cara, não queele seja membro de um grupo secreto nem nada do tipo.Como eu disse nada dissofoi comprovado, mas existe maluco pra tudo não é mesmo."),
+                                                            new ImgOrTxt("Bem, vou mandar isso para os especialistas aqui na agência para ver se elesdescobrem algo mais sobre esse Átila Saverin."),
+                                                            new ImgOrTxt("Enquanto eles veem isso, eu estive pensando sobre a frase que você me envioualgum tempo atrás. Especificamente a parte em que ele fala. “Seu nome não foiesquecido nas”... "),
+                                                            new ImgOrTxt("sso me lembra uma música de Luiz Gonzaga, e a forma como afrase foi cortada, me faz pensar que isso possa ser relevante de alguma forma, você poderia tentar descobrir.")
+                                                           
+
+        });
+        intro[2] = msg3;
+
+        Mensagem msg4 = new Mensagem("3", new ImgOrTxt[10] { new ImgOrTxt("Bom trabalho jovem.Vou enviar um agente para lá agora mesmo.O local apontado pelas coordenadas fica na cidade de Serrita."),
+                                                            new ImgOrTxt("Nosso agente está entrando em contato nesse momento com a força policial dacidade"),
+                                                            new ImgOrTxt("humm"),
+                                                            new ImgOrTxt("Eles encontraram isso..."),
+                                                            //new ImgOrTxt(),  foto da carta de jacó
+                                                            new ImgOrTxt("Esta carta, os especialistas da nossa agência em Serrita identificaram que ela foi de fato escrita por Raimundo Jacó, primo de Luiz Gonzaga. Ele foi assassinado na década de 50. A sua morte foi sempre um mistério. "),
+                                                            new ImgOrTxt("Ninguém nunca conseguiu comprovar o que realmente aconteceu. Mas, a forma como ele escreveu, e as pistas de Sanfonatti que nos levaram até a Virtus Atlas… Será que está tudo conectado?"),
+                                                            new ImgOrTxt("Qual a relação entre os casos? Isso é tudo muito estranho. Mas bem. Nós ainda temos um caso para resolver. E isso não exatamente nos diz o que aconteceu com Sanfonatti não é mesmo?"),
+                                                            new ImgOrTxt("Precisamos seguir em frente.Enfim. Enquanto descobríamos sobre a carta, nossos especialistas conseguiramreconstruir tudo o que era possível das imagens das câmeras de segurança."),
+                                                            new ImgOrTxt("O mais estranho é que, tem um setor do museu onde, sempre que Sanfonatti passa por ele,a imagem simplesmente some.Elas não foram apenas corrompidas.É como se alguém tivesse bloqueado completamente o sinal da câmera nesta área."),
+                                                            new ImgOrTxt("Você deve investigar este local. Lá deve haver algo que possa nos dar mais respostas.Tome, o setor do museu é este aqui. "),
+                                                            //new ImgOrTxt(""); foto do mapa do museu
+        });
+        intro[3] = msg4;
     }
 
     public void getTextInput(string input)
