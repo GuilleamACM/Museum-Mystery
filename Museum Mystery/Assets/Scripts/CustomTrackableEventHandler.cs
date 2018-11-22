@@ -16,9 +16,13 @@ public class CustomTrackableEventHandler : DefaultTrackableEventHandler {
             newStatus == TrackableBehaviour.Status.TRACKED ||
             newStatus == TrackableBehaviour.Status.EXTENDED_TRACKED)
         {
-            Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
+            string targetName = mTrackableBehaviour.TrackableName;
+            Debug.Log("Trackable " + targetName + " found");
             int index;
-            index = PlayerInfo.ProcurarPista(mTrackableBehaviour.TrackableName);
+
+            //targetName = targetName.Remove(targetName.Length-1);     qdo os targets forem modificados lembrar de habilitar essa linha para remover o último caractere.
+
+            index = PlayerInfo.ProcurarPista(targetName);
             Debug.Log(index);
             PlayerInfo.DescobrirPista(index);
             //É aqui onde as funções ProcurarPistas e DescobrirPista serão chamadas
