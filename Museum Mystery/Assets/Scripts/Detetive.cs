@@ -137,7 +137,7 @@ public class Detetive : MonoBehaviour
                                                             new ImgOrTxt("É uma história antiga que contavam nas cidades do interior. Alguma coisa sobre umgrupo de poderosos do ramo da agropecuária, que pretendia dominar todo omercado controlando toda a produção da região."),
                                                             new ImgOrTxt("Ninguém nunca descobriu o quanto disso era verdade ou não, só se sabe que issorendeu várias histórias ao longo dos anos, uma delas era algo sobre elescontratarem os capangas para fazerem o trabalho sujo deles, e todos esses erammarcados como gado."),
                                                             new ImgOrTxt("Talvez daí que tenha surgido a tatuagem desse cara, não queele seja membro de um grupo secreto nem nada do tipo.Como eu disse nada dissofoi comprovado, mas existe maluco pra tudo não é mesmo."),
-                                                            new ImgOrTxt("Bem, vou mandar isso para os especialistas aqui na agência para ver se elesdescobrem algo mais sobre esse Átila Saverin."),
+                                                            new ImgOrTxt("Bem, vou mandar isso para os especialistas aqui na agência para ver se eles descobrem algo mais sobre esse Átila Saverin."),
                                                             new ImgOrTxt("Enquanto eles veem isso, eu estive pensando sobre a frase que você me envioualgum tempo atrás. Especificamente a parte em que ele fala. “Seu nome não foiesquecido nas”... "),
                                                             new ImgOrTxt("sso me lembra uma música de Luiz Gonzaga, e a forma como afrase foi cortada, me faz pensar que isso possa ser relevante de alguma forma, você poderia tentar descobrir.")
                                                            
@@ -159,6 +159,10 @@ public class Detetive : MonoBehaviour
                                                             //new ImgOrTxt(""); foto do mapa do museu
         });
         intro[3] = msg4;
+
+        Mensagem dicas0 = new Mensagem("2", new ImgOrTxt[2] { new ImgOrTxt("Descobre ai trouxa"), new ImgOrTxt("hahaha") });
+        dicas[0] = dicas0;
+
     }
 
     public void getTextInput(string input)
