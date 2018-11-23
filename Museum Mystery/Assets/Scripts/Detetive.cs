@@ -80,11 +80,63 @@ public class Detetive : MonoBehaviour
                                                                                           new ImgOrTxt("Deixe-me ver. Essa digital pertence a Rajish Al-Habib.25 anos, casado.Humm, tem ficha na delegacia por porte ilegal de arma. Nasceu nos emirados árabes, mas reside na cidade do Recife, trabalha como professor de história em escola pública."),
                                                                                           new ImgOrTxt("Pelo que consegui verificar no nosso banco de dados de digitais, essa digital pertencea Nariadna Gleycielly. Nariadna, 22 anos, casada, sem antecedentes criminais, reside em Salgueiro e é dona de uma loja de tecidos."),
                                                                                           new ImgOrTxt(" Estranho esse símbolo. Pelo que eu consegui analisar aqui, ele não foi feito por Sanfonatti.Talvez esteja relacionado com algum dos suspeitos, pode significar algo.")
-                                                                                         
-                                                         }) 
+
+                                                         }),
+                                                         new Mensagem("2", new ImgOrTxt[]{ new ImgOrTxt("Veja se você consegue descobrir o que pode ser a continuação dessa frase. Ela pode conter alguma dica de onde ele pode ter deixado algo no museu."),
+                                                                                           new ImgOrTxt("Esse Sanfonatti parece realmente gostar de escrever em enigmas. A essa altura eu tenho certeza que essa frase significa algo. Tente descobrir o que significa."),
+                                                                                           new ImgOrTxt("O cordel foi encontrado por um funcionário do museu no mesmo local onde você encontrou a frase deixada por Sanfonatti. É bem provável que tenha algo escondido nele.Você consegue descobrir o que é?"),
+                                                                                           new ImgOrTxt("Sanfonatti parece ter nos deixado uma coordenada escrita nesse mapa.39°20'37.9'WMe avise se você descobrir qual é a outra para que possamos mandar algum agenteaté o local descobrir o que isso significa.")
+
+
+                                                         }),
+                                                         new Mensagem("3", new ImgOrTxt[]{ new ImgOrTxt("Essa carta foi escrita por Raimundo Jacó, e foi encontrada no local indicado pelas coordenadas deixadas por Sanfonatti.Jacó faz parecer que estava sendo perseguido por ter descoberto algo, logo antes de ter sido assassinado."),
+                                                                                           new ImgOrTxt("Esta é a área do museu em que não existe nenhuma imagem da câmera de segurança de Sanfonatti.Deve haver algo de importante aí."),
+                                                                                           new ImgOrTxt("Eu acredito que a esse ponto você já deve entender como a mente de Sanfonattifunciona melhor do que eu.Essa é a última pista que nos temos. Tente descobrir o que ela significa, é possívelque tenha algo que ajude a decifrar nas informações que você já coletou antes. Boa sorte, jovem"),
+
+                                                         })
     };
     public static Mensagem[] intro = new Mensagem[4]; // introducoes do ciclo
-    public static Mensagem[] automatico = new Mensagem[4]; // msgs automaticas que o detetive manda ao jogador completar alguma coisa
+    public static Mensagem[] automatico = new Mensagem[] { new Mensagem("0", new ImgOrTxt[]{ new ImgOrTxt("Olá, novamente jovem. Enquanto você investigava aí no museu, um dos nossas investigadores encontrou uma bolsa jogada no lado de fora do museu perto de uma lixeira. Era a mesma bolsa que Sanfonatti estava usando quando visitou o museu. Estranho não acha? Bem, dentro da bolsa encontramos este pedaço de papel"),
+                                                                                             //imagem do mapa
+                                                                                             new ImgOrTxt("E este livro"),
+                                                                                             //foto do livro
+                                                                                             new ImgOrTxt("Não sabemos ainda o que significa ou se é relevante. Mas, de qualquer forma, é uma pista, então achei que seria útil enviar."),
+                                                                                             new ImgOrTxt("Essas marcas de novo, estranho. Essa outra palavra embaixo, também parece ter sido feita por Sanfonatti.Realmente estranho.Bem, acha que você consegue descobrir o que essas marcas estranhas significa? Se descobrir, por favor me envie."),
+
+
+                                                        }),
+                                                        new Mensagem("1", new ImgOrTxt[]{ new ImgOrTxt("Bem, pelo que conseguimos coletar das suas pistas, temos 3 suspeitos principais,Rajish Al-Habib, Atila Saverin, e Nariadna Gleycielly, mas só, nossos especialistas não conseguiram extrair nenhuma boa informação disso, é muito pouco para conseguirmos avaliar algo, precisamos de algo maior para prosseguir."),
+                                                                                          new ImgOrTxt("Tem também a questão desse símbolo que você encontrou, ele me parece ser relevante."),
+                                                                                          new ImgOrTxt("Humm, me desculpe, mas não tem muito que eu esteja conseguindo fazer por aqui. Talvez você consiga encontrar alguma informação sobre os suspeitos que possa ajudar."),
+                                                                                          new ImgOrTxt("Tente descobrir alguma informação que possa levar a algum dos suspeitos em particular, algo que possa está relacionado ao caso. Acha que consegue?"),
+                                                                                          new ImgOrTxt("Me envie uma mensagem se encontrar algo importante.")
+
+                                                        }),
+                                                        new Mensagem("2", new ImgOrTxt[]{ new ImgOrTxt("Humm. Esse local que você encontrou agora. Um dos funcionários do museu havia encontrado isto escondido aí."),
+                                                                                            //imagem do cordel
+                                                                                          new ImgOrTxt("Não parecia relevante antes, era apenas um pedaço de papel com um cordel escrito, mas seria coincidência demais isso estar no mesmo lugar."),
+                                                                                          new ImgOrTxt("Essas marcações deixadas no mapa. Elas parecem apontar uma coordenada geográfica."),
+                                                                                          new ImgOrTxt("Humm"),
+                                                                                          new ImgOrTxt("Se quisermos encontrar o lugar para onde isso aponta, precisaremos de outra coordenada"),
+                                                                                          new ImgOrTxt("Por favor, se descobrir qual é, me avise que eu mandarei um dos nossos agentes averiguar o local.")
+
+                                                        }),
+                                                         new Mensagem("3", new ImgOrTxt[]{ new ImgOrTxt("Humm, o que será que isso significa?Esta é a última pista que nos resta. Talvez descobrir o que ela quer dizer possa nos   ajudar a descobrir o que aconteceu com Sanfonatti."),
+                                                                                           new ImgOrTxt("Bem jovem. Eu sei que não temos muito para seguir em frente. Mas, se você descobrir onde Sanfonatti pode estar, ou se ele deixou alguma mensagem que possa nos dizer onde procurar, por favor me envie."),
+                                                                                           new ImgOrTxt("Bem, jovem. Acho que você tem o direito de saber."),
+                                                                                           new ImgOrTxt("A nossa agência de investigação, a Alítheia, tem trabalhado, assim como Sanfonatti, em tentar descobrir a verdade sobre essas informações que tem sido manipuladas por essa sociedade secreta que controla as grandes corporações do mundo, para isso a agência utiliza o programa de seleção de novos investigadores, para tentar encontrar pessoas com o mesmo interesse, afinal, essa sociedade é muito poderosa."),
+                                                                                           new ImgOrTxt("Foi apenas recentemente que descobrimos sobre Sanfonatti. Queríamos chamar ele para a nossa agência, mas infelizmente não fomos rápidos o suficiente. Não tínhamos como saber que a Virtus Atlas estava por trás disso, e já estava tão próxima de encontrá-lo, e ele, sozinho, não teve muita opção. Maldição, eles parecem estar sempre um passo na nossa frente."),
+                                                                                           new ImgOrTxt("Enfim, pelo que você descobriu, me parece que Sanfonatti estava tentando deixar alguma mensagem para que alguém capaz de encontrá-la pudesse continuar o que ele começou, e parece que além de tudo ele descobriu o que nossa agência era realmente nos últimos instantes. "),
+                                                                                           new ImgOrTxt("É, a Alítheia é a agência da verdade."),
+                                                                                           new ImgOrTxt("Bem. Agora que você já sabe a verdade, espero que você queira se juntar a nossa agência. Eu vejo muito futuro em você."),
+                                                                                           new ImgOrTxt("Pois é, não ache que seu trabalho foi em vão jovem."),
+                                                                                           new ImgOrTxt("Apesar de não termos o paradeiro exato, as informações que você conseguiu não só podem nos ajudar a encontrar o pobre Sanfonatti, como também agora nós temos o nome de um dos capangas da Virtus Atlas para seguir."),
+                                                                                           new ImgOrTxt("Bem!"),
+                                                                                           new ImgOrTxt("Acho que esse caso do museu encerra por aqui."),
+                                                                                           new ImgOrTxt("Então jovem, está preparado para descobrir as verdades sobre o mundo?"),
+
+                                                         })
+    }; // msgs automaticas que o detetive manda ao jogador completar alguma coisa
     public static Mensagem[] resposta = new Mensagem[4]; // a posicao 0 desse array eh a palavra para validar, e as posicoes adiante sao as mensagens que o jogador enviara para o detetive caso tenha acertado a validacao
     public static bool exploracao = false; // para bloquear e desbloquear o envio de RESPOSTAS
     public static int etapa = 0;
@@ -100,7 +152,7 @@ public class Detetive : MonoBehaviour
 
     void Awake()
     {
-        Mensagem msg1 = new Mensagem("0", new ImgOrTxt[16] { new ImgOrTxt("Olá, você deve ser um dos novatos, não? Eu sou Jerry, detetive chefe responsável pela supervisão do caso em questão."),
+        Mensagem msg1 = new Mensagem("0", new ImgOrTxt[17] { new ImgOrTxt("Olá, você deve ser um dos novatos, não? Eu sou Jerry, detetive chefe responsável pela supervisão do caso em questão."),
                                     new ImgOrTxt("Infelizmente, não posso estar aí com você neste momento, tenho que cuidar de toda a papelada da investigação aqui no escritório, mas não se preocupe, tentarei ajudá - lo o máximo que puder daqui."),
                                     new ImgOrTxt("Muito bem, o negócio é o seguinte: duas semanas atrás um jovem turista de 22 anos, de nome Enzo Sanfonatti, veio para a cidade do Recife."),
                                     new ImgOrTxt("Tudo parecia normal até que alguns dias atrás ele simplesmente desapareceu, e ninguém parece fazer ideia do que aconteceu."),
@@ -113,7 +165,9 @@ public class Detetive : MonoBehaviour
                                     new ImgOrTxt("Vale salientar que eu tenho acesso ao seu banco de dados de pistas, mas as deduções que você possa vir a fazer vai ser necessário que você as envie para mim, para eu poder comunicá-las aos nossos especialistas."),
                                     new ImgOrTxt("Mas não se preocupe, sempre que eu achar que tem algo relevante a ser deduzido eu pergunto."),
                                     new ImgOrTxt("Lembre-se: se achar alguma evidência, não toque, além de ser contra as práticas do museu, alguma informação pode acabar sendo perdida, então cuidado."),
-                                    new ImgOrTxt("Então é isso aí. A última evidência que temos de Sanfonatti é esta (imagem da câmera de segurança), as gravações da câmera de segurança do museu estão corrompidas, e isso foi tudo que conseguimos de relevante."),
+                                    new ImgOrTxt("Então é isso aí. A última evidência que temos de Sanfonatti é esta"),
+                                    //imagem da camera de segurança
+                                    new ImgOrTxt("As gravações da câmera de segurança do museu estão corrompidas, e isso foi tudo que conseguimos de relevante."),
                                     new ImgOrTxt("Nossos especialistas estão trabalhando em restaurá-las. Mas até lá sugiro que comece tentando seguir seus passos e ver se encontra algo relevante."),
                                     new ImgOrTxt("Boa sorte jovem!")
                                     //falta a imagem de introdução 
@@ -139,8 +193,8 @@ public class Detetive : MonoBehaviour
                                                             new ImgOrTxt("Talvez daí que tenha surgido a tatuagem desse cara, não queele seja membro de um grupo secreto nem nada do tipo.Como eu disse nada dissofoi comprovado, mas existe maluco pra tudo não é mesmo."),
                                                             new ImgOrTxt("Bem, vou mandar isso para os especialistas aqui na agência para ver se eles descobrem algo mais sobre esse Átila Saverin."),
                                                             new ImgOrTxt("Enquanto eles veem isso, eu estive pensando sobre a frase que você me envioualgum tempo atrás. Especificamente a parte em que ele fala. “Seu nome não foiesquecido nas”... "),
-                                                            new ImgOrTxt("sso me lembra uma música de Luiz Gonzaga, e a forma como afrase foi cortada, me faz pensar que isso possa ser relevante de alguma forma, você poderia tentar descobrir.")
-                                                           
+                                                            new ImgOrTxt("isso me lembra uma música de Luiz Gonzaga, e a forma como afrase foi cortada, me faz pensar que isso possa ser relevante de alguma forma, você poderia tentar descobrir.")
+
 
         });
         intro[2] = msg3;
