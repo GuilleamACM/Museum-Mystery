@@ -24,13 +24,12 @@ public class PlayerInfo : MonoBehaviour
     {
         etapaAtual = 0;
         //Todas as pistas serão criadas aqui junto com o array de pistas
-        pistas = new Pista[] { new Pista("EnzoCamera"), new Pista("Chapeu"),new Pista("Criptografia1"), new Pista("Criptografia2"),
-                               new Pista("Criptografia3"), new Pista("MapaCigarro"), new Pista("Suspeito1"),
-                               new Pista("Suspeito2"), new Pista("Suspeito3"),
-                               new Pista("MapaCalor"), new Pista("Digital1"), new Pista("Digital2"),
-                               new Pista("Digital3"), new Pista("SimboloVirtusAtlas"), new Pista("PistaFinal"),
-                               new Pista("MapaNordeste"), new Pista("QuebradaSertao"),
-                               new Pista("Cordel"),};
+        pistas = new Pista[] { new Pista("enzoCamera"), new Pista("discoContinental"), new Pista("musicBox"),
+                               new Pista("gonzaga"), new Pista("mapaCigarro"), new Pista("albumLuizCostas"),
+                               new Pista("mapaCalor"), new Pista("suspeito1"), new Pista("suspeito2"),
+                               new Pista("suspeito3"), new Pista("faca"), new Pista("santo"),
+                               new Pista("xilogravuraMoldura"), new Pista("caixaPoesia"), new Pista("quadroBoneco"),
+                               new Pista("mapaNordeste"), new Pista("cacto"), new Pista("cordel"),};
     }
     public static int ProcurarPista(string id)
     {
