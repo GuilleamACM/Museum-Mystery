@@ -137,22 +137,21 @@ public class Detetive : MonoBehaviour
 
                                                          })
     }; // msgs automaticas que o detetive manda ao jogador completar alguma coisa
-    public static Mensagem[] resposta = new Mensagem[4]; // a posicao 0 desse array eh a palavra para validar, e as posicoes adiante sao as mensagens que o jogador enviara para o detetive caso tenha acertado a validacao
+    public static Mensagem[] resposta = new Mensagem[] {new Mensagem ("0", new ImgOrTxt[2] { new ImgOrTxt("batata"), new ImgOrTxt("eu sou uma batata") })}; // a posicao 0 desse array eh a palavra para validar, e as posicoes adiante sao as mensagens que o jogador enviara para o detetive caso tenha acertado a validacao
     public static bool exploracao = false; // para bloquear e desbloquear o envio de RESPOSTAS
     public static int etapa = 0;
     public static string answer; // msg escrita no input
     public static int imgDicas; // referencia da img clicada em anexos.
-    public static pistaDetetive[] pistasDetetive = new pistaDetetive[] { new pistaDetetive("EnzoCamera"),new pistaDetetive("Criptografia1"), new pistaDetetive("Criptografia2"),
-                                                                         new pistaDetetive("Criptografia3"), new pistaDetetive("MapaCigarro"), new pistaDetetive("Suspeito1"),
-                                                                         new pistaDetetive("Suspeito2"), new pistaDetetive("Suspeito3"),
-                                                                         new pistaDetetive("MapaCalor"), new pistaDetetive("Digital1"), new pistaDetetive("Digital2"),
-                                                                         new pistaDetetive("Digital3"), new pistaDetetive("SimboloVirtusAtlas"), new pistaDetetive("PistaFinal"),
-                                                                         new pistaDetetive("MapaNordeste"), new pistaDetetive("Chapeu"), new pistaDetetive("QuebradaSertao"),
-                                                                         new pistaDetetive("Cordel"),}; // esse array deve ser mapeado igualmente a o array de dicas.
+    public static pistaDetetive[] pistasDetetive = new pistaDetetive[] { new pistaDetetive("enzoCamera"),new pistaDetetive("discoContinental"), new pistaDetetive("musicBox"),
+                                                                         new pistaDetetive("gonzaga"), new pistaDetetive("mapaCigarro"), new pistaDetetive("albumLuizCostas"),
+                                                                         new pistaDetetive("mapaCalor"), new pistaDetetive("suspeito1"), new pistaDetetive("suspeito2"),
+                                                                         new pistaDetetive("suspeito3"), new pistaDetetive("faca"), new pistaDetetive("santo"),
+                                                                         new pistaDetetive("xilogravuraMoldura"), new pistaDetetive("caixaPoesia"),  new pistaDetetive("cacto"),
+                                                                         new pistaDetetive("mapaNordeste"), new pistaDetetive("cordel"), new pistaDetetive("quadroBoneco"),}; // esse array deve ser mapeado igualmente a o array de dicas.
 
     void Awake()
     {
-        Mensagem msg1 = new Mensagem("0", new ImgOrTxt[17] { new ImgOrTxt("Olá, você deve ser um dos novatos, não? Eu sou Jerry, detetive chefe responsável pela supervisão do caso em questão."),
+        Mensagem msg1 = new Mensagem("0", new ImgOrTxt[18] { new ImgOrTxt("Olá, você deve ser um dos novatos, não? Eu sou Jerry, detetive chefe responsável pela supervisão do caso em questão."),
                                     new ImgOrTxt("Infelizmente, não posso estar aí com você neste momento, tenho que cuidar de toda a papelada da investigação aqui no escritório, mas não se preocupe, tentarei ajudá - lo o máximo que puder daqui."),
                                     new ImgOrTxt("Muito bem, o negócio é o seguinte: duas semanas atrás um jovem turista de 22 anos, de nome Enzo Sanfonatti, veio para a cidade do Recife."),
                                     new ImgOrTxt("Tudo parecia normal até que alguns dias atrás ele simplesmente desapareceu, e ninguém parece fazer ideia do que aconteceu."),
@@ -166,7 +165,7 @@ public class Detetive : MonoBehaviour
                                     new ImgOrTxt("Mas não se preocupe, sempre que eu achar que tem algo relevante a ser deduzido eu pergunto."),
                                     new ImgOrTxt("Lembre-se: se achar alguma evidência, não toque, além de ser contra as práticas do museu, alguma informação pode acabar sendo perdida, então cuidado."),
                                     new ImgOrTxt("Então é isso aí. A última evidência que temos de Sanfonatti é esta"),
-                                    //imagem da camera de segurança
+                                    new ImgOrTxt(0),
                                     new ImgOrTxt("As gravações da câmera de segurança do museu estão corrompidas, e isso foi tudo que conseguimos de relevante."),
                                     new ImgOrTxt("Nossos especialistas estão trabalhando em restaurá-las. Mas até lá sugiro que comece tentando seguir seus passos e ver se encontra algo relevante."),
                                     new ImgOrTxt("Boa sorte jovem!")
@@ -372,7 +371,7 @@ public class Detetive : MonoBehaviour
             }
             intro[PlayerInfo.etapaAtual].enviado = true;
             exploracao = true;
-            PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("EnzoCamera"));
+            PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("enzoCamera"));
         }
         else
         {
@@ -463,7 +462,7 @@ public class Detetive : MonoBehaviour
             }
             intro[etapa].enviado = true;
             exploracao = true;
-            PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("MapaCalor"));
+            PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("mapaCalor"));
         }
 
         else if (etapa == 3)
@@ -523,7 +522,7 @@ public class Detetive : MonoBehaviour
         if (etapa == 1)
         {
             //checa se o jogador descobriu as pistas para mandar uma mensagem automatica.
-            int index = PlayerInfo.ProcurarPista("Criptografia1");
+            int index = PlayerInfo.ProcurarPista("discoContinental");
             if ((PlayerInfo.pistas[index].descoberta && PlayerInfo.pistas[index + 1].descoberta && PlayerInfo.pistas[index + 2].descoberta) && !(automatico[etapa].enviado)) //as pistas 1,2,3 = Criptografia1,Criptografia2,Criptografia3
             {
                 for(int i = 0; i < automatico[etapa].imgOrTxt.Length; i++)
@@ -544,7 +543,7 @@ public class Detetive : MonoBehaviour
 
 
             //Checa no update se A DICA JA FOI ENVIADA para poder liberar o pop-up
-            int index1 = procurarPistaDetetive("Criptografia1"); // talvez, inicializar todas essas variaveis no start() para só acessar no update ou inves de sempre procurar.
+            int index1 = procurarPistaDetetive("discoContinental"); // talvez, inicializar todas essas variaveis no start() para só acessar no update ou inves de sempre procurar.
             int index2 = index1 + 1;
             int index3 = index2 + 1;
 
@@ -557,7 +556,7 @@ public class Detetive : MonoBehaviour
         }
         else if (etapa == 2)
         {
-            int index = PlayerInfo.ProcurarPista("Digital1");
+            int index = PlayerInfo.ProcurarPista("faca");
             if ((PlayerInfo.pistas[index].descoberta) && (PlayerInfo.pistas[index + 1].descoberta) && (PlayerInfo.pistas[index + 2].descoberta) && !(automatico[etapa].enviado))
             {
                 for (int i = 0; i < automatico[etapa].imgOrTxt.Length; i++)
@@ -576,7 +575,7 @@ public class Detetive : MonoBehaviour
                 // PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("Suspeito1"));  essa linha terá que ser chamada ao abrir o chat, para só adicionar ao banco de pistas se voce tiver entrado no chat
             }
 
-            int index1 = procurarPistaDetetive("SimboloVirtusAtlas");
+            int index1 = procurarPistaDetetive("caixaPoesia");
 
             if ((pistasDetetive[index1].enviado))
             {
@@ -590,7 +589,7 @@ public class Detetive : MonoBehaviour
 
         else if (etapa == 4)
         {
-            int index = PlayerInfo.ProcurarPista("MapaNordeste");
+            int index = PlayerInfo.ProcurarPista("mapaNordeste");
             if ((PlayerInfo.pistas[index].descoberta) && !(automatico[etapa].enviado))
             {
                 for (int i = 0; i < automatico[etapa].imgOrTxt.Length; i++)
@@ -614,7 +613,7 @@ public class Detetive : MonoBehaviour
         }
         else if (etapa == 5)
         {
-            int index = procurarPistaDetetive("PistaFinal");
+            int index = procurarPistaDetetive("quadroBoneco");
             if ((pistasDetetive[index].enviado))
             {
                 exploracao = false;

@@ -4287,18 +4287,18 @@ MonoBehaviour:
   title: {fileID: 1477870514}
   titleAmpliado: {fileID: 1802389105}
   sprites:
-  - {fileID: 21300000, guid: 5aaef483fd2353e44921d6935e965f05, type: 3}
+  - {fileID: 21300000, guid: aa8387d079ad2da469907629e5d96e9e, type: 3}
   - {fileID: 21300000, guid: 28172a955b93f3041b21db85377ad8a8, type: 3}
   - {fileID: 21300000, guid: 12053eed15472244a982a0ec7ee7971b, type: 3}
   - {fileID: 21300000, guid: 145cef1a06ec23e4984a5cc80545606b, type: 3}
   descricao: {fileID: 1113914345}
   titles:
-  - Sanfona
+  - "C\xE2mera de Seguran\xE7a"
   - "M\xE1quina de Mist\xE9rio"
   - Thinking
   - Calanguinho
   descricoes:
-  - "Sanfona muito bonita, como voc\xEA pode ver."
+  - "\xDAltima imagem de Sanfonatti antes de seu desaparecimento"
   - "Muitos mist\xE9rios mesmo"
   - "Se eu jogar tang na \xE1gua com g\xE1s, eu vou fazer um refri?"
   - Melhor studio de jogos, obviamente. Calango's Productions
@@ -4307,7 +4307,7 @@ MonoBehaviour:
   PistasCanvas: {fileID: 569578082}
   panel: {fileID: 1740220915}
   AR: {fileID: 1606818663}
-  Targets: {fileID: 0}
+  Targets: {fileID: 942954091}
   BotaoPista:
   - {fileID: 2062378758}
   - {fileID: 672965415}
@@ -11758,7 +11758,7 @@ MonoBehaviour:
   panel: {fileID: 1955142889}
   panelDicas: {fileID: 93643594}
   sprites2:
-  - {fileID: 21300000, guid: 5aaef483fd2353e44921d6935e965f05, type: 3}
+  - {fileID: 21300000, guid: aa8387d079ad2da469907629e5d96e9e, type: 3}
   - {fileID: 21300000, guid: 12053eed15472244a982a0ec7ee7971b, type: 3}
   - {fileID: 21300000, guid: d8e9bd14e2d84244a877b4f091b89947, type: 3}
   - {fileID: 21300000, guid: 11b0093a35cbd6345a62dbed244cc9e6, type: 3}

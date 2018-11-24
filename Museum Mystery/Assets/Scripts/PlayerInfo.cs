@@ -28,8 +28,8 @@ public class PlayerInfo : MonoBehaviour
                                new Pista("gonzaga"), new Pista("mapaCigarro"), new Pista("albumLuizCostas"),
                                new Pista("mapaCalor"), new Pista("suspeito1"), new Pista("suspeito2"),
                                new Pista("suspeito3"), new Pista("faca"), new Pista("santo"),
-                               new Pista("xilogravuraMoldura"), new Pista("caixaPoesia"), new Pista("quadroBoneco"),
-                               new Pista("mapaNordeste"), new Pista("cacto"), new Pista("cordel"),};
+                               new Pista("xilogravuraMoldura"), new Pista("caixaPoesia"), new Pista("cacto"),
+                               new Pista("mapaNordeste"), new Pista("cordel"),  new Pista("quadroBoneco")};
     }
     public static int ProcurarPista(string id)
     {
@@ -41,7 +41,7 @@ public class PlayerInfo : MonoBehaviour
             }
 
         }
-        return 999;
+        return -1;
     }
 
     public static void DescobrirPista(int index)

@@ -46,7 +46,6 @@ public class MainMenu : MonoBehaviour
         ChatNotification = GameObject.Find("ChatNotification");
         ARNotification = GameObject.Find("ARNotification");
         DicasNotification = GameObject.Find("DicasNotification");
-        Targets = GameObject.Find("Targets");
         Etapa1 = GameObject.Find("Etapa 1");
         Etapa2 = GameObject.Find("Etapa 2");
         Etapa3 = GameObject.Find("Etapa 3");
@@ -112,7 +111,7 @@ public class MainMenu : MonoBehaviour
             {
                 Detetive.StartIntro();
                 check = true;
-                //Invoke("AumentarEtapaIntro", 5); // como invoke não pode ser chamado num static, criei uma funcao start para comecar e dps de 5 segundos chamar a funcao aumentarEtapa para o jogador avançar no jogo.
+                Invoke("AumentarEtapaIntro", 5); // como invoke não pode ser chamado num static, criei uma funcao start para comecar e dps de 5 segundos chamar a funcao aumentarEtapa para o jogador avançar no jogo.
             }
         }
 
@@ -120,7 +119,7 @@ public class MainMenu : MonoBehaviour
         {
             if (Detetive.automatico[Detetive.etapa].enviado && !check)
             {
-                PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("MapaCigarro"));
+                PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("mapaCigarro"));
                 check = true;
             }
         }
@@ -129,7 +128,7 @@ public class MainMenu : MonoBehaviour
 
             if (Detetive.automatico[Detetive.etapa].enviado && !check)
             {
-                int aux = PlayerInfo.ProcurarPista("Suspeito1");
+                int aux = PlayerInfo.ProcurarPista("suspeito1");
                 PlayerInfo.DescobrirPista(aux);
                 PlayerInfo.DescobrirPista(aux + 1);
                 PlayerInfo.DescobrirPista(aux + 2);
@@ -145,7 +144,7 @@ public class MainMenu : MonoBehaviour
         {
             if (Detetive.automatico[Detetive.etapa].enviado && !check)
             {
-                PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("Cordel"));
+                PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("cordel"));
                 check = true;
             }
         }
