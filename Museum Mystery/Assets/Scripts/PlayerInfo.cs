@@ -50,12 +50,17 @@ public class PlayerInfo : MonoBehaviour
         {
             pistas[index].descoberta = true;
             MainMenu.DicasNotification.SetActive(true);
-            Debug.Log(pistas[index].id);
+            Debug.Log("Você descobriu a pista: "+pistas[index].id);
             MainMenu.staticBotaoDicas[index].SetActive(true);
             MainMenu.staticBotaoPista[index].SetActive(true);
             MainMenu.ARTextNotification.SetActive(true);
             StaticCoroutine.DoCoroutine(2);
         }
+        else
+        {
+            Debug.Log("Pista já descoberta: "+index);
+        }
+
     }
 
     public static void AumentarEtapa()

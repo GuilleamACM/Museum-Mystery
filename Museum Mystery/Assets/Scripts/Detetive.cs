@@ -360,7 +360,6 @@ public class Detetive : MonoBehaviour
         {
             for(int i = 0; i < intro[PlayerInfo.etapaAtual].imgOrTxt.Length; i++)
             {
-                Debug.Log("Entrou no primeiro if");
                 if (intro[PlayerInfo.etapaAtual].imgOrTxt[i].isImg()) {
                     ChatListControl.RenderizarImagem(intro[PlayerInfo.etapaAtual].imgOrTxt[i].img, true);
                 }
@@ -519,7 +518,7 @@ public class Detetive : MonoBehaviour
     void Update()
     {
 
-        if (etapa == 1)
+        if (etapa == 0)
         {
             //checa se o jogador descobriu as pistas para mandar uma mensagem automatica.
             int index = PlayerInfo.ProcurarPista("discoContinental");
@@ -538,7 +537,7 @@ public class Detetive : MonoBehaviour
                 }
                 automatico[etapa].enviado = true;
                 MainMenu.TurnOnChatNofication();
-                // PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("MapaCigarro"));  essa linha terá que ser chamada ao abrir o chat, para só adicionar ao banco de pistas se voce tiver entrado no chat              
+                // PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("mapaCigarro"));  essa linha terá que ser chamada ao abrir o chat, para só adicionar ao banco de pistas se voce tiver entrado no chat              
             }
 
 
@@ -554,7 +553,7 @@ public class Detetive : MonoBehaviour
             }
 
         }
-        else if (etapa == 2)
+        else if (etapa == 1)
         {
             int index = PlayerInfo.ProcurarPista("faca");
             if ((PlayerInfo.pistas[index].descoberta) && (PlayerInfo.pistas[index + 1].descoberta) && (PlayerInfo.pistas[index + 2].descoberta) && !(automatico[etapa].enviado))
@@ -585,9 +584,9 @@ public class Detetive : MonoBehaviour
 
         }
 
-        //etapa 3 não tem nada automatico. só uma validação, lembrar só de deixar habilitado o pop-up.
+        //etapa 2 não tem nada automatico. só uma validação, lembrar só de deixar habilitado o pop-up.
 
-        else if (etapa == 4)
+        else if (etapa == 3)
         {
             int index = PlayerInfo.ProcurarPista("mapaNordeste");
             if ((PlayerInfo.pistas[index].descoberta) && !(automatico[etapa].enviado))
@@ -611,7 +610,7 @@ public class Detetive : MonoBehaviour
 
             //aqui coincidentemente a mensagem automatica e a liberação de exploração são iguais
         }
-        else if (etapa == 5)
+        else if (etapa == 4)
         {
             int index = procurarPistaDetetive("quadroBoneco");
             if ((pistasDetetive[index].enviado))

@@ -20,8 +20,8 @@ public class CustomTrackableEventHandler : DefaultTrackableEventHandler {
             Debug.Log("Trackable " + targetName + " found");
             int index;
 
-            //targetName = targetName.Remove(targetName.Length-1);     qdo os targets forem modificados lembrar de habilitar essa linha para remover o último caractere.
-
+            targetName = targetName.Remove(targetName.Length-1);     //qdo os targets forem modificados lembrar de habilitar essa linha para remover o último caractere.
+            Debug.Log("string targetName: "+targetName);
             index = PlayerInfo.ProcurarPista(targetName);
             Debug.Log(index);
             if(index != -1)
@@ -47,8 +47,4 @@ public class CustomTrackableEventHandler : DefaultTrackableEventHandler {
         }
     }
 
-    public void PararAnimacao()
-    {
-        MainMenu.ARTextNotification.SetActive(false);
-    }
 }

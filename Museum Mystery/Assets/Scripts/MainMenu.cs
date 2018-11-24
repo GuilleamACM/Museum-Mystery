@@ -111,11 +111,12 @@ public class MainMenu : MonoBehaviour
             {
                 Detetive.StartIntro();
                 check = true;
-                Invoke("AumentarEtapaIntro", 5); // como invoke não pode ser chamado num static, criei uma funcao start para comecar e dps de 5 segundos chamar a funcao aumentarEtapa para o jogador avançar no jogo.
+                PlayerInfo.AumentarEtapa();
+                
             }
         }
 
-        else if (Detetive.etapa == 1)
+        else if (Detetive.etapa == 0)
         {
             if (Detetive.automatico[Detetive.etapa].enviado && !check)
             {
@@ -123,7 +124,7 @@ public class MainMenu : MonoBehaviour
                 check = true;
             }
         }
-        else if (Detetive.etapa == 2)
+        else if (Detetive.etapa == 1)
         {
 
             if (Detetive.automatico[Detetive.etapa].enviado && !check)
@@ -136,11 +137,11 @@ public class MainMenu : MonoBehaviour
             }
         }
 
-        /* else if(Detetive.etapa == 3)
+        /* else if(Detetive.etapa == 2)
         {
             não tem nada para habilitar.
         } */
-        else if (Detetive.etapa == 4)
+        else if (Detetive.etapa == 3)
         {
             if (Detetive.automatico[Detetive.etapa].enviado && !check)
             {
@@ -149,7 +150,7 @@ public class MainMenu : MonoBehaviour
             }
         }
 
-        /* else if(Detetive.etapa == 5)
+        /* else if(Detetive.etapa == 4)
         {
             não tem nada para habilitar.
         } */
