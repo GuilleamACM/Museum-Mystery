@@ -67,7 +67,7 @@ public class Detetive : MonoBehaviour
     public GameObject popupDeny;
     public GameObject popupTutorial;
     public GameObject popupEncaminhado;
-    public static Mensagem[] dicas = new Mensagem[4]; // qdo o jogador envia uma pista habilitada ao detetive, o detetive responde com um breve texto, falando melhor sobre a pista enviada.
+    public static Mensagem[] dicas = new Mensagem[19]; // qdo o jogador envia uma pista habilitada ao detetive, o detetive responde com um breve texto, falando melhor sobre a pista enviada.
     public static Mensagem[] feedback = new Mensagem[] { new Mensagem("0",new ImgOrTxt[]{ new ImgOrTxt("Está foi a única imagem de Sanfonatti que conseguimos restaurar das câmeras desegurança. Tente analisar o local com as ferramentas que lhe demos, talvez vocêencontre algo relevante."),
                                                          new ImgOrTxt ("Estranho, acho que nunca vi essas marcas antes, elas parecem ter sido colocadas alipelo próprio Sanfonatti, continue procurando, talvez isso signifique algo."),
                                                          //new ImgOrTxt (""), imagem heraldica
@@ -143,11 +143,10 @@ public class Detetive : MonoBehaviour
     public static string answer; // msg escrita no input
     public static int imgDicas; // referencia da img clicada em anexos.
     public static pistaDetetive[] pistasDetetive = new pistaDetetive[] { new pistaDetetive("enzoCamera"),new pistaDetetive("discoContinental"), new pistaDetetive("musicBox"),
-                                                                         new pistaDetetive("gonzaga"), new pistaDetetive("mapaCigarro"), new pistaDetetive("albumLuizCostas"),
-                                                                         new pistaDetetive("mapaCalor"), new pistaDetetive("suspeito1"), new pistaDetetive("suspeito2"),
-                                                                         new pistaDetetive("suspeito3"), new pistaDetetive("faca"), new pistaDetetive("santo"),
-                                                                         new pistaDetetive("xilogravuraMoldura"), new pistaDetetive("caixaPoesia"),  new pistaDetetive("cacto"),
-                                                                         new pistaDetetive("mapaNordeste"), new pistaDetetive("cordel"), new pistaDetetive("quadroBoneco"),}; // esse array deve ser mapeado igualmente a o array de dicas.
+                                                                         new pistaDetetive("gonzaga"), new pistaDetetive("mapaCigarro"), new pistaDetetive("livro"), new pistaDetetive("albumLuizCostas"),
+                                                                         new pistaDetetive("mapaCalor"), new pistaDetetive("faca"), new pistaDetetive("santo"),
+                                                                         new pistaDetetive("xilogravuraMoldura"), new pistaDetetive("caixaPoesia"), new pistaDetetive("suspeitos"),  new pistaDetetive("cacto"),
+                                                                         new pistaDetetive("mapaNordeste"), new pistaDetetive("cordel"),new pistaDetetive("cartaJaco"),new pistaDetetive("mapaEnzo"), new pistaDetetive("quadroBoneco"),}; // esse array deve ser mapeado igualmente a o array de dicas.
 
     void Awake()
     {
@@ -215,6 +214,10 @@ public class Detetive : MonoBehaviour
 
         Mensagem dicas0 = new Mensagem("2", new ImgOrTxt[2] { new ImgOrTxt("Descobre ai trouxa"), new ImgOrTxt("hahaha") });
         dicas[0] = dicas0;
+        for(int i = 1; i < dicas.Length; i++)
+        {
+            dicas[i] = new Mensagem("2", new ImgOrTxt[2] { new ImgOrTxt("testando"), new ImgOrTxt("testando2") });
+        }
 
     }
 

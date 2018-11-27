@@ -110,7 +110,6 @@ public class MainMenu : MonoBehaviour
             if (!check)
             {
                 Detetive.StartIntro();
-                check = true;
                 PlayerInfo.AumentarEtapa();
                 
             }
@@ -121,6 +120,7 @@ public class MainMenu : MonoBehaviour
             if (Detetive.automatico[Detetive.etapa].enviado && !check)
             {
                 PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("mapaCigarro"));
+                PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("livro"));
                 check = true;
             }
         }
@@ -129,10 +129,8 @@ public class MainMenu : MonoBehaviour
 
             if (Detetive.automatico[Detetive.etapa].enviado && !check)
             {
-                int aux = PlayerInfo.ProcurarPista("suspeito1");
+                int aux = PlayerInfo.ProcurarPista("suspeitos");
                 PlayerInfo.DescobrirPista(aux);
-                PlayerInfo.DescobrirPista(aux + 1);
-                PlayerInfo.DescobrirPista(aux + 2);
                 check = true;
             }
         }

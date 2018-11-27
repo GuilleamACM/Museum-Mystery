@@ -19,7 +19,7 @@ public class StaticCoroutine : MonoBehaviour {
 
     IEnumerator Wait2(string resp)
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1.75f);
         ChatListControl.RenderizarTexto(resp, true);
     }
 

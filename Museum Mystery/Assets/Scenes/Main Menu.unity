@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4207,20 +4207,78 @@ MonoBehaviour:
   titleAmpliado: {fileID: 1802389105}
   sprites:
   - {fileID: 21300000, guid: aa8387d079ad2da469907629e5d96e9e, type: 3}
-  - {fileID: 21300000, guid: 28172a955b93f3041b21db85377ad8a8, type: 3}
-  - {fileID: 21300000, guid: 12053eed15472244a982a0ec7ee7971b, type: 3}
-  - {fileID: 21300000, guid: 145cef1a06ec23e4984a5cc80545606b, type: 3}
+  - {fileID: 21300000, guid: 9eead39d750133645b15c6c5c915710d, type: 3}
+  - {fileID: 21300000, guid: ad7d97ff4244af040a7f0f9035da8b19, type: 3}
+  - {fileID: 21300000, guid: 19588e19a2950194db3388bd082f2b67, type: 3}
+  - {fileID: 21300000, guid: 0b6618e085e4b8b4a94b857fe3a59d67, type: 3}
+  - {fileID: 21300000, guid: c2b8b7364390b0c468df71be639fe0ef, type: 3}
+  - {fileID: 21300000, guid: 941c583ee22bf104b89b972fd13b6ed2, type: 3}
+  - {fileID: 21300000, guid: ebb6acfc7f56e42459d4a4916f327540, type: 3}
+  - {fileID: 21300000, guid: 6bc71288f90a2b24e8466634be7ec721, type: 3}
+  - {fileID: 21300000, guid: 29f29e6b41f2d1048bca126b72aef8fd, type: 3}
+  - {fileID: 21300000, guid: 340808a93031cd442a5d3eb992a50839, type: 3}
+  - {fileID: 21300000, guid: 6ccbac9b6ba60be459d35d8a20c8b254, type: 3}
+  - {fileID: 21300000, guid: 25eaf024bdfdf6347b3819044c89f8cc, type: 3}
+  - {fileID: 21300000, guid: 28bda38abdb5e894ebf35c9e0e7adeab, type: 3}
+  - {fileID: 21300000, guid: 77450b47eeba70d409a5f3d5201da673, type: 3}
+  - {fileID: 21300000, guid: c94e6fe43b52912479457b9c0bb27b6b, type: 3}
+  - {fileID: 21300000, guid: cce1ce867b8b4ca4ca55967032c7bdaa, type: 3}
+  - {fileID: 21300000, guid: ebb6acfc7f56e42459d4a4916f327540, type: 3}
+  - {fileID: 21300000, guid: 507f2a3dfb66aaa40ae9708e1de95ba1, type: 3}
   descricao: {fileID: 1113914345}
   titles:
   - "C\xE2mera de Seguran\xE7a"
-  - "M\xE1quina de Mist\xE9rio"
-  - Thinking
-  - Calanguinho
+  - Disco
+  - Vitrola
+  - Luiz Gonzaga
+  - "Peda\xE7o de Papel"
+  - Livro
+  - Album
+  - Mapa de Calor
+  - Faca
+  - "S\xE3o Francisco"
+  - Xilogravura
+  - Caixa de Poesia
+  - Fichas dos Suspeitos
+  - Cacto
+  - "Bacia Hidrogr\xE1fica"
+  - Cordel
+  - "Carta de Jac\xF3"
+  - Mapa
+  - Bonecos
   descricoes:
-  - "\xDAltima imagem de Sanfonatti antes de seu desaparecimento"
-  - "Muitos mist\xE9rios mesmo"
-  - "Se eu jogar tang na \xE1gua com g\xE1s, eu vou fazer um refri?"
-  - Melhor studio de jogos, obviamente. Calango's Productions
+  - "\xDAltima imagem de Sanfonatti antes de seu desaparecimento."
+  - "Marca\xE7\xF5es deixadas por Enzo Sanfonatti na capa do Disco \u201CContinental\u201D,
+    cole\xE7\xE3o de Paulo Vanderley 1941."
+  - "Marca\xE7\xF5es deixadas por Enzo Sanfonatti em vitrola."
+  - "Marca\xE7\xF5es deixadas por Enzo Sanfonatti na foto preto-e-branco de Luiz Gonzaga."
+  - "Peda\xE7o de papel encontrado na bolsa de Enzo com coisas escritas, possui manchas
+    de cigarro."
+  - "Livro estranho encontrado na bolsa de Enzo Sanfonatti. Apesar de estranho n\xE3o
+    possui nenhuma marca\xE7\xE3o suspeita"
+  - "Marca\xE7\xF5es estranhas deixadas por Enzo no Disco do \xC1lbum \u2018O Nordeste
+    na Voz de Luiz Gonzaga\u2019 de Luiz Gonzaga, lan\xE7ado em 1962 pela gravadora
+    RCA Records."
+  - "Mapa de Calor feito pela Ag\xEAncia mostrando os pontos de interesse que Sanfonatti
+    mais interagiu."
+  - "Digitais de um  suspeito encontradas em faca da exposi\xE7\xE3o com ferramentas
+    do sert\xE3o."
+  - "Digitais de um suspeito encontradas em um Rel\xF3gio com imagem cat\xF3lica de
+    S\xE3o Francisco das Chagas, na casa do transtempo."
+  - Digitais de um suspeito encontradas em uma Xilogravura.
+  - "S\xEDmbolo desconhecido encontrado em painel com programa\xE7\xE3o da \u2018Caixa
+    de Poesia\u2019."
+  - Fichas policiais dos suspeitos cujas digitais foram encontradas no museu.
+  - "Mensagem \u2018os relevos do s\xE3o francisco lhe ajudar\xE3o a encontrar um
+    norte no seu caminho\u2019 deixada por Enzo Sanfonatti em obra do museu que representa
+    vegeta\xE7\xE3o nativa do sert\xE3o"
+  - "Coordenada geogr\xE1fica 39\xB020'37.9\"W encontrada no mapa t\xE1til da bacia
+    do Rio S\xE3o Francisco"
+  - "Cordel encontrado por um dos funcion\xE1rios do museu em obra que representa
+    vegeta\xE7\xE3o nativa do sert\xE3o"
+  - "Carta de Raimundo Jac\xF3"
+  - "Mapa que marca a \xE1rea onde Enzo n\xE3o aparece nas c\xE2meras de seguran\xE7a"
+  - "Inscri\xE7\xE3o deixada por Enzo Sanfonatti em uma das obras do museu"
   MenuCanvas: {fileID: 413199525}
   ChatCanvas: {fileID: 491515445}
   PistasCanvas: {fileID: 569578082}
@@ -11333,9 +11391,24 @@ MonoBehaviour:
   panelDicas: {fileID: 93643594}
   sprites2:
   - {fileID: 21300000, guid: aa8387d079ad2da469907629e5d96e9e, type: 3}
-  - {fileID: 21300000, guid: 12053eed15472244a982a0ec7ee7971b, type: 3}
-  - {fileID: 21300000, guid: d8e9bd14e2d84244a877b4f091b89947, type: 3}
-  - {fileID: 21300000, guid: 11b0093a35cbd6345a62dbed244cc9e6, type: 3}
+  - {fileID: 21300000, guid: 9eead39d750133645b15c6c5c915710d, type: 3}
+  - {fileID: 21300000, guid: ad7d97ff4244af040a7f0f9035da8b19, type: 3}
+  - {fileID: 21300000, guid: 19588e19a2950194db3388bd082f2b67, type: 3}
+  - {fileID: 21300000, guid: 0b6618e085e4b8b4a94b857fe3a59d67, type: 3}
+  - {fileID: 21300000, guid: c2b8b7364390b0c468df71be639fe0ef, type: 3}
+  - {fileID: 21300000, guid: 941c583ee22bf104b89b972fd13b6ed2, type: 3}
+  - {fileID: 21300000, guid: ebb6acfc7f56e42459d4a4916f327540, type: 3}
+  - {fileID: 21300000, guid: 6bc71288f90a2b24e8466634be7ec721, type: 3}
+  - {fileID: 21300000, guid: 29f29e6b41f2d1048bca126b72aef8fd, type: 3}
+  - {fileID: 21300000, guid: 340808a93031cd442a5d3eb992a50839, type: 3}
+  - {fileID: 21300000, guid: 6ccbac9b6ba60be459d35d8a20c8b254, type: 3}
+  - {fileID: 21300000, guid: 25eaf024bdfdf6347b3819044c89f8cc, type: 3}
+  - {fileID: 21300000, guid: 28bda38abdb5e894ebf35c9e0e7adeab, type: 3}
+  - {fileID: 21300000, guid: 77450b47eeba70d409a5f3d5201da673, type: 3}
+  - {fileID: 21300000, guid: c94e6fe43b52912479457b9c0bb27b6b, type: 3}
+  - {fileID: 21300000, guid: cce1ce867b8b4ca4ca55967032c7bdaa, type: 3}
+  - {fileID: 21300000, guid: ebb6acfc7f56e42459d4a4916f327540, type: 3}
+  - {fileID: 21300000, guid: 507f2a3dfb66aaa40ae9708e1de95ba1, type: 3}
 --- !u!21 &912689745
 Material:
   serializedVersion: 6
