@@ -30,6 +30,8 @@ public class MainMenu : MonoBehaviour
     public static GameObject Etapa2;
     public static GameObject Etapa3;
     public static GameObject Etapa4;
+    public static GameObject Etapa5;
+    public static GameObject album;
     public static GameObject ARTextNotification;
     public static Animator animator;
     public static GameObject[] staticBotaoPista;
@@ -50,6 +52,8 @@ public class MainMenu : MonoBehaviour
         Etapa2 = GameObject.Find("Etapa 2");
         Etapa3 = GameObject.Find("Etapa 3");
         Etapa4 = GameObject.Find("Etapa 4");
+        Etapa5 = GameObject.Find("Etapa 5");
+        album = GameObject.Find("subetapa1");
         ARTextNotification = GameObject.Find("PopupNotification");
         staticBotaoPista = BotaoPista;
         staticBotaoDicas = BotaoDicas;
@@ -67,6 +71,8 @@ public class MainMenu : MonoBehaviour
         Etapa2.SetActive(false);
         Etapa3.SetActive(false);
         Etapa4.SetActive(false);
+        Etapa5.SetActive(false);
+       
         
 
     }
@@ -122,6 +128,7 @@ public class MainMenu : MonoBehaviour
                 PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("mapaCigarro"));
                 PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("livro"));
                 check = true;
+                album.SetActive(true);
             }
         }
         else if (Detetive.etapa == 1)
@@ -135,18 +142,24 @@ public class MainMenu : MonoBehaviour
             }
         }
 
-        /* else if(Detetive.etapa == 2)
+        else if(Detetive.etapa == 2)
         {
-            não tem nada para habilitar.
-        } */
-        else if (Detetive.etapa == 3)
+            if (Detetive.automatico[Detetive.etapa].enviado && !check)
+            {
+                int aux = PlayerInfo.ProcurarPista("cordel");
+                PlayerInfo.DescobrirPista(aux);
+                check = true;
+            }
+        }
+
+        /*else if (Detetive.etapa == 3)
         {
             if (Detetive.automatico[Detetive.etapa].enviado && !check)
             {
                 PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("cordel"));
                 check = true;
             }
-        }
+        }*/
 
         /* else if(Detetive.etapa == 4)
         {

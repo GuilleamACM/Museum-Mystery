@@ -27,7 +27,7 @@ public class PlayerInfo : MonoBehaviour
         pistas = new Pista[] { new Pista("enzoCamera"),new Pista("discoContinental"), new Pista("musicBox"),
                                                                          new Pista("gonzaga"), new Pista("mapaCigarro"), new Pista("livro"), new Pista("albumLuizCostas"),
                                                                          new Pista("mapaCalor"), new Pista("faca"), new Pista("santo"),
-                                                                         new Pista("xilogravuraMoldura"), new Pista("caixaPoesia"), new Pista("suspeitos"),  new Pista("cacto"),
+                                                                         new Pista("xilogravuraMoldura"), new Pista("caixaPoesia"), new Pista("suspeitos"), new Pista("frase"), new Pista("cacto"),
                                                                          new Pista("mapaNordeste"), new Pista("cordel"),new Pista("cartaJaco"),new Pista("mapaEnzo"), new Pista("quadroBoneco"),};
     }
     public static int ProcurarPista(string id)
@@ -40,6 +40,7 @@ public class PlayerInfo : MonoBehaviour
             }
 
         }
+        Debug.Log("====================Procurando algo que não existe --------------------------------");
         return -1;
     }
 
@@ -68,6 +69,7 @@ public class PlayerInfo : MonoBehaviour
         if (etapaAtual == 1)
         {
             MainMenu.Etapa1.SetActive(true);
+            MainMenu.album.SetActive(false);
         }
         else if (etapaAtual == 2)
         {
@@ -76,10 +78,13 @@ public class PlayerInfo : MonoBehaviour
         else if (etapaAtual == 3)
         {
             MainMenu.Etapa3.SetActive(true);
-        }
-        else
+        }else if(etapaAtual == 4)
         {
             MainMenu.Etapa4.SetActive(true);
+        }
+        else if(etapaAtual == 5)
+        {
+            MainMenu.Etapa5.SetActive(true);
         }
     }
 }
