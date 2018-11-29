@@ -123,6 +123,7 @@ public class MainMenu : MonoBehaviour
 
         else if (Detetive.etapa == 0)
         {
+            Debug.Log("etapa: "+Detetive.etapa+"  detetive.automatico[detetive.etapa]= "+ Detetive.automatico[Detetive.etapa].enviado);
             if (Detetive.automatico[Detetive.etapa].enviado && !check)
             {
                 PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("mapaCigarro"));
@@ -149,6 +150,9 @@ public class MainMenu : MonoBehaviour
                 int aux = PlayerInfo.ProcurarPista("cordel");
                 PlayerInfo.DescobrirPista(aux);
                 check = true;
+                Detetive.automatic++;
+                Detetive.etapa++;
+                PlayerInfo.AumentarEtapa();
             }
         }
 

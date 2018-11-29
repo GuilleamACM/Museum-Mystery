@@ -64,19 +64,20 @@ public class Detetive : MonoBehaviour
 
 
     public Boolean firstTimePopup = true;
+    public GameObject popupError;
     public GameObject popupAllow;
     public GameObject popupDeny;
     public GameObject popupTutorial;
     public GameObject popupEncaminhado;
     public static Mensagem[] dicas = new Mensagem[20]; // qdo o jogador envia uma pista habilitada ao detetive, o detetive responde com um breve texto, falando melhor sobre a pista enviada.
     
-    public static Mensagem[] intro = new Mensagem[5]; // introducoes do ciclo
+    public static Mensagem[] intro = new Mensagem[6]; // introducoes do ciclo
     public static Mensagem[] automatico; // msgs automaticas que o detetive manda ao jogador completar alguma coisa
 
     public static Mensagem[] resposta = new Mensagem[] { new Mensagem("0", new ImgOrTxt[] { new ImgOrTxt("Parece que já me encontraram, mas eu não vou deixar que escondam a verdade. O seu nome não foi esquecido nas"),
-                                                                           new ImgOrTxt("Olá Jerry. A série de letras e números que eu encontrei no disco, eram parte de um link de um vídeo. "),
-                                                                           new ImgOrTxt("O vídeo, continha a chave para traduzir aquelas marcações estranhas que Enzo havia deixado nas obras."),
-                                                                           new ImgOrTxt("Pelo que eu consegui identificar, elas traduzem para: “Parece que já me encontraram, mas eu não vou deixar que escondam a verdade. O seu nome não foi esquecido nas”"), }),
+                                                                                            new ImgOrTxt("Olá Jerry. A série de letras e números que eu encontrei no disco, eram parte de um link de um vídeo. "),
+                                                                                            new ImgOrTxt("O vídeo, continha a chave para traduzir aquelas marcações estranhas que Enzo havia deixado nas obras."),
+                                                                                            new ImgOrTxt("Pelo que eu consegui identificar, elas traduzem para: “Parece que já me encontraram, mas eu não vou deixar que escondam a verdade. O seu nome não foi esquecido nas”"), }),
                                                          new Mensagem("1", new ImgOrTxt[] { new ImgOrTxt("Virtus Atlas"),
                                                                                             new ImgOrTxt("Jerry, eu encontrei em um perfil online de um dos suspeitos uma foto, onde ele aparece com uma tatuagem."), 
                                                                                             new ImgOrTxt("Essa tatuagem é o mesmo símbolo que estava na porta com as marcas de gado. Nessa mesma tatuagem há uma inscrição, que eu consegui traduzir para “Virtus Atlas”."),
@@ -95,6 +96,7 @@ public class Detetive : MonoBehaviour
                                                         }; // a posicao 0 desse array eh a palavra para validar, e as posicoes adiante sao as mensagens que o jogador enviara para o detetive caso tenha acertado a validacao
     public static bool exploracao = false; // para bloquear e desbloquear o envio de RESPOSTAS
     public static int etapa = 0;
+    public InputField inputField;
     public static string answer; // msg escrita no input
     public static int automatic = 0;
     public static int imgDicas; // referencia da img clicada em anexos.
@@ -109,7 +111,7 @@ public class Detetive : MonoBehaviour
 
         //carregando introducoes
 
-        Mensagem msg1 = new Mensagem("0", new ImgOrTxt[18] { new ImgOrTxt("Olá, você deve ser um dos novatos, não? Eu sou Jerry, detetive chefe responsável pela supervisão do caso em questão."),
+        Mensagem msg0 = new Mensagem("0", new ImgOrTxt[18] { new ImgOrTxt("Olá, você deve ser um dos novatos, não? Eu sou Jerry, detetive chefe responsável pela supervisão do caso em questão."),
                                     new ImgOrTxt("Infelizmente, não posso estar aí com você neste momento, tenho que cuidar de toda a papelada da investigação aqui no escritório, mas não se preocupe, tentarei ajudá-lo o máximo que puder daqui."),
                                     new ImgOrTxt("Muito bem, o negócio é o seguinte: duas semanas atrás um jovem turista de 22 anos, de nome Enzo Sanfonatti, veio para a cidade do Recife."),
                                     new ImgOrTxt("Tudo parecia normal até que alguns dias atrás ele simplesmente desapareceu, e ninguém parece fazer ideia do que aconteceu."),
@@ -129,10 +131,10 @@ public class Detetive : MonoBehaviour
                                     new ImgOrTxt("Boa sorte jovem!")
                                     //falta a imagem de introdução 
                                     });
-        intro[0] = msg1;
+        intro[0] = msg0;
 
 
-        Mensagem msg2 = new Mensagem("1", new ImgOrTxt[] { new ImgOrTxt("Humm, isso parece mais sério do que eu imaginava. Ele parece indicar que estava sendo perseguido ou algo assim. Isso muda algumas coisas, deixe-me ver o que eu consigo fazer."),
+        Mensagem msg1 = new Mensagem("1", new ImgOrTxt[] { new ImgOrTxt("Humm, isso parece mais sério do que eu imaginava. Ele parece indicar que estava sendo perseguido ou algo assim. Isso muda algumas coisas, deixe-me ver o que eu consigo fazer."),
                                                             new ImgOrTxt("Vejamos. Não conseguimos reconstruir muitas imagens satisfatórias das câmeras de segurança ainda, o processo é um tanto complicado, mas conseguimos identificar algumas coisas que talvez possam ajudar."),
                                                             new ImgOrTxt("Traçamos um mapa que indica os lugares de maior atividade de Sanfonatti no museu, em particular aqueles onde havia alguém por perto que possamos considerar um suspeito."),
                                                             new ImgOrTxt("O horário em que ele foi visitar o museu não era de muito movimento, então não tinha muita gente para observar, mas devido as câmeras estarem corrompidas, não é possível identificar nenhuma dessas pessoas."),
@@ -141,10 +143,10 @@ public class Detetive : MonoBehaviour
                                                             new ImgOrTxt("Ah, desculpe, já ia esquecendo. Aqui está o mapa:"),
                                                             new ImgOrTxt(PlayerInfo.ProcurarPista("mapaCalor")) // mapa de calor
         });
-        intro[1] = msg2;
+        intro[1] = msg1;
 
 
-        Mensagem msg3 = new Mensagem("2", new ImgOrTxt[] { new ImgOrTxt("Virtus Atlas? Curioso. Isso é, ou pelo menos deveria ser, uma lenda."),
+        Mensagem msg2 = new Mensagem("2", new ImgOrTxt[] { new ImgOrTxt("Virtus Atlas? Curioso. Isso é, ou pelo menos deveria ser, uma lenda."),
                                                             new ImgOrTxt("É uma história antiga que contavam nas cidades do interior. Alguma coisa sobre um grupo de poderosos do ramo da agropecuária, que pretendia dominar todo o mercado controlando toda a produção da região."),
                                                             new ImgOrTxt("Ninguém nunca descobriu o quanto disso era verdade ou não, só se sabe que isso rendeu várias histórias ao longo dos anos, uma delas era algo sobre eles contratarem os capangas para fazerem o trabalho sujo deles, e todos esses eram marcados como gado."),
                                                             new ImgOrTxt("Talvez daí que tenha surgido a tatuagem desse cara, não que ele seja membro de um grupo secreto nem nada do tipo. Como eu disse nada disso foi comprovado, mas existe maluco pra tudo não é mesmo."),
@@ -154,8 +156,9 @@ public class Detetive : MonoBehaviour
 
 
         });
-        intro[2] = msg3;
+        intro[2] = msg2;
 
+        intro[3] = null; // correção pq nessa etapa o jogador avança uma etapa pra obter a resposta, isso eh uma gambiarra mas ia dar trabalho resolver na pratica
         Mensagem msg4 = new Mensagem("3", new ImgOrTxt[] { new ImgOrTxt("Bom trabalho jovem. Vou enviar um agente para lá agora mesmo. O local apontado pelas coordenadas fica na cidade de Serrita."),
                                                             new ImgOrTxt("Nosso agente está entrando em contato nesse momento com a força policial da cidade"),
                                                             new ImgOrTxt("humm"),
@@ -169,7 +172,7 @@ public class Detetive : MonoBehaviour
                                                             new ImgOrTxt("Você deve investigar este local. Lá deve haver algo que possa nos dar mais respostas. Tome, o setor do museu é este aqui. "),
                                                             new ImgOrTxt(PlayerInfo.ProcurarPista("mapaEnzo")) // foto do mapa do museu
         });
-        intro[3] = msg4;
+        intro[4] = msg4;
 
         Mensagem msg5 = new Mensagem("4", new ImgOrTxt[] { new ImgOrTxt("Bem, jovem. Acho que você tem o direito de saber."),
                                                             new ImgOrTxt("A nossa agência de investigação, a Alítheia, tem trabalhado, assim como Sanfonatti, em tentar descobrir a verdade sobre as informações que tem sido manipuladas por essa sociedade secreta que controla as grandes corporações, para isso a agência utiliza o programa de seleção de novos investigadores, para tentar encontrar pessoas com esse mesmo interesse, pois, como imagino que você já tenha percebido, eles são extremamente influentes, e tentar expô-los não iria nos ajudar muito."),
@@ -187,7 +190,7 @@ public class Detetive : MonoBehaviour
                                                             //fim de jogo
                                                             });
 
-        intro[4] = msg5;
+        intro[5] = msg5;
 
         //carregando dicas
         Mensagem dicas0 = new Mensagem("1", new ImgOrTxt[] { new ImgOrTxt("Está foi a única imagem de Sanfonatti que conseguimos restaurar das câmeras de segurança."),
@@ -217,26 +220,27 @@ public class Detetive : MonoBehaviour
         Mensagem dicas6 = new Mensagem("7", new ImgOrTxt[] { new ImgOrTxt("Me perdoe, jovem, mas estou um tanto ocupado no momento para lhe ajudar."),
                                                              new ImgOrTxt("Vou lhe mandar uma ferramenta que pode ser útil"),
                                                              new ImgOrTxt("www.google.com")});
-        dicas[6] = dicas6; //album
+        dicas[6] = dicas6; //album sao dois aqui
 
         Mensagem dicas7 = new Mensagem("8", new ImgOrTxt[] { new ImgOrTxt("Este é um mapa de calor que traçamos das atividades de Sanfonatti no museu, as áreas com cor mais intensa indicam os setores de maior atividade."),
                                                              new ImgOrTxt("Recomendo você tentar investigar essas áreas.") });
         dicas[7] = dicas7; //mapaCalor
 
-        Mensagem dicas8 = new Mensagem("9", new ImgOrTxt[] { new ImgOrTxt("Deixe-me ver."),
-                                                             new ImgOrTxt("Essa digital pertence a Rajish Al-Habib."),
-                                                             new ImgOrTxt("25 anos, casado."),
-                                                             new ImgOrTxt("Humm, tem ficha na delegacia por porte ilegal de arma."),
-                                                             new ImgOrTxt("Nasceu nos emirados árabes, mas reside na cidade do Recife, trabalha como professor de história em escola pública."),});
-        dicas[8] = dicas8; //faca
-
-        Mensagem dicas9 = new Mensagem("10", new ImgOrTxt[] { new ImgOrTxt("De acordo com o banco de dados de digitas da nossa agência. Essa digital pertence a Atila Saverin."),
+        Mensagem dicas8 = new Mensagem("9", new ImgOrTxt[] { new ImgOrTxt("De acordo com o banco de dados de digitas da nossa agência. Essa digital pertence a Atila Saverin."),
                                                              new ImgOrTxt("Vejamos."),
                                                              new ImgOrTxt("Atila Saverin, 27 anos, solteiro, sem antecedentes criminais, residente na cidade de Exu, trabalha como vendedor em uma loja de produtos agropecuários."), });
+        dicas[8] = dicas8; //faca
+
+        Mensagem dicas9 = new Mensagem("10", new ImgOrTxt[] { new ImgOrTxt("Pelo que consegui verificar no nosso banco de dados de digitais, essa digital pertence a Nariadna Gleycielly."),
+                                                              new ImgOrTxt("Nariadna, 22 anos, casada, sem antecedentes criminais, reside em Salgueiro e é dona de uma loja de tecidos.") });
+       
         dicas[9] = dicas9; //santo
 
-        Mensagem dicas10 = new Mensagem("11", new ImgOrTxt[] { new ImgOrTxt("Pelo que consegui verificar no nosso banco de dados de digitais, essa digital pertence a Nariadna Gleycielly."),
-                                                               new ImgOrTxt("Nariadna, 22 anos, casada, sem antecedentes criminais, reside em Salgueiro e é dona de uma loja de tecidos.") });
+        Mensagem dicas10 = new Mensagem("11", new ImgOrTxt[]{ new ImgOrTxt("Deixe-me ver."),
+                                                              new ImgOrTxt("Essa digital pertence a Rajish Al-Habib."),
+                                                              new ImgOrTxt("25 anos, casado."),
+                                                              new ImgOrTxt("Humm, tem ficha na delegacia por porte ilegal de arma."),
+                                                              new ImgOrTxt("Nasceu nos emirados árabes, mas reside na cidade do Recife, trabalha como professor de história em escola pública."),});
         dicas[10] = dicas10; //xilogravura
 
         Mensagem dicas11 = new Mensagem("12", new ImgOrTxt[] { new ImgOrTxt("Estranho esse símbolo."),
@@ -256,14 +260,14 @@ public class Detetive : MonoBehaviour
                                                               new ImgOrTxt("Tente descobrir o que significa. ") });
         dicas[14] = dicas14; //cacto
 
-        Mensagem dicas15 = new Mensagem("16", new ImgOrTxt[] { new ImgOrTxt("Sanfonatti parece ter nos deixado uma coordenada escrita nesse mapa."),
-                                                              new ImgOrTxt("39°20'37.9”W"),
-                                                              new ImgOrTxt("Me avise se você descobrir qual é a outra para que possamos mandar algum agente até o local descobrir o que isso significa.")}); 
-        dicas[15] = dicas15; //mapaNordeste
-
-        Mensagem dicas16 = new Mensagem("17", new ImgOrTxt[] { new ImgOrTxt("O cordel foi encontrado por um funcionário do museu no mesmo local onde você encontrou a frase deixada por Sanfonatti."),
+        Mensagem dicas15 = new Mensagem("17", new ImgOrTxt[] { new ImgOrTxt("O cordel foi encontrado por um funcionário do museu no mesmo local onde você encontrou a frase deixada por Sanfonatti."),
                                                               new ImgOrTxt("É bem provável que tenha algo escondido nele. Você consegue descobrir o que é?") });
-        dicas[16] = dicas16; //cordel
+        dicas[15] = dicas15; //cordel
+
+        Mensagem dicas16 = new Mensagem("16", new ImgOrTxt[] { new ImgOrTxt("Sanfonatti parece ter nos deixado uma coordenada escrita nesse mapa."),
+                                                              new ImgOrTxt("39°20'37.9”W"),
+                                                              new ImgOrTxt("Me avise se você descobrir qual é a outra para que possamos mandar algum agente até o local descobrir o que isso significa.")});
+        dicas[16] = dicas16; //mapaNordeste
 
         Mensagem dicas17 = new Mensagem("18", new ImgOrTxt[] { new ImgOrTxt("Essa carta foi escrita por Raimundo Jacó, e foi encontrada no local indicado pelas coordenadas deixadas por Sanfonatti."),
                                                                new ImgOrTxt("Jacó faz parecer que estava sendo perseguido por ter descoberto algo, logo antes de ter sido assassinado.") });
@@ -365,6 +369,9 @@ public class Detetive : MonoBehaviour
                 Invoke("desativarPopupAllow", 3);
             }
         }
+        answer = "";
+        inputField.text = "";
+
     }
 
     public int procurarPistaDetetive(string id)
@@ -451,14 +458,45 @@ public class Detetive : MonoBehaviour
             popupTutorial.SetActive(true);
             Invoke("desativarPopupTutorial", 5);
             firstTimePopup = false;
+            popupDeny.SetActive(false);
+            popupError.SetActive(false);
+            popupAllow.SetActive(false);
+        }
+        else
+        {
+            if (exploracao)
+            {
+                ativarPopupDeny();
+            }
+            else
+            {
+                ativarPopupAllow();
+            }
         }
 
+    }
+
+    public void ativarPopupAllow()
+    {
+        popupAllow.SetActive(true);
+        Invoke("desativarPopupAllow", 3);
+        popupDeny.SetActive(false);
+        popupError.SetActive(false);
+        popupTutorial.SetActive(false);
+    }
+
+    public void ativarPopupDeny()
+    {
+        popupDeny.SetActive(true);
+        Invoke("desativarPopupDeny", 3);
+        popupAllow.SetActive(false);
+        popupError.SetActive(false);
+        popupTutorial.SetActive(false);
     }
 
     public void desativarPopupTutorial()
     {
         popupTutorial.SetActive(false);
-        Destroy(popupTutorial);
     }
 
     public void desativarPopupDeny()
@@ -470,6 +508,21 @@ public class Detetive : MonoBehaviour
     {
         popupAllow.SetActive(false);
     }
+
+    public void ativarPopupError()
+    {
+        popupError.SetActive(true);
+        Invoke("desativarPopupError", 3);
+        popupDeny.SetActive(false);
+        popupAllow.SetActive(false);
+        popupTutorial.SetActive(false);
+    }
+
+    public void desativarPopupError()
+    {
+        popupError.SetActive(false);
+    }
+
 
 
     public static void StartIntro()  //por invoke não poder chamar static, tive que criar essa classe auxiliar, e o invoke que eu chamo para aumentar a etapa, é chamado no menu.
@@ -504,7 +557,6 @@ public class Detetive : MonoBehaviour
         {
             for (int i = 1; i < resposta[etapa].imgOrTxt.Length; i++)
             {
-                Debug.Log("imgOrTxt.length = "+ resposta[etapa].imgOrTxt.Length+"| i =  "+i);
                 if (resposta[etapa].imgOrTxt[i].isImg())
                 {
                     ChatListControl.RenderizarImagem(resposta[etapa].imgOrTxt[i].img, false);
@@ -518,7 +570,7 @@ public class Detetive : MonoBehaviour
         }
         else
         {
-            ChatListControl.RenderizarTexto("Errou! - Faustão", true); // DEFINIR QUAL É A MENSAGEM DE ERRO
+            ativarPopupError(); // A MENSAGEM DE ERRO
         }
     }
 
@@ -726,10 +778,9 @@ public class Detetive : MonoBehaviour
                         ChatListControl.RenderizarTexto(automatico[automatic].imgOrTxt[i].txt, true);
                     }
                 }
-                PlayerInfo.AumentarEtapa();
+               
                 automatico[automatic].enviado = true;
-                automatic++;
-                etapa++;  // aumenta automatic, pois nao tem feedback nessa parte.                
+                  // aumenta automatic e etapa do player e detetive, pois nao tem feedback nessa parte.   no MAINMENU             
                 MainMenu.TurnOnChatNofication();
             }
 
