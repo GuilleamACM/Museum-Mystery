@@ -25,7 +25,7 @@ public class PlayerInfo : MonoBehaviour
         etapaAtual = 0;
         //Todas as pistas serão criadas aqui junto com o array de pistas
         pistas = new Pista[] { new Pista("enzoCamera"),new Pista("discoContinental"), new Pista("musicBox"),
-                                                                         new Pista("gonzaga"), new Pista("mapaCigarro"), new Pista("livro"), new Pista("albumLuizCostas"),
+                                                                         new Pista("gonzaga"), new Pista("mapaCigarro"), new Pista("livro"), new Pista("albumLuizCostas"), new Pista("albumLuizCostas2"),
                                                                          new Pista("mapaCalor"), new Pista("faca"), new Pista("santo"),
                                                                          new Pista("xilogravuraMoldura"), new Pista("caixaPoesia"), new Pista("suspeitos"), new Pista("frase"), new Pista("cacto"),
                                                                          new Pista("cordel"), new Pista("mapaNordeste"),new Pista("cartaJaco"),new Pista("mapaEnzo"), new Pista("quadroBoneco"),};
@@ -53,6 +53,13 @@ public class PlayerInfo : MonoBehaviour
             Debug.Log("Você descobriu a pista: "+pistas[index].id);
             MainMenu.staticBotaoDicas[index].SetActive(true);
             MainMenu.staticBotaoPista[index].SetActive(true);
+            if (pistas[index].id.Equals("albumLuizCostas")) //ativar segunda pista (o album é dois em um)
+            {
+                pistas[index + 1].descoberta = true;
+                Debug.Log("Você descobriu a pista: " + pistas[index+1].id);
+                MainMenu.staticBotaoDicas[index+1].SetActive(true);
+                MainMenu.staticBotaoPista[index+1].SetActive(true);
+            }
             MainMenu.ARTextNotification.SetActive(true);
             StaticCoroutine.DoCoroutine(2);
         }

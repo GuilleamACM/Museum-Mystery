@@ -8,6 +8,7 @@ public class MainMenu : MonoBehaviour
 {
     public Image img;
     public Image imgAmpliada;
+    public Text subTitle;
     public Text title;
     public Text titleAmpliado;
     public Sprite[] sprites;
@@ -180,6 +181,7 @@ public class MainMenu : MonoBehaviour
 
     public void OpenPista(int i)
     {
+        subTitle.text = titles[i];
         img.sprite = sprites[i];
         title.text = titles[i];
         descricao.text = descricoes[i];
