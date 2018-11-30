@@ -28,7 +28,7 @@ public class PlayerInfo : MonoBehaviour
                                                                          new Pista("gonzaga"), new Pista("mapaCigarro"), new Pista("livro"), new Pista("albumLuizCostas"),
                                                                          new Pista("mapaCalor"), new Pista("faca"), new Pista("santo"),
                                                                          new Pista("xilogravuraMoldura"), new Pista("caixaPoesia"), new Pista("suspeitos"), new Pista("frase"), new Pista("cacto"),
-                                                                         new Pista("mapaNordeste"), new Pista("cordel"),new Pista("cartaJaco"),new Pista("mapaEnzo"), new Pista("quadroBoneco"),};
+                                                                         new Pista("cordel"), new Pista("mapaNordeste"),new Pista("cartaJaco"),new Pista("mapaEnzo"), new Pista("quadroBoneco"),};
     }
     public static int ProcurarPista(string id)
     {
@@ -66,25 +66,28 @@ public class PlayerInfo : MonoBehaviour
     public static void AumentarEtapa()
     {
         etapaAtual++;
-        if (etapaAtual == 1)
+       /* if (etapaAtual == 1)
         {
-            MainMenu.Etapa1.SetActive(true);
-            MainMenu.album.SetActive(false);
+           // MainMenu.Etapa1.SetActive(true);
         }
         else if (etapaAtual == 2)
         {
-            MainMenu.Etapa2.SetActive(true);
+           // MainMenu.Etapa2.SetActive(true);
         }
         else if (etapaAtual == 3)
         {
-            MainMenu.Etapa3.SetActive(true);
-        }else if(etapaAtual == 4)
-        {
-            MainMenu.Etapa4.SetActive(true);
+           // MainMenu.Etapa2.SetActive(true);
         }
-        else if(etapaAtual == 5)
+        else if (etapaAtual == 4)
         {
-            MainMenu.Etapa5.SetActive(true);
+           // MainMenu.Etapa3.SetActive(true);
+        }else if(etapaAtual == 5)
+        {
+           // MainMenu.Etapa4.SetActive(true);
         }
+        else if(etapaAtual == 6)
+        {
+           // MainMenu.Etapa5.SetActive(true);
+        } */
     }
 }

@@ -26,12 +26,6 @@ public class MainMenu : MonoBehaviour
     public static GameObject ChatNotification;
     public static GameObject ARNotification;
     public static GameObject DicasNotification;
-    public static GameObject Etapa1;
-    public static GameObject Etapa2;
-    public static GameObject Etapa3;
-    public static GameObject Etapa4;
-    public static GameObject Etapa5;
-    public static GameObject album;
     public static GameObject ARTextNotification;
     public static Animator animator;
     public static GameObject[] staticBotaoPista;
@@ -48,12 +42,6 @@ public class MainMenu : MonoBehaviour
         ChatNotification = GameObject.Find("ChatNotification");
         ARNotification = GameObject.Find("ARNotification");
         DicasNotification = GameObject.Find("DicasNotification");
-        Etapa1 = GameObject.Find("Etapa 1");
-        Etapa2 = GameObject.Find("Etapa 2");
-        Etapa3 = GameObject.Find("Etapa 3");
-        Etapa4 = GameObject.Find("Etapa 4");
-        Etapa5 = GameObject.Find("Etapa 5");
-        album = GameObject.Find("subetapa1");
         ARTextNotification = GameObject.Find("PopupNotification");
         staticBotaoPista = BotaoPista;
         staticBotaoDicas = BotaoDicas;
@@ -66,14 +54,7 @@ public class MainMenu : MonoBehaviour
         ARTextNotification.SetActive(false);
         ChatCanvas.SetActive(false);
         PistasCanvas.SetActive(false);
-        AR.SetActive(false);
-        Etapa1.SetActive(false);
-        Etapa2.SetActive(false);
-        Etapa3.SetActive(false);
-        Etapa4.SetActive(false);
-        Etapa5.SetActive(false);
-       
-        
+        AR.SetActive(false);       
 
     }
 
@@ -126,10 +107,10 @@ public class MainMenu : MonoBehaviour
             Debug.Log("etapa: "+Detetive.etapa+"  detetive.automatico[detetive.etapa]= "+ Detetive.automatico[Detetive.etapa].enviado);
             if (Detetive.automatico[Detetive.etapa].enviado && !check)
             {
+                PlayerInfo.AumentarEtapa();
                 PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("mapaCigarro"));
                 PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("livro"));
                 check = true;
-                album.SetActive(true);
             }
         }
         else if (Detetive.etapa == 1)
