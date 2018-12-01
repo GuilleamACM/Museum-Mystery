@@ -98,7 +98,6 @@ public class MainMenu : MonoBehaviour
             if (!check)
             {
                 Detetive.StartIntro();
-                PlayerInfo.AumentarEtapa();
                 
             }
         }
@@ -108,9 +107,7 @@ public class MainMenu : MonoBehaviour
             Debug.Log("etapa: "+Detetive.etapa+"  detetive.automatico[detetive.etapa]= "+ Detetive.automatico[Detetive.etapa].enviado);
             if (Detetive.automatico[Detetive.etapa].enviado && !check)
             {
-                PlayerInfo.AumentarEtapa();
-                PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("mapaCigarro"));
-                PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("livro"));
+               
                 check = true;
             }
         }
@@ -119,8 +116,7 @@ public class MainMenu : MonoBehaviour
 
             if (Detetive.automatico[Detetive.etapa].enviado && !check)
             {
-                int aux = PlayerInfo.ProcurarPista("suspeitos");
-                PlayerInfo.DescobrirPista(aux);
+                
                 check = true;
             }
         }
@@ -129,12 +125,8 @@ public class MainMenu : MonoBehaviour
         {
             if (Detetive.automatico[Detetive.etapa].enviado && !check)
             {
-                int aux = PlayerInfo.ProcurarPista("cordel");
-                PlayerInfo.DescobrirPista(aux);
+                
                 check = true;
-                Detetive.automatic++;
-                Detetive.etapa++;
-                PlayerInfo.AumentarEtapa();
             }
         }
 

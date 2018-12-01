@@ -21,6 +21,7 @@ public class Detetive : MonoBehaviour
     }
 
 
+
     public class Mensagem
     {
         public string id;
@@ -499,6 +500,7 @@ public class Detetive : MonoBehaviour
         popupEncaminhado.SetActive(true);
         Invoke("desativarPopupEncaminhado", 2);
         MainMenu.TurnOnChatNofication();
+        Handheld.Vibrate();
     }
 
     public void desativarPopupEncaminhado()
@@ -577,47 +579,11 @@ public class Detetive : MonoBehaviour
     {
         popupError.SetActive(false);
     }
-
-
+    
 
     public static void StartIntro()  //por invoke não poder chamar static, tive que criar essa classe auxiliar, e o invoke que eu chamo para aumentar a etapa, é chamado no menu.
     {
-        if (PlayerInfo.etapaAtual == 0)
-        {
-            for (int i = 0; i < intro[PlayerInfo.etapaAtual].imgOrTxt.Length; i++)
-            {
-                if (intro[PlayerInfo.etapaAtual].imgOrTxt[i].isImg())
-                {
-                    if (intro[PlayerInfo.etapaAtual].imgOrTxt[i].isLeft)
-                    {
-                        ChatListControl.RenderizarImagem(intro[PlayerInfo.etapaAtual].imgOrTxt[i].img, true);
-                    }
-                    else
-                    {
-                        ChatListControl.RenderizarImagem(intro[PlayerInfo.etapaAtual].imgOrTxt[i].img, false);
-                    }
-                    
-                }
-                else
-                {
-                    if ((intro[PlayerInfo.etapaAtual].imgOrTxt[i].isLeft))
-                    {
-                        ChatListControl.RenderizarTexto(intro[PlayerInfo.etapaAtual].imgOrTxt[i].txt, true);
-                    }
-                    else
-                    {
-                        ChatListControl.RenderizarTexto(intro[PlayerInfo.etapaAtual].imgOrTxt[i].txt, false);
-                    }                   
-                }
-            }
-            intro[PlayerInfo.etapaAtual].enviado = true;
-            exploracao = true;
-            PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("enzoCamera"));
-        }
-        else
-        {
-            Debug.Log("erro etapa inicial");
-        }
+        StaticCoroutine.DoCoroutineDelayMsgs();
     }
 
     public void EnviarMsgResposta(string input) //primeira celula eh sempre a validacao, a segunda eh sempre a mensagem real
@@ -625,32 +591,7 @@ public class Detetive : MonoBehaviour
         Debug.Log("A resposta é :"+resposta[etapa].imgOrTxt[0].txt);
         if (resposta[etapa].imgOrTxt[0].txt.Equals(input)) //pesquisar Ignore Case
         {
-            for (int i = 1; i < resposta[etapa].imgOrTxt.Length; i++)
-            {
-                if (resposta[etapa].imgOrTxt[i].isImg())
-                {
-                    if (resposta[etapa].imgOrTxt[i].isLeft)
-                    {
-                        ChatListControl.RenderizarImagem(resposta[etapa].imgOrTxt[i].img, true);
-                    }
-                    else
-                    {
-                        ChatListControl.RenderizarImagem(resposta[etapa].imgOrTxt[i].img, false);
-                    }
-                }
-                else
-                {
-                    if (resposta[etapa].imgOrTxt[i].isLeft)
-                    {
-                        ChatListControl.RenderizarTexto(resposta[etapa].imgOrTxt[i].txt, true);
-                    }
-                    else
-                    {
-                        ChatListControl.RenderizarTexto(resposta[etapa].imgOrTxt[i].txt, false);
-                    }
-                }
-            }
-            EnviarMsgFeedback();
+            StaticCoroutine.DoCoroutineDelayResposta();
         }
         else
         {
@@ -658,193 +599,27 @@ public class Detetive : MonoBehaviour
         }
     }
 
-    public void EnviarMsgFeedback()
+
+    public static void EnviarMsgFeedback()
     {
         automatic++;
         etapa++;
         PlayerInfo.AumentarEtapa();
         MainMenu.check = false;    // um boolean que é resetado toda vez que passa de fase, pra controlar, qdo o jogador deve descobrir algo.
-        Invoke("EnviarMsgIntro", 5);
+        EnviarMsgIntro();
     }
 
 
-    public void EnviarMsgIntro() // a primeira vez que essa funcao for chamada, sera no menu, quando vc apertar no chat. Lembrar de habilitar a pista introdutoria no banco de dados
+    public static void EnviarMsgIntro() // a primeira vez que essa funcao for chamada, sera no menu, quando vc apertar no chat. Lembrar de habilitar a pista introdutoria no banco de dados
     {
-
-        if (etapa == 1)
-        {
-            for (int i = 0; i < intro[etapa].imgOrTxt.Length; i++)
-            {
-                if (intro[etapa].imgOrTxt[i].isImg())
-                {
-                    if (intro[etapa].imgOrTxt[i].isLeft)
-                    {
-                        ChatListControl.RenderizarImagem(intro[etapa].imgOrTxt[i].img, true);
-
-                    }
-                    else
-                    {
-                        ChatListControl.RenderizarImagem(intro[etapa].imgOrTxt[i].img, false);
-                    }
-                }
-                else
-                {
-                    if (intro[etapa].imgOrTxt[i].isLeft)
-                    {
-                        ChatListControl.RenderizarTexto(intro[etapa].imgOrTxt[i].txt, true);
-
-                    }
-                    else
-                    {
-                        ChatListControl.RenderizarTexto(intro[etapa].imgOrTxt[i].txt, false);
-                    }
-                }
-            }
-            intro[etapa].enviado = true;
-            exploracao = true;
-            PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("mapaCalor"));
-        }
-
-        else if (etapa == 2)
-        {
-            for (int i = 0; i < intro[etapa].imgOrTxt.Length; i++)
-            {
-                if (intro[etapa].imgOrTxt[i].isImg())
-                {
-                    if (intro[etapa].imgOrTxt[i].isLeft)
-                    {
-                        ChatListControl.RenderizarImagem(intro[etapa].imgOrTxt[i].img, true);
-
-                    }
-                    else
-                    {
-                        ChatListControl.RenderizarImagem(intro[etapa].imgOrTxt[i].img, false);
-                    }
-                }
-                else
-                {
-                    if (intro[etapa].imgOrTxt[i].isLeft)
-                    {
-                        ChatListControl.RenderizarTexto(intro[etapa].imgOrTxt[i].txt, true);
-
-                    }
-                    else
-                    {
-                        ChatListControl.RenderizarTexto(intro[etapa].imgOrTxt[i].txt, false);
-                    }
-                }
-            }
-            intro[etapa].enviado = true;
-            exploracao = true;
-            PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("frase"));
-        }
-        else if (etapa == 3)
-        {
-            for (int i = 0; i < intro[etapa].imgOrTxt.Length; i++)
-            {
-                if (intro[etapa].imgOrTxt[i].isImg())
-                {
-                    if (intro[etapa].imgOrTxt[i].isLeft)
-                    {
-                        ChatListControl.RenderizarImagem(intro[etapa].imgOrTxt[i].img, true);
-
-                    }
-                    else
-                    {
-                        ChatListControl.RenderizarImagem(intro[etapa].imgOrTxt[i].img, false);
-                    }
-                }
-                else
-                {
-                    if (intro[etapa].imgOrTxt[i].isLeft)
-                    {
-                        ChatListControl.RenderizarTexto(intro[etapa].imgOrTxt[i].txt, true);
-
-                    }
-                    else
-                    {
-                        ChatListControl.RenderizarTexto(intro[etapa].imgOrTxt[i].txt, false);
-                    }
-                }
-            }
-            intro[etapa].enviado = true;
-            exploracao = true;
-
-        }
-        else if (etapa == 4)
-        {
-            PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("cartaJaco"));
-            for (int i = 0; i < intro[etapa].imgOrTxt.Length; i++)
-            {
-                if (intro[etapa].imgOrTxt[i].isImg())
-                {
-                    if (intro[etapa].imgOrTxt[i].isLeft)
-                    {
-                        ChatListControl.RenderizarImagem(intro[etapa].imgOrTxt[i].img, true);
-
-                    }
-                    else
-                    {
-                        ChatListControl.RenderizarImagem(intro[etapa].imgOrTxt[i].img, false);
-                    }
-                }
-                else
-                {
-                    if (intro[etapa].imgOrTxt[i].isLeft)
-                    {
-                        ChatListControl.RenderizarTexto(intro[etapa].imgOrTxt[i].txt, true);
-
-                    }
-                    else
-                    {
-                        ChatListControl.RenderizarTexto(intro[etapa].imgOrTxt[i].txt, false);
-                    }
-                }
-            }
-            PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("mapaEnzo"));
-            intro[etapa].enviado = true;
-            exploracao = true;
-        }
-        else if (etapa == 5) //acabou game feedback final.
-        {
-            for (int i = 0; i < intro[etapa].imgOrTxt.Length; i++)
-            {
-                if (intro[etapa].imgOrTxt[i].isImg())
-                {
-                    if (intro[etapa].imgOrTxt[i].isLeft)
-                    {
-                        ChatListControl.RenderizarImagem(intro[etapa].imgOrTxt[i].img, true);
-
-                    }
-                    else
-                    {
-                        ChatListControl.RenderizarImagem(intro[etapa].imgOrTxt[i].img, false);
-                    }
-                }
-                else
-                {
-                    if (intro[etapa].imgOrTxt[i].isLeft)
-                    {
-                        ChatListControl.RenderizarTexto(intro[etapa].imgOrTxt[i].txt, true);
-
-                    }
-                    else
-                    {
-                        ChatListControl.RenderizarTexto(intro[etapa].imgOrTxt[i].txt, false);
-                    }
-                }
-            }
-            exploracao = true;
-            intro[etapa].enviado = true;
-            //acabou o jogo, se for adcionar algo pra quem zerou, é aqui.
-        }
-
+        StaticCoroutine.DoCoroutineDelayIntro();
     }
 
 
 
     void Update()
     {
+
 
         if (etapa == 0)
         {
@@ -856,36 +631,12 @@ public class Detetive : MonoBehaviour
                 int index = PlayerInfo.ProcurarPista("discoContinental");
                 if ((PlayerInfo.pistas[index].descoberta && PlayerInfo.pistas[index + 1].descoberta && PlayerInfo.pistas[index + 2].descoberta) && !(automatico[automatic].enviado)) //as pistas 1,2,3 = Criptografia1,Criptografia2,Criptografia3 e simbolo
                 {
-                    for (int i = 0; i < automatico[automatic].imgOrTxt.Length; i++)
-                    {
-                        if (automatico[automatic].imgOrTxt[i].isImg())
-                        {
-                            if (automatico[automatic].imgOrTxt[i].isLeft)
-                            {
-                                ChatListControl.RenderizarImagem(automatico[automatic].imgOrTxt[i].img, true);
-                            }
-                            else
-                            {
-                                ChatListControl.RenderizarImagem(automatico[automatic].imgOrTxt[i].img, false);
-                            }
-                        }
-                        else
-                        {
-                            if (automatico[automatic].imgOrTxt[i].isLeft)
-                            {
-                                ChatListControl.RenderizarTexto(automatico[automatic].imgOrTxt[i].txt, true);
-                            }
-                            else
-                            {
-                                ChatListControl.RenderizarTexto(automatico[automatic].imgOrTxt[i].txt, false);
-                            }
-                        }
 
-                    }
+                    StaticCoroutine.DoCoroutineAutomatic();
                     automatico[automatic].enviado = true;
                     MainMenu.TurnOnChatNofication();
-                    automatic++;
-                    //liberar mapaCigarro -  essa linha terá que ser chamada ao abrir o chat, para só adicionar ao banco de pistas se voce tiver entrado no chat              
+                    Handheld.Vibrate();
+
                 }
             }
             else
@@ -894,39 +645,16 @@ public class Detetive : MonoBehaviour
                 int index2 = PlayerInfo.ProcurarPista("albumLuizCostas");
                 if (PlayerInfo.pistas[index2].descoberta && !(automatico[automatic].enviado))
                 {
-                    for (int i = 0; i < automatico[automatic].imgOrTxt.Length; i++)
-                    {
-                        if (automatico[automatic].imgOrTxt[i].isImg())
-                        {
-                            if (automatico[automatic].imgOrTxt[i].isLeft)
-                            {
-                                ChatListControl.RenderizarImagem(automatico[automatic].imgOrTxt[i].img, true);
-                            }
-                            else
-                            {
-                                ChatListControl.RenderizarImagem(automatico[automatic].imgOrTxt[i].img, false);
-                            }
-                        }
-                        else
-                        {
-                            if (automatico[automatic].imgOrTxt[i].isLeft)
-                            {
-                                ChatListControl.RenderizarTexto(automatico[automatic].imgOrTxt[i].txt, true);
-                            }
-                            else
-                            {
-                                ChatListControl.RenderizarTexto(automatico[automatic].imgOrTxt[i].txt, false);
-                            }
-                        }
-
-                    }
+                    StaticCoroutine.DoCoroutineAutomatic();
                     automatico[automatic].enviado = true;
                     MainMenu.TurnOnChatNofication();
-                    exploracao = false;
+                    Handheld.Vibrate();
+                }
+                   
                 }
             }
 
-        }
+        
 
         else if (etapa == 1)
         {
@@ -934,36 +662,10 @@ public class Detetive : MonoBehaviour
             int index = PlayerInfo.ProcurarPista("faca");
             if ((PlayerInfo.pistas[index].descoberta) && (PlayerInfo.pistas[index + 1].descoberta) && (PlayerInfo.pistas[index + 2].descoberta) && (PlayerInfo.pistas[index + 3].descoberta) && !(automatico[automatic].enviado))
             {
-                for (int i = 0; i < automatico[automatic].imgOrTxt.Length; i++)
-                {
-                    if (automatico[automatic].imgOrTxt[i].isImg())
-                    {
-                        if (automatico[automatic].imgOrTxt[i].isLeft)
-                        {
-                            ChatListControl.RenderizarImagem(automatico[automatic].imgOrTxt[i].img, true);
-                        }
-                        else
-                        {
-                            ChatListControl.RenderizarImagem(automatico[automatic].imgOrTxt[i].img, false);
-                        }
-                    }
-                    else
-                    {
-                        if (automatico[automatic].imgOrTxt[i].isLeft)
-                        {
-                            ChatListControl.RenderizarTexto(automatico[automatic].imgOrTxt[i].txt, true);
-                        }
-                        else
-                        {
-                            ChatListControl.RenderizarTexto(automatico[automatic].imgOrTxt[i].txt, false);
-                        }
-                    }
-
-                }
+                StaticCoroutine.DoCoroutineAutomatic();
                 automatico[automatic].enviado = true;
                 MainMenu.TurnOnChatNofication();
-                exploracao = false;
-                // suspeitos deve ser habilitado.  essa linha terá que ser chamada ao abrir o chat, para só adicionar ao banco de pistas se voce tiver entrado no chat
+                Handheld.Vibrate();
             }
 
         }
@@ -974,39 +676,16 @@ public class Detetive : MonoBehaviour
             int index = PlayerInfo.ProcurarPista("cacto");
             if ((PlayerInfo.pistas[index].descoberta) && !(automatico[automatic].enviado))
             { //lembrar de dar um tempo para o detetive entrar em contato.
-                for (int i = 0; i < automatico[automatic].imgOrTxt.Length; i++)
-                {
-                    if (automatico[automatic].imgOrTxt[i].isImg())
-                    {
-                        if (automatico[automatic].imgOrTxt[i].isLeft)
-                        {
-                            ChatListControl.RenderizarImagem(automatico[automatic].imgOrTxt[i].img, true);
-                        }
-                        else
-                        {
-                            ChatListControl.RenderizarImagem(automatico[automatic].imgOrTxt[i].img, false);
-                        }
-                    }
-                    else
-                    {
-                        if (automatico[automatic].imgOrTxt[i].isLeft)
-                        {
-                            ChatListControl.RenderizarTexto(automatico[automatic].imgOrTxt[i].txt, true);
-                        }
-                        else
-                        {
-                            ChatListControl.RenderizarTexto(automatico[automatic].imgOrTxt[i].txt, false);
-                        }
-                    }
-
-                }
-
+                StaticCoroutine.DoCoroutineAutomatic();
                 automatico[automatic].enviado = true;
-                  // aumenta automatic e etapa do player e detetive, pois nao tem feedback nessa parte.   no MAINMENU             
                 MainMenu.TurnOnChatNofication();
+                Handheld.Vibrate();
             }
 
-        }
+               
+            }
+
+        
 
 
 
@@ -1015,35 +694,10 @@ public class Detetive : MonoBehaviour
             int index = PlayerInfo.ProcurarPista("mapaNordeste");
             if ((PlayerInfo.pistas[index].descoberta) && !(automatico[automatic].enviado))
             {
-                for (int i = 0; i < automatico[automatic].imgOrTxt.Length; i++)
-                {
-                    if (automatico[automatic].imgOrTxt[i].isImg())
-                    {
-                        if (automatico[automatic].imgOrTxt[i].isLeft)
-                        {
-                            ChatListControl.RenderizarImagem(automatico[automatic].imgOrTxt[i].img, true);
-                        }
-                        else
-                        {
-                            ChatListControl.RenderizarImagem(automatico[automatic].imgOrTxt[i].img, false);
-                        }
-                    }
-                    else
-                    {
-                        if (automatico[automatic].imgOrTxt[i].isLeft)
-                        {
-                            ChatListControl.RenderizarTexto(automatico[automatic].imgOrTxt[i].txt, true);
-                        }
-                        else
-                        {
-                            ChatListControl.RenderizarTexto(automatico[automatic].imgOrTxt[i].txt, false);
-                        }
-                    }
-
-                }
+                StaticCoroutine.DoCoroutineAutomatic();
                 automatico[automatic].enviado = true;
-                exploracao = false;
                 MainMenu.TurnOnChatNofication();
+                Handheld.Vibrate();
 
             }
 
@@ -1055,37 +709,13 @@ public class Detetive : MonoBehaviour
             int index = procurarPistaDetetive("quadroBoneco");
             if ((PlayerInfo.pistas[index].descoberta) && !(automatico[automatic].enviado))
             {
-                for (int i = 0; i < automatico[automatic].imgOrTxt.Length; i++)
-                {
-                    if (automatico[automatic].imgOrTxt[i].isImg())
-                    {
-                        if (automatico[automatic].imgOrTxt[i].isLeft)
-                        {
-                            ChatListControl.RenderizarImagem(automatico[automatic].imgOrTxt[i].img, true);
-                        }
-                        else
-                        {
-                            ChatListControl.RenderizarImagem(automatico[automatic].imgOrTxt[i].img, false);
-                        }
-                    }
-                    else
-                    {
-                        if (automatico[automatic].imgOrTxt[i].isLeft)
-                        {
-                            ChatListControl.RenderizarTexto(automatico[automatic].imgOrTxt[i].txt, true);
-                        }
-                        else
-                        {
-                            ChatListControl.RenderizarTexto(automatico[automatic].imgOrTxt[i].txt, false);
-                        }
-                    }
-
-                }
-                exploracao = false;
+                StaticCoroutine.DoCoroutineAutomatic();
                 automatico[automatic].enviado = true;
                 MainMenu.TurnOnChatNofication();
+                Handheld.Vibrate();
             }
         }
+
     }
 }
 /*public void Etapa0()
