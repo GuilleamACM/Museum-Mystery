@@ -588,15 +588,84 @@ public class Detetive : MonoBehaviour
 
     public void EnviarMsgResposta(string input) //primeira celula eh sempre a validacao, a segunda eh sempre a mensagem real
     {
-        Debug.Log("A resposta é :"+resposta[etapa].imgOrTxt[0].txt);
-        if (resposta[etapa].imgOrTxt[0].txt.Equals(input)) //pesquisar Ignore Case
+        string original = resposta[etapa].imgOrTxt[0].txt;
+        string originalLower = original.ToLower();
+        Debug.Log("A resposta é :"+ original);
+        string inputLower = input.ToLower();
+
+        if(etapa == 3) // if elses para o jogador acertar a coordenada, basicamente colocar possiveis respostas.
         {
-            StaticCoroutine.DoCoroutineDelayResposta();
+            if ((originalLower.Equals("7°51'34.8\"S") || (originalLower.Equals("7°51'34.8S")) || (originalLower.Equals("7°51'34.8 S")) || (originalLower.Equals("7°51 34.8 S")) || (originalLower.Equals("7 51 348S"))))
+            {
+                StaticCoroutine.DoCoroutineDelayResposta();
+
+            }else if ((originalLower.Equals("7 51 34.8 S")) || (originalLower.Equals("7 51 348 S")) || (originalLower.Equals("751348S")) || (originalLower.Equals("7°51'34.8\" S")) )
+            {
+                StaticCoroutine.DoCoroutineDelayResposta();
+            }else if ((originalLower.Equals("7° 51' 34.8\" S")) || (originalLower.Equals("7°51'348 S")) || (originalLower.Equals("7°51'348\"S")) || (originalLower.Equals("7 51' 348\" S")))
+            {
+                StaticCoroutine.DoCoroutineDelayResposta();
+            }
+            else
+            {
+                ativarPopupError();
+            }
+
         }
         else
         {
-            ativarPopupError(); // A MENSAGEM DE ERRO
+            double similaridade = AlgoritmoIgualdade.CalculateSimilarity(originalLower,inputLower);
+
+            if(similaridade == 100)
+            {
+                StaticCoroutine.DoCoroutineDelayResposta();
+            }
+            else if (similaridade == 0)
+            {
+                ativarPopupError(); //azedou
+            }
+            else
+            {
+                if(etapa == 0)
+                {
+                    if (similaridade >= 95)
+                    {
+                        StaticCoroutine.DoCoroutineDelayResposta(); //aceite
+                    }
+                    else
+                    {
+                        ativarPopupError(); //rejeite, mas acho que podemos dar um feedback diferente caso o jogador chegou muito perto da resposta.
+                    }
+                }else if(etapa == 1)
+                {
+                    if (similaridade >= 91)
+                    {
+                        StaticCoroutine.DoCoroutineDelayResposta(); //aceite
+                    }
+                    else
+                    {
+                        ativarPopupError(); //rejeite, mas acho que podemos dar um feedback diferente caso o jogador chegou muito perto da resposta.
+                    }
+                }
+                else if(etapa == 4)
+                {
+                    if (similaridade >= 88)
+                    {
+                        StaticCoroutine.DoCoroutineDelayResposta(); //aceite
+                    }
+                    else
+                    {
+                        ativarPopupError(); //rejeite, mas acho que podemos dar um feedback diferente caso o jogador chegou muito perto da resposta.
+                    }
+                }
+                else
+                {
+                    Debug.Log("Erro em RESPOSTA... nao era pra chegar aqui");
+                }
+            }
         }
+
+        
     }
 
 
@@ -631,9 +700,9 @@ public class Detetive : MonoBehaviour
                 int index = PlayerInfo.ProcurarPista("discoContinental");
                 if ((PlayerInfo.pistas[index].descoberta && PlayerInfo.pistas[index + 1].descoberta && PlayerInfo.pistas[index + 2].descoberta) && !(automatico[automatic].enviado)) //as pistas 1,2,3 = Criptografia1,Criptografia2,Criptografia3 e simbolo
                 {
-
-                    StaticCoroutine.DoCoroutineAutomatic();
                     automatico[automatic].enviado = true;
+                    StaticCoroutine.DoCoroutineAutomatic();
+                    
                     MainMenu.TurnOnChatNofication();
                     Handheld.Vibrate();
 
@@ -645,8 +714,8 @@ public class Detetive : MonoBehaviour
                 int index2 = PlayerInfo.ProcurarPista("albumLuizCostas");
                 if (PlayerInfo.pistas[index2].descoberta && !(automatico[automatic].enviado))
                 {
-                    StaticCoroutine.DoCoroutineAutomatic();
                     automatico[automatic].enviado = true;
+                    StaticCoroutine.DoCoroutineAutomatic();                   
                     MainMenu.TurnOnChatNofication();
                     Handheld.Vibrate();
                 }
@@ -662,8 +731,8 @@ public class Detetive : MonoBehaviour
             int index = PlayerInfo.ProcurarPista("faca");
             if ((PlayerInfo.pistas[index].descoberta) && (PlayerInfo.pistas[index + 1].descoberta) && (PlayerInfo.pistas[index + 2].descoberta) && (PlayerInfo.pistas[index + 3].descoberta) && !(automatico[automatic].enviado))
             {
-                StaticCoroutine.DoCoroutineAutomatic();
                 automatico[automatic].enviado = true;
+                StaticCoroutine.DoCoroutineAutomatic();
                 MainMenu.TurnOnChatNofication();
                 Handheld.Vibrate();
             }
@@ -676,8 +745,8 @@ public class Detetive : MonoBehaviour
             int index = PlayerInfo.ProcurarPista("cacto");
             if ((PlayerInfo.pistas[index].descoberta) && !(automatico[automatic].enviado))
             { //lembrar de dar um tempo para o detetive entrar em contato.
-                StaticCoroutine.DoCoroutineAutomatic();
                 automatico[automatic].enviado = true;
+                StaticCoroutine.DoCoroutineAutomatic();
                 MainMenu.TurnOnChatNofication();
                 Handheld.Vibrate();
             }
@@ -694,8 +763,8 @@ public class Detetive : MonoBehaviour
             int index = PlayerInfo.ProcurarPista("mapaNordeste");
             if ((PlayerInfo.pistas[index].descoberta) && !(automatico[automatic].enviado))
             {
-                StaticCoroutine.DoCoroutineAutomatic();
                 automatico[automatic].enviado = true;
+                StaticCoroutine.DoCoroutineAutomatic();
                 MainMenu.TurnOnChatNofication();
                 Handheld.Vibrate();
 
@@ -709,8 +778,8 @@ public class Detetive : MonoBehaviour
             int index = procurarPistaDetetive("quadroBoneco");
             if ((PlayerInfo.pistas[index].descoberta) && !(automatico[automatic].enviado))
             {
-                StaticCoroutine.DoCoroutineAutomatic();
                 automatico[automatic].enviado = true;
+                StaticCoroutine.DoCoroutineAutomatic();
                 MainMenu.TurnOnChatNofication();
                 Handheld.Vibrate();
             }

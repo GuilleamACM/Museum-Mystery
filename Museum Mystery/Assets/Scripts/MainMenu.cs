@@ -98,7 +98,7 @@ public class MainMenu : MonoBehaviour
             if (!check)
             {
                 Detetive.StartIntro();
-                
+                check = true;
             }
         }
 
