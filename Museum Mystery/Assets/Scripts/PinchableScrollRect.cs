@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class PinchableScrollRect : ScrollRect {
 
-    [SerializeField] float _minZoom = .1f;
-    [SerializeField] float _maxZoom = 10;
-    [SerializeField] float _zoomLerpSpeed = 10f;
+    float _minZoom = .5f;
+    float _maxZoom = 10;
+    float _zoomLerpSpeed = 10f;
     float _currentZoom = 1;
     bool _isPinching = false;
     float _startPinchDist;
