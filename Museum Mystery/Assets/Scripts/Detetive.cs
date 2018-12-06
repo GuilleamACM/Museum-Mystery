@@ -806,7 +806,7 @@ public class Detetive : MonoBehaviour
         }
         automatico[automatic].enviado = true;
         MainMenu.TurnOnChatNofication();
-        // PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("mapaCigarro"));  essa linha terá que ser chamada ao abrir o chat, para só adicionar ao banco de pistas se voce tiver entrado no chat              
+        // PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("mapaCigarro"), false);  essa linha terá que ser chamada ao abrir o chat, para só adicionar ao banco de pistas se voce tiver entrado no chat              
     }
 
 
@@ -840,7 +840,7 @@ public void Etapa1()
         }
         automatico[automatic].enviado = true;
         MainMenu.TurnOnChatNofication();
-        // PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("Suspeito1"));  essa linha terá que ser chamada ao abrir o chat, para só adicionar ao banco de pistas se voce tiver entrado no chat
+        // PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("Suspeito1"), false);  essa linha terá que ser chamada ao abrir o chat, para só adicionar ao banco de pistas se voce tiver entrado no chat
     }
 
     int index1 = procurarPistaDetetive("caixaPoesia");
@@ -870,7 +870,7 @@ public void Etapa3()
         automatico[automatic].enviado = true;
         exploracao = false;
         MainMenu.TurnOnChatNofication();
-        //PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("Cordel"));  essa linha terá que ser chamada ao abrir o chat, para só adicionar ao banco de pistas se voce tiver entrado no chat
+        //PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("Cordel"), false);  essa linha terá que ser chamada ao abrir o chat, para só adicionar ao banco de pistas se voce tiver entrado no chat
     }
 
     //aqui coincidentemente a mensagem automatica e a liberação de exploração são iguais

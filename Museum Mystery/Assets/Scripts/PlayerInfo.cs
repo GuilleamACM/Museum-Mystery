@@ -44,7 +44,7 @@ public class PlayerInfo : MonoBehaviour
         return -1;
     }
 
-    public static void DescobrirPista(int index)
+    public static void DescobrirPista(int index, bool AR)
     {
         if (pistas[index].descoberta == false)
         {
@@ -60,8 +60,11 @@ public class PlayerInfo : MonoBehaviour
                 MainMenu.staticBotaoDicas[index+1].SetActive(true);
                 MainMenu.staticBotaoPista[index+1].SetActive(true);
             }
-            MainMenu.ARTextNotification.SetActive(true);
-            StaticCoroutine.DoCoroutine(2);
+            if (AR)
+            {
+                MainMenu.ARTextNotification.SetActive(true);
+                StaticCoroutine.DoCoroutine(2);
+            }
         }
         else
         {

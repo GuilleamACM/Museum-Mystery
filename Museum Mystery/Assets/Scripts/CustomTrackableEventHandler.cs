@@ -30,7 +30,7 @@ public class CustomTrackableEventHandler : DefaultTrackableEventHandler {
                 Debug.Log(index);
                 if(index != -1)
                 {
-                    PlayerInfo.DescobrirPista(index);
+                    PlayerInfo.DescobrirPista(index, true);
                 }
                 //É aqui onde as funções ProcurarPistas e DescobrirPista serão chamadas
                 //Antes disso será feita uma verificação pra testar se a pista já foi descoberta

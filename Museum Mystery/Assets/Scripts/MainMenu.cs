@@ -134,7 +134,7 @@ public class MainMenu : MonoBehaviour
         {
             if (Detetive.automatico[Detetive.etapa].enviado && !check)
             {
-                PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("cordel"));
+                PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("cordel"), false);
                 check = true;
             }
         }*/

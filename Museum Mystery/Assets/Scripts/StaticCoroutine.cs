@@ -110,8 +110,8 @@ public class StaticCoroutine : MonoBehaviour {
                 Handheld.Vibrate();
                 Detetive.automatic++;
                 PlayerInfo.AumentarEtapa();
-                PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("mapaCigarro"));
-                PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("livro"));
+                PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("mapaCigarro"), false);
+                PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("livro"), false);
                 //liberar mapaCigarro -  essa linha terá que ser chamada ao abrir o chat, para só adicionar ao banco de pistas se voce tiver entrado no chat  
             }
             else
@@ -128,7 +128,7 @@ public class StaticCoroutine : MonoBehaviour {
             Handheld.Vibrate();
             Detetive.exploracao = false;
             int aux = PlayerInfo.ProcurarPista("suspeitos");
-            PlayerInfo.DescobrirPista(aux);
+            PlayerInfo.DescobrirPista(aux, false);
             // suspeitos deve ser habilitado.  essa linha terá que ser chamada ao abrir o chat, para só adicionar ao banco de pistas se voce tiver entrado no chat
         }
         else if (Detetive.etapa == 2)
@@ -138,7 +138,7 @@ public class StaticCoroutine : MonoBehaviour {
             MainMenu.TurnOnChatNofication();
             Handheld.Vibrate();
             int aux = PlayerInfo.ProcurarPista("cordel");
-            PlayerInfo.DescobrirPista(aux);
+            PlayerInfo.DescobrirPista(aux, false);
             Detetive.automatic++;
             Detetive.etapa++;
             PlayerInfo.AumentarEtapa();
@@ -208,7 +208,7 @@ public class StaticCoroutine : MonoBehaviour {
             }
             Detetive.intro[Detetive.etapa].enviado = true;
             Detetive.exploracao = true;
-            PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("mapaCalor"));
+            PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("mapaCalor"), false);
         }
 
         else if (Detetive.etapa == 2)
@@ -255,7 +255,7 @@ public class StaticCoroutine : MonoBehaviour {
             }
             Detetive.intro[Detetive.etapa].enviado = true;
             Detetive.exploracao = true;
-            PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("frase"));
+            PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("frase"), false);
         }
         else if (Detetive.etapa == 3)
         {
@@ -305,7 +305,7 @@ public class StaticCoroutine : MonoBehaviour {
         }
         else if (Detetive.etapa == 4)
         {
-            PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("cartaJaco"));
+            PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("cartaJaco"), false);
             for (int i = 0; i < Detetive.intro[Detetive.etapa].imgOrTxt.Length; i++)
             {
                 if (Detetive.intro[Detetive.etapa].imgOrTxt[i].isImg())
@@ -346,7 +346,7 @@ public class StaticCoroutine : MonoBehaviour {
                     Debug.Log(time + "<-------TEXTO--------");
                 }
             }
-            PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("mapaEnzo"));
+            PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("mapaEnzo"), false);
             Detetive.intro[Detetive.etapa].enviado = true;
             Detetive.exploracao = true;
         }
@@ -455,7 +455,7 @@ public class StaticCoroutine : MonoBehaviour {
             }
             Detetive.intro[PlayerInfo.etapaAtual].enviado = true;
             Detetive.exploracao = true;
-            PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("enzoCamera"));
+            PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("enzoCamera"), false);
 
             PlayerInfo.AumentarEtapa();
         }
