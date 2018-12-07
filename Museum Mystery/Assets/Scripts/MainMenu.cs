@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
+    public GameObject popupFirstAR;
     public Image img;
     public Image imgAmpliada;
     public Text subTitle;
@@ -36,6 +37,7 @@ public class MainMenu : MonoBehaviour
     public bool firstOpenchat = true;
     public Button arBotao;
     public Button arquivoBotao;
+    public bool firstAR = true;
 
     void Awake()
     {
@@ -71,8 +73,20 @@ public class MainMenu : MonoBehaviour
         }
     }
 
+    public void desativarPopupFirstAR()
+    {
+        popupFirstAR.SetActive(false);
+    }
+
     public void OpenAR()
     {
+        if (firstAR)
+        {
+            popupFirstAR.SetActive(true);
+            Invoke("desativarPopupFirstAR",3);
+            firstAR = false;
+        }
+        
         AR.SetActive(true);
         MenuCanvas.SetActive(false);
         TurnOffARNofication();

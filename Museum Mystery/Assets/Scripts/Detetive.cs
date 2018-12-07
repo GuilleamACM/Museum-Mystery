@@ -73,6 +73,7 @@ public class Detetive : MonoBehaviour
     public GameObject popupDeny;
     public GameObject popupTutorial;
     public GameObject popupEncaminhado;
+    public GameObject popupAskAgain;
     public static Mensagem[] dicas = new Mensagem[21]; // qdo o jogador envia uma pista habilitada ao detetive, o detetive responde com um breve texto, falando melhor sobre a pista enviada.
     
     public static Mensagem[] intro = new Mensagem[6]; // introducoes do ciclo
@@ -447,9 +448,7 @@ public class Detetive : MonoBehaviour
 
         if (dicas[img].enviado)
         {
-            ChatListControl.RenderizarTexto("Jerry, o que você pode me informar sobre esta pista?", false);
-            ChatListControl.RenderizarImagem(img, false);
-            StaticCoroutine.DoCoroutineDelayMsgDetetive("Você perguntou isso antes");
+            ativarPopupAskAgain();
             ChatListControl.closePanelDicasStatic();
             return;
         }
@@ -476,10 +475,8 @@ public class Detetive : MonoBehaviour
 
         if (dicas[img].enviado)
         {
-            ChatListControl.RenderizarTexto("Jerry, o que você pode me informar sobre esta pista?", false);
-            ChatListControl.RenderizarImagem(img, false);
-            StaticCoroutine.DoCoroutineDelayMsgDetetive("Você perguntou isso antes");
-            ChatListControl.closePanelDicasStatic();
+            ativarPopupAskAgain();
+            return;
 
 
         }
@@ -493,7 +490,6 @@ public class Detetive : MonoBehaviour
             {
                 StaticCoroutine.DoCoroutineDelayMsgDetetive(dicas[img].imgOrTxt[i].txt);
             }
-            ChatListControl.closePanelDicasStatic();
 
         }
 
@@ -507,6 +503,17 @@ public class Detetive : MonoBehaviour
     {
         popupEncaminhado.SetActive(false);
     }
+
+    public void ativarPopupAskAgain()
+    {
+        popupAskAgain.SetActive(true);
+        popupAllow.SetActive(false);
+        Invoke("desativarPopupAskAgain", 3);
+        popupDeny.SetActive(false);
+        popupError.SetActive(false);
+        popupTutorial.SetActive(false);
+    }
+
 
     public void ativarTutorialPopup()
     {
@@ -552,6 +559,11 @@ public class Detetive : MonoBehaviour
     }
 
     public void desativarPopupTutorial()
+    {
+        popupTutorial.SetActive(false);
+    }
+
+    public void desativarPopupAskAgain()
     {
         popupTutorial.SetActive(false);
     }
