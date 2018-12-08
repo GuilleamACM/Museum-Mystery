@@ -1,6 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInfo : MonoBehaviour
 {
@@ -19,6 +19,8 @@ public class PlayerInfo : MonoBehaviour
 
     public static int etapaAtual;
     public static Pista[] pistas;
+    public static int newPistas=0;
+    public GameObject newPistasUI;
 
     public PlayerInfo()
     {
@@ -30,6 +32,19 @@ public class PlayerInfo : MonoBehaviour
                                                                          new Pista("xilogravuraMoldura"), new Pista("caixaPoesia"), new Pista("suspeitos"), new Pista("frase"), new Pista("cacto"),
                                                                          new Pista("cordel"), new Pista("mapaNordeste"),new Pista("cartaJaco"),new Pista("mapaEnzo"), new Pista("quadroBoneco"),};
     }
+
+    void Update()
+    {
+        if(newPistas > 1)
+        {
+             newPistasUI.GetComponent<Text>().text = "+"+newPistas.ToString();
+        }
+        else
+        {
+            newPistasUI.GetComponent<Text>().text = "";
+        }
+    }
+
     public static int ProcurarPista(string id)
     {
         for (int i = 0; i < pistas.Length; i++)
@@ -49,7 +64,6 @@ public class PlayerInfo : MonoBehaviour
         if (pistas[index].descoberta == false)
         {
             pistas[index].descoberta = true;
-            MainMenu.DicasNotification.SetActive(true);
             Debug.Log("Você descobriu a pista: "+pistas[index].id);
             MainMenu.staticBotaoDicas[index].SetActive(true);
             MainMenu.staticBotaoPista[index].SetActive(true);
@@ -65,12 +79,18 @@ public class PlayerInfo : MonoBehaviour
                 MainMenu.ARTextNotification.SetActive(true);
                 StaticCoroutine.DoCoroutine(2);
             }
+            newPistas = newPistas + 1;
         }
         else
         {
             Debug.Log("Pista já descoberta: "+index);
         }
 
+    }
+
+    public static void resetNewPistas()
+    {
+        newPistas = 0;
     }
 
     public static void AumentarEtapa()

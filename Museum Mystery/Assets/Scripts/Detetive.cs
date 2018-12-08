@@ -66,7 +66,8 @@ public class Detetive : MonoBehaviour
         }
     }
 
-
+    public GameObject msgsUI;
+    public static int msgs=1;
     public Boolean firstTimePopup = true;
     public GameObject popupError;
     public GameObject popupAllow;
@@ -116,6 +117,7 @@ public class Detetive : MonoBehaviour
 
     void Awake()
     {
+        
         popupAskAgainStatic = popupAskAgain;
         //carregando introducoes
 
@@ -395,6 +397,16 @@ public class Detetive : MonoBehaviour
 
     }
 
+    public static void resetMsgs()
+    {
+        msgs = 0;
+    }
+
+    public static void newMsgs()
+    {
+        msgs = msgs+ 1;
+    }
+
     public void getTextInput(string input)
     {
         answer = input;
@@ -464,11 +476,13 @@ public class Detetive : MonoBehaviour
             for (int i = 0; i < dicas[img].imgOrTxt.Length; i++)
             {
                 StaticCoroutine.DoCoroutineDelayMsgDetetive(dicas[img].imgOrTxt[i].txt);
+                Detetive.newMsgs();
             }
             ChatListControl.closePanelDicasStatic();
             return;
         }
     }
+
 
     public void EncaminharPista() //ela só envia a mensagem do detetive (resposta para quando o jogador envia uma pista), só envia textos e as dicas são sempre uma mensagem
     {
@@ -492,6 +506,7 @@ public class Detetive : MonoBehaviour
             for (int i = 0; i < dicas[img].imgOrTxt.Length; i++)
             {
                 StaticCoroutine.DoCoroutineDelayMsgDetetive(dicas[img].imgOrTxt[i].txt);
+                Detetive.newMsgs();
             }
 
         }
@@ -727,7 +742,14 @@ public class Detetive : MonoBehaviour
 
     void Update()
     {
-
+        if (msgs > 1)
+        {
+            msgsUI.GetComponent<Text>().text = "+" + msgs.ToString();
+        }
+        else
+        {
+            msgsUI.GetComponent<Text>().text = "";
+        }
 
         if (etapa == 0)
         {
@@ -741,8 +763,6 @@ public class Detetive : MonoBehaviour
                 {
                     automatico[automatic].enviado = true;
                     StaticCoroutine.DoCoroutineAutomatic();
-                    
-                    MainMenu.TurnOnChatNofication();
                     Handheld.Vibrate();
 
                 }
@@ -755,7 +775,6 @@ public class Detetive : MonoBehaviour
                 {
                     automatico[automatic].enviado = true;
                     StaticCoroutine.DoCoroutineAutomatic();                   
-                    MainMenu.TurnOnChatNofication();
                     Handheld.Vibrate();
                 }
                    

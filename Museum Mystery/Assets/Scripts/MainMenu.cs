@@ -37,6 +37,7 @@ public class MainMenu : MonoBehaviour
     public static bool firstOpenchat = false;
     public Button arBotao;
     public Button arquivoBotao;
+    public static bool arquivoBotaoInteractable = false;
     public bool firstAR = true;
 
     void Awake()
@@ -71,6 +72,22 @@ public class MainMenu : MonoBehaviour
                 return;
             }
         }
+        if (Detetive.msgs > 0)
+        {
+            TurnOnChatNofication();
+        }
+        else
+        {
+            TurnOffChatNofication();
+        }
+        if (PlayerInfo.newPistas > 0)
+        {
+            TurnOnDicasNofication();
+        }
+        else
+        {
+            TurnOffDicasNofication();
+        }
     }
 
     public void desativarPopupFirstAR()
@@ -97,7 +114,6 @@ public class MainMenu : MonoBehaviour
 
         ChatCanvas.SetActive(true);
         MenuCanvas.SetActive(false);
-        TurnOffChatNofication();
 
         if (PlayerInfo.etapaAtual == 0)
         {
@@ -165,13 +181,16 @@ public class MainMenu : MonoBehaviour
         {
             arBotao.interactable = true;
             arquivoBotao.interactable = true;
+            arquivoBotaoInteractable = true;
             firstOpenchat = false;
-            TurnOnARNofication();
-            TurnOnChatNofication();
         }
 
         AR.SetActive(false);
-        ChatCanvas.SetActive(false);
+        if (ChatCanvas.activeSelf)
+        {
+            ChatCanvas.SetActive(false);
+            Detetive.resetMsgs();
+        }
         if (panel.activeSelf)
         {
             panel.SetActive(false);
@@ -182,8 +201,13 @@ public class MainMenu : MonoBehaviour
             telaPista.SetActive(false);
             return;
         }
-        PistasCanvas.SetActive(false);
+        if (PistasCanvas.activeSelf)
+        {
+            PistasCanvas.SetActive(false);
+            PlayerInfo.resetNewPistas();
+        }
         MenuCanvas.SetActive(true);
+        
     }
 
     public void OpenPista(int i)
@@ -200,7 +224,7 @@ public class MainMenu : MonoBehaviour
 
     public static void TurnOnChatNofication()
     {
-        ChatNotification.SetActive(true);
+        ChatNotification.SetActive(true);        
     }
 
     public void TurnOffChatNofication()
@@ -220,7 +244,10 @@ public class MainMenu : MonoBehaviour
 
     public static void TurnOnDicasNofication()
     {
-        DicasNotification.SetActive(true);
+        if (arquivoBotaoInteractable)
+        {
+            DicasNotification.SetActive(true);
+        }
     }
 
     public void TurnOffDicasNofication()
@@ -231,6 +258,14 @@ public class MainMenu : MonoBehaviour
     public void AumentarImagem()
     {
         GameObject go = EventSystem.current.currentSelectedGameObject;
+        panel.SetActive(true);
+        imgAmpliada.sprite = go.GetComponent<Image>().sprite;
+        imgAmpliada.SetNativeSize();
+    }
+
+    public void AumentarImagemLupa()
+    {
+        GameObject go = GameObject.Find("ImageZoom");
         panel.SetActive(true);
         imgAmpliada.sprite = go.GetComponent<Image>().sprite;
         imgAmpliada.SetNativeSize();

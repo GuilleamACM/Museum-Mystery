@@ -26,6 +26,7 @@ public class StaticCoroutine : MonoBehaviour {
                 if (Detetive.resposta[Detetive.etapa].imgOrTxt[i].isLeft)
                 {
                     ChatListControl.RenderizarImagem(Detetive.resposta[Detetive.etapa].imgOrTxt[i].img, true);
+                    Detetive.newMsgs();
                 }
                 else
                 {
@@ -41,6 +42,7 @@ public class StaticCoroutine : MonoBehaviour {
                 if (Detetive.resposta[Detetive.etapa].imgOrTxt[i].isLeft)
                 {
                     ChatListControl.RenderizarTexto(Detetive.resposta[Detetive.etapa].imgOrTxt[i].txt, true);
+                    Detetive.newMsgs();
                 }
                 else
                 {
@@ -73,6 +75,7 @@ public class StaticCoroutine : MonoBehaviour {
                 if (Detetive.automatico[Detetive.automatic].imgOrTxt[i].isLeft)
                 {
                     ChatListControl.RenderizarImagem(Detetive.automatico[Detetive.automatic].imgOrTxt[i].img, true);
+                    Detetive.newMsgs();
                 }
                 else
                 {
@@ -88,6 +91,7 @@ public class StaticCoroutine : MonoBehaviour {
                 if (Detetive.automatico[Detetive.automatic].imgOrTxt[i].isLeft)
                 {
                     ChatListControl.RenderizarTexto(Detetive.automatico[Detetive.automatic].imgOrTxt[i].txt, true);
+                    Detetive.newMsgs();
                 }
                 else
                 {
@@ -111,7 +115,6 @@ public class StaticCoroutine : MonoBehaviour {
             if(Detetive.automatic <= 0)
             {
                 Detetive.automatico[Detetive.automatic].enviado = true;
-                MainMenu.TurnOnChatNofication();
                 Handheld.Vibrate();
                 Detetive.automatic++;
                 PlayerInfo.AumentarEtapa();
@@ -122,14 +125,12 @@ public class StaticCoroutine : MonoBehaviour {
             else
             {
                 Detetive.automatico[Detetive.automatic].enviado = true;
-                MainMenu.TurnOnChatNofication();
                 Detetive.exploracao = false;
             }
 
         }else if (Detetive.etapa == 1)
         {
             Detetive.automatico[Detetive.automatic].enviado = true;
-            MainMenu.TurnOnChatNofication();
             Handheld.Vibrate();
             Detetive.exploracao = false;
             int aux = PlayerInfo.ProcurarPista("suspeitos");
@@ -140,7 +141,6 @@ public class StaticCoroutine : MonoBehaviour {
         {
             Detetive.automatico[Detetive.automatic].enviado = true;
             // aumenta automatic e etapa do player e detetive, pois nao tem feedback nessa parte.   no MAINMENU             
-            MainMenu.TurnOnChatNofication();
             Handheld.Vibrate();
             int aux = PlayerInfo.ProcurarPista("cordel");
             PlayerInfo.DescobrirPista(aux, false);
@@ -152,14 +152,12 @@ public class StaticCoroutine : MonoBehaviour {
         {
             Detetive.automatico[Detetive.automatic].enviado = true;
             Detetive.exploracao = false;
-            MainMenu.TurnOnChatNofication();
             Handheld.Vibrate();
         }
         else if (Detetive.etapa == 4)
         {
             Detetive.exploracao = false;
             Detetive.automatico[Detetive.automatic].enviado = true;
-            MainMenu.TurnOnChatNofication();
             Handheld.Vibrate();
         }
     }
@@ -178,7 +176,7 @@ public class StaticCoroutine : MonoBehaviour {
                     if (Detetive.intro[Detetive.etapa].imgOrTxt[i].isLeft)
                     {
                         ChatListControl.RenderizarImagem(Detetive.intro[Detetive.etapa].imgOrTxt[i].img, true);
-
+                        Detetive.newMsgs();
                     }
                     else
                     {
@@ -194,7 +192,7 @@ public class StaticCoroutine : MonoBehaviour {
                     if (Detetive.intro[Detetive.etapa].imgOrTxt[i].isLeft)
                     {
                         ChatListControl.RenderizarTexto(Detetive.intro[Detetive.etapa].imgOrTxt[i].txt, true);
-
+                        Detetive.newMsgs();
                     }
                     else
                     {
@@ -225,7 +223,7 @@ public class StaticCoroutine : MonoBehaviour {
                     if (Detetive.intro[Detetive.etapa].imgOrTxt[i].isLeft)
                     {
                         ChatListControl.RenderizarImagem(Detetive.intro[Detetive.etapa].imgOrTxt[i].img, true);
-
+                        Detetive.newMsgs();
                     }
                     else
                     {
@@ -241,7 +239,7 @@ public class StaticCoroutine : MonoBehaviour {
                     if (Detetive.intro[Detetive.etapa].imgOrTxt[i].isLeft)
                     {
                         ChatListControl.RenderizarTexto(Detetive.intro[Detetive.etapa].imgOrTxt[i].txt, true);
-
+                        Detetive.newMsgs();
                     }
                     else
                     {
@@ -271,7 +269,7 @@ public class StaticCoroutine : MonoBehaviour {
                     if (Detetive.intro[Detetive.etapa].imgOrTxt[i].isLeft)
                     {
                         ChatListControl.RenderizarImagem(Detetive.intro[Detetive.etapa].imgOrTxt[i].img, true);
-
+                        Detetive.newMsgs();
                     }
                     else
                     {
@@ -287,7 +285,7 @@ public class StaticCoroutine : MonoBehaviour {
                     if (Detetive.intro[Detetive.etapa].imgOrTxt[i].isLeft)
                     {
                         ChatListControl.RenderizarTexto(Detetive.intro[Detetive.etapa].imgOrTxt[i].txt, true);
-
+                        Detetive.newMsgs();
                     }
                     else
                     {
@@ -318,7 +316,7 @@ public class StaticCoroutine : MonoBehaviour {
                     if (Detetive.intro[Detetive.etapa].imgOrTxt[i].isLeft)
                     {
                         ChatListControl.RenderizarImagem(Detetive.intro[Detetive.etapa].imgOrTxt[i].img, true);
-
+                        Detetive.newMsgs();
                     }
                     else
                     {
@@ -334,7 +332,7 @@ public class StaticCoroutine : MonoBehaviour {
                     if (Detetive.intro[Detetive.etapa].imgOrTxt[i].isLeft)
                     {
                         ChatListControl.RenderizarTexto(Detetive.intro[Detetive.etapa].imgOrTxt[i].txt, true);
-
+                        Detetive.newMsgs();
                     }
                     else
                     {
@@ -364,7 +362,7 @@ public class StaticCoroutine : MonoBehaviour {
                     if (Detetive.intro[Detetive.etapa].imgOrTxt[i].isLeft)
                     {
                         ChatListControl.RenderizarImagem(Detetive.intro[Detetive.etapa].imgOrTxt[i].img, true);
-
+                        Detetive.newMsgs();
                     }
                     else
                     {
@@ -380,7 +378,7 @@ public class StaticCoroutine : MonoBehaviour {
                     if (Detetive.intro[Detetive.etapa].imgOrTxt[i].isLeft)
                     {
                         ChatListControl.RenderizarTexto(Detetive.intro[Detetive.etapa].imgOrTxt[i].txt, true);
-
+                        Detetive.newMsgs();
                     }
                     else
                     {
@@ -423,6 +421,7 @@ public class StaticCoroutine : MonoBehaviour {
                     if (Detetive.intro[PlayerInfo.etapaAtual].imgOrTxt[i].isLeft)
                     {
                         ChatListControl.RenderizarImagem(Detetive.intro[PlayerInfo.etapaAtual].imgOrTxt[i].img, true);
+                        Detetive.newMsgs();
                     }
                     else
                     {
@@ -440,6 +439,7 @@ public class StaticCoroutine : MonoBehaviour {
                     if ((Detetive.intro[PlayerInfo.etapaAtual].imgOrTxt[i].isLeft))
                     {
                         ChatListControl.RenderizarTexto(Detetive.intro[PlayerInfo.etapaAtual].imgOrTxt[i].txt, true);
+                        Detetive.newMsgs();
                     }
                     else
                     {
