@@ -32,7 +32,7 @@ public class ChatListControl : MonoBehaviour {
     public void openPanelDicas()
     {
        panelDicas.SetActive(true);
-
+        Detetive.popupAskAgainStatic.SetActive(false);
     }
 
     public void closePanelDicas()

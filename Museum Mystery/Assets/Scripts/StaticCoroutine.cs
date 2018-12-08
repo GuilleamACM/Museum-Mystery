@@ -3,7 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class StaticCoroutine : MonoBehaviour {
-    static public StaticCoroutine instance;
+    static public StaticCoroutine instance; 
+    public int wordConstant; // time = txt.length/wordConstant = 30;
+    public int wordConstant2; // time = time + (txt.Length / wordConstant2 = 30) * weight);
+    public float weight; // peso que vale para proxima palavra a ser mandada 0.5f.
+    public float imageTime; // tempo direto de mandar uma imagem = 1.5f.
+    public float dicasTime; //tempo para mandar uma dica 1.75f
 
     void Awake()
     {
@@ -27,7 +32,7 @@ public class StaticCoroutine : MonoBehaviour {
                     ChatListControl.RenderizarImagem(Detetive.resposta[Detetive.etapa].imgOrTxt[i].img, false);
                 }
                 Handheld.Vibrate();
-                time = 1.5f;
+                time = imageTime;
                 yield return new WaitForSeconds(time);
                 Debug.Log(time + "<-------IMAGEM--------");
             }
@@ -41,10 +46,10 @@ public class StaticCoroutine : MonoBehaviour {
                 {
                     ChatListControl.RenderizarTexto(Detetive.resposta[Detetive.etapa].imgOrTxt[i].txt, false);
                 }
-                time = (Detetive.resposta[Detetive.etapa].imgOrTxt[i].txt.Length) / 30;
-                if (i + i < Detetive.resposta[Detetive.etapa].imgOrTxt.Length && Detetive.resposta[Detetive.etapa].imgOrTxt[i + 1].isLeft)
+                time = (Detetive.resposta[Detetive.etapa].imgOrTxt[i].txt.Length) / wordConstant;
+                if (i + 1 < Detetive.resposta[Detetive.etapa].imgOrTxt.Length && !Detetive.resposta[Detetive.etapa].imgOrTxt[i + 1].isImg())
                 {
-                    time = time + ((Detetive.resposta[Detetive.etapa].imgOrTxt[i + 1].txt.Length / 30) * 0.5f);
+                    time = time + ((Detetive.resposta[Detetive.etapa].imgOrTxt[i + 1].txt.Length / wordConstant2) * weight);
                 }
 
                 Handheld.Vibrate();
@@ -74,7 +79,7 @@ public class StaticCoroutine : MonoBehaviour {
                     ChatListControl.RenderizarImagem(Detetive.automatico[Detetive.automatic].imgOrTxt[i].img, false);
                 }
                 Handheld.Vibrate();
-                time = 1.5f;
+                time = imageTime;
                 yield return new WaitForSeconds(time);
                 Debug.Log(time + "<-------IMAGEM--------");
             }
@@ -88,10 +93,10 @@ public class StaticCoroutine : MonoBehaviour {
                 {
                     ChatListControl.RenderizarTexto(Detetive.automatico[Detetive.automatic].imgOrTxt[i].txt, false);
                 }
-                time = (Detetive.automatico[Detetive.automatic].imgOrTxt[i].txt.Length) / 30;
-                if (i + i < Detetive.automatico[Detetive.automatic].imgOrTxt.Length && !Detetive.automatico[Detetive.automatic].imgOrTxt[i + 1].isImg())
+                time = (Detetive.automatico[Detetive.automatic].imgOrTxt[i].txt.Length) / wordConstant;
+                if (i + 1 < Detetive.automatico[Detetive.automatic].imgOrTxt.Length && !Detetive.automatico[Detetive.automatic].imgOrTxt[i + 1].isImg())
                 {
-                    time = time + ((Detetive.automatico[Detetive.automatic].imgOrTxt[i + 1].txt.Length / 30) * 0.5f);
+                    time = time + ((Detetive.automatico[Detetive.automatic].imgOrTxt[i + 1].txt.Length / wordConstant2) * weight);
                 }
 
                 Handheld.Vibrate();
@@ -180,7 +185,7 @@ public class StaticCoroutine : MonoBehaviour {
                         ChatListControl.RenderizarImagem(Detetive.intro[Detetive.etapa].imgOrTxt[i].img, false);
                     }
                     Handheld.Vibrate();
-                    time = 1.5f;
+                    time = imageTime;
                     yield return new WaitForSeconds(time);
                     Debug.Log(time + "<-------IMAGEM--------");
                 }
@@ -195,10 +200,10 @@ public class StaticCoroutine : MonoBehaviour {
                     {
                         ChatListControl.RenderizarTexto(Detetive.intro[Detetive.etapa].imgOrTxt[i].txt, false);
                     }
-                    time = (Detetive.intro[Detetive.etapa].imgOrTxt[i].txt.Length) / 30;
-                    if (i + i < Detetive.intro[Detetive.etapa].imgOrTxt.Length && Detetive.intro[Detetive.etapa].imgOrTxt[i + 1].isLeft)
+                    time = (Detetive.intro[Detetive.etapa].imgOrTxt[i].txt.Length) / wordConstant;
+                    if (i + 1 < Detetive.intro[Detetive.etapa].imgOrTxt.Length && !Detetive.intro[Detetive.etapa].imgOrTxt[i + 1].isImg())
                     {
-                        time = time + ((Detetive.intro[Detetive.etapa].imgOrTxt[i + 1].txt.Length / 30) * 0.5f);
+                        time = time + ((Detetive.intro[Detetive.etapa].imgOrTxt[i + 1].txt.Length / wordConstant2) * weight);
                     }
 
                     Handheld.Vibrate();
@@ -227,7 +232,7 @@ public class StaticCoroutine : MonoBehaviour {
                         ChatListControl.RenderizarImagem(Detetive.intro[Detetive.etapa].imgOrTxt[i].img, false);
                     }
                     Handheld.Vibrate();
-                    time = 1.5f;
+                    time = imageTime;
                     yield return new WaitForSeconds(time);
                     Debug.Log(time + "<-------IMAGEM--------");
                 }
@@ -242,10 +247,10 @@ public class StaticCoroutine : MonoBehaviour {
                     {
                         ChatListControl.RenderizarTexto(Detetive.intro[Detetive.etapa].imgOrTxt[i].txt, false);
                     }
-                    time = (Detetive.intro[Detetive.etapa].imgOrTxt[i].txt.Length) / 30;
-                    if (i + i < Detetive.intro[Detetive.etapa].imgOrTxt.Length && Detetive.intro[Detetive.etapa].imgOrTxt[i + 1].isLeft)
+                    time = (Detetive.intro[Detetive.etapa].imgOrTxt[i].txt.Length) / wordConstant;
+                    if (i + 1 < Detetive.intro[Detetive.etapa].imgOrTxt.Length && !Detetive.intro[Detetive.etapa].imgOrTxt[i + 1].isImg())
                     {
-                        time = time + ((Detetive.intro[Detetive.etapa].imgOrTxt[i + 1].txt.Length / 30) * 0.5f);
+                        time = time + ((Detetive.intro[Detetive.etapa].imgOrTxt[i + 1].txt.Length / wordConstant2) * weight);
                     }
 
                     Handheld.Vibrate();
@@ -273,7 +278,7 @@ public class StaticCoroutine : MonoBehaviour {
                         ChatListControl.RenderizarImagem(Detetive.intro[Detetive.etapa].imgOrTxt[i].img, false);
                     }
                     Handheld.Vibrate();
-                    time = 1.5f;
+                    time = imageTime;
                     yield return new WaitForSeconds(time);
                     Debug.Log(time + "<-------IMAGEM--------");
                 }
@@ -288,10 +293,10 @@ public class StaticCoroutine : MonoBehaviour {
                     {
                         ChatListControl.RenderizarTexto(Detetive.intro[Detetive.etapa].imgOrTxt[i].txt, false);
                     }
-                    time = (Detetive.intro[Detetive.etapa].imgOrTxt[i].txt.Length) / 30;
-                    if (i + i < Detetive.intro[Detetive.etapa].imgOrTxt.Length && Detetive.intro[Detetive.etapa].imgOrTxt[i + 1].isLeft)
+                    time = (Detetive.intro[Detetive.etapa].imgOrTxt[i].txt.Length) / wordConstant;
+                    if (i + 1 < Detetive.intro[Detetive.etapa].imgOrTxt.Length && !Detetive.intro[Detetive.etapa].imgOrTxt[i + 1].isImg())
                     {
-                        time = time + ((Detetive.intro[Detetive.etapa].imgOrTxt[i + 1].txt.Length / 30) * 0.5f);
+                        time = time + ((Detetive.intro[Detetive.etapa].imgOrTxt[i + 1].txt.Length / wordConstant2) * weight);
                     }
 
                     Handheld.Vibrate();
@@ -320,7 +325,7 @@ public class StaticCoroutine : MonoBehaviour {
                         ChatListControl.RenderizarImagem(Detetive.intro[Detetive.etapa].imgOrTxt[i].img, false);
                     }
                     Handheld.Vibrate();
-                    time = 1.5f;
+                    time = imageTime;
                     yield return new WaitForSeconds(time);
                     Debug.Log(time + "<-------IMAGEM--------");
                 }
@@ -335,10 +340,10 @@ public class StaticCoroutine : MonoBehaviour {
                     {
                         ChatListControl.RenderizarTexto(Detetive.intro[Detetive.etapa].imgOrTxt[i].txt, false);
                     }
-                    time = (Detetive.intro[Detetive.etapa].imgOrTxt[i].txt.Length) / 30;
-                    if (i + i < Detetive.intro[Detetive.etapa].imgOrTxt.Length && Detetive.intro[Detetive.etapa].imgOrTxt[i + 1].isLeft)
+                    time = (Detetive.intro[Detetive.etapa].imgOrTxt[i].txt.Length) / wordConstant;
+                    if (i + 1 < Detetive.intro[Detetive.etapa].imgOrTxt.Length && !Detetive.intro[Detetive.etapa].imgOrTxt[i + 1].isImg())
                     {
-                        time = time + ((Detetive.intro[Detetive.etapa].imgOrTxt[i + 1].txt.Length / 30) * 0.5f);
+                        time = time + ((Detetive.intro[Detetive.etapa].imgOrTxt[i + 1].txt.Length / wordConstant2) * weight);
                     }
 
                     Handheld.Vibrate();
@@ -366,7 +371,7 @@ public class StaticCoroutine : MonoBehaviour {
                         ChatListControl.RenderizarImagem(Detetive.intro[Detetive.etapa].imgOrTxt[i].img, false);
                     }
                     Handheld.Vibrate();
-                    time = 1.5f;
+                    time = imageTime;
                     yield return new WaitForSeconds(time);
                     Debug.Log(time + "<-------IMAGEM--------");
                 }
@@ -381,10 +386,10 @@ public class StaticCoroutine : MonoBehaviour {
                     {
                         ChatListControl.RenderizarTexto(Detetive.intro[Detetive.etapa].imgOrTxt[i].txt, false);
                     }
-                    time = (Detetive.intro[Detetive.etapa].imgOrTxt[i].txt.Length) / 30;
-                    if (i + i < Detetive.intro[Detetive.etapa].imgOrTxt.Length && Detetive.intro[Detetive.etapa].imgOrTxt[i + 1].isLeft)
+                    time = (Detetive.intro[Detetive.etapa].imgOrTxt[i].txt.Length) / wordConstant;
+                    if (i + 1 < Detetive.intro[Detetive.etapa].imgOrTxt.Length && !Detetive.intro[Detetive.etapa].imgOrTxt[i + 1].isImg())
                     {
-                        time = time + ((Detetive.intro[Detetive.etapa].imgOrTxt[i + 1].txt.Length / 30) * 0.5f);
+                        time = time + ((Detetive.intro[Detetive.etapa].imgOrTxt[i + 1].txt.Length / wordConstant2) * weight);
                     }
 
                     Handheld.Vibrate();
@@ -424,7 +429,7 @@ public class StaticCoroutine : MonoBehaviour {
                         ChatListControl.RenderizarImagem(Detetive.intro[PlayerInfo.etapaAtual].imgOrTxt[i].img, false);
                     }
                     Handheld.Vibrate();
-                    time = 1.5f;
+                    time = imageTime;
                     yield return new WaitForSeconds(time);
                     Debug.Log(time + "<-------IMAGEM--------");
 
@@ -441,10 +446,10 @@ public class StaticCoroutine : MonoBehaviour {
                         ChatListControl.RenderizarTexto(Detetive.intro[PlayerInfo.etapaAtual].imgOrTxt[i].txt, false);
                     }
 
-                    time = (Detetive.intro[PlayerInfo.etapaAtual].imgOrTxt[i].txt.Length) / 30;
-                    if(i+i < Detetive.intro[PlayerInfo.etapaAtual].imgOrTxt.Length && Detetive.intro[PlayerInfo.etapaAtual].imgOrTxt[i+1].isLeft)
+                    time = (Detetive.intro[PlayerInfo.etapaAtual].imgOrTxt[i].txt.Length) / wordConstant;
+                    if(i+1 < Detetive.intro[PlayerInfo.etapaAtual].imgOrTxt.Length && !Detetive.intro[PlayerInfo.etapaAtual].imgOrTxt[i + 1].isImg())
                     {
-                        time = time + ((Detetive.intro[PlayerInfo.etapaAtual].imgOrTxt[i + 1].txt.Length/30) * 0.5f);
+                        time = time + ((Detetive.intro[PlayerInfo.etapaAtual].imgOrTxt[i + 1].txt.Length/wordConstant2) * weight);
                     }
                    
                     Handheld.Vibrate();
@@ -458,6 +463,7 @@ public class StaticCoroutine : MonoBehaviour {
             PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("enzoCamera"), false);
 
             PlayerInfo.AumentarEtapa();
+            MainMenu.firstOpenchat = true;
         }
         else
         {
@@ -474,7 +480,7 @@ public class StaticCoroutine : MonoBehaviour {
 
     IEnumerator Wait2(string resp)
     {
-        yield return new WaitForSeconds(1.75f);
+        yield return new WaitForSeconds(dicasTime);
         ChatListControl.RenderizarTexto(resp, true);
     }
 

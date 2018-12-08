@@ -34,7 +34,7 @@ public class MainMenu : MonoBehaviour
     public static GameObject[] staticBotaoDicas;
     public static bool check = false;
     public static int staticRefBotao;
-    public bool firstOpenchat = true;
+    public static bool firstOpenchat = false;
     public Button arBotao;
     public Button arquivoBotao;
     public bool firstAR = true;
@@ -83,7 +83,7 @@ public class MainMenu : MonoBehaviour
         if (firstAR)
         {
             popupFirstAR.SetActive(true);
-            Invoke("desativarPopupFirstAR",3);
+            Invoke("desativarPopupFirstAR",5);
             firstAR = false;
         }
         
@@ -94,14 +94,6 @@ public class MainMenu : MonoBehaviour
 
     public void OpenChat()
     {
-        if (firstOpenchat)
-        {
-            arBotao.interactable = true;
-            arquivoBotao.interactable = true;
-            firstOpenchat = false;
-            TurnOnARNofication();
-            TurnOnChatNofication();
-        }
 
         ChatCanvas.SetActive(true);
         MenuCanvas.SetActive(false);
@@ -169,6 +161,15 @@ public class MainMenu : MonoBehaviour
 
     public void BacktoMainMenu()
     {
+        if (firstOpenchat)
+        {
+            arBotao.interactable = true;
+            arquivoBotao.interactable = true;
+            firstOpenchat = false;
+            TurnOnARNofication();
+            TurnOnChatNofication();
+        }
+
         AR.SetActive(false);
         ChatCanvas.SetActive(false);
         if (panel.activeSelf)

@@ -74,6 +74,9 @@ public class Detetive : MonoBehaviour
     public GameObject popupTutorial;
     public GameObject popupEncaminhado;
     public GameObject popupAskAgain;
+    public static GameObject popupAskAgainStatic;
+    public GameObject popupAskAgain2;
+
     public static Mensagem[] dicas = new Mensagem[21]; // qdo o jogador envia uma pista habilitada ao detetive, o detetive responde com um breve texto, falando melhor sobre a pista enviada.
     
     public static Mensagem[] intro = new Mensagem[6]; // introducoes do ciclo
@@ -113,7 +116,7 @@ public class Detetive : MonoBehaviour
 
     void Awake()
     {
-
+        popupAskAgainStatic = popupAskAgain;
         //carregando introducoes
 
         Mensagem msg0 = new Mensagem("0", new ImgOrTxt[20] { new ImgOrTxt("Olá, você deve ser um dos novatos, não? Eu sou Jerry, detetive chefe responsável pela supervisão do caso em questão.", true),
@@ -475,7 +478,7 @@ public class Detetive : MonoBehaviour
 
         if (dicas[img].enviado)
         {
-            ativarPopupAskAgain();
+            ativarPopupAskAgain2();
             return;
 
 
@@ -514,11 +517,25 @@ public class Detetive : MonoBehaviour
         popupTutorial.SetActive(false);
     }
 
+    public void ativarPopupAskAgain2()
+    {
+        popupAskAgain2.SetActive(true);
+        popupAskAgain.SetActive(false);
+        popupAllow.SetActive(false);
+        Invoke("desativarPopupAskAgain2", 3);
+        popupDeny.SetActive(false);
+        popupError.SetActive(false);
+        popupTutorial.SetActive(false);
+
+    }
+
 
     public void ativarTutorialPopup()
     {
         if (firstTimePopup)
         {
+            popupAskAgain2.SetActive(false);
+            popupAskAgain.SetActive(false);
             popupTutorial.SetActive(true);
             Invoke("desativarPopupTutorial", 5);
             firstTimePopup = false;
@@ -547,15 +564,20 @@ public class Detetive : MonoBehaviour
         popupDeny.SetActive(false);
         popupError.SetActive(false);
         popupTutorial.SetActive(false);
+        popupAskAgain2.SetActive(false);
+        popupAskAgain.SetActive(false);
     }
 
     public void ativarPopupDeny()
     {
+
         popupDeny.SetActive(true);
         Invoke("desativarPopupDeny", 3);
         popupAllow.SetActive(false);
         popupError.SetActive(false);
         popupTutorial.SetActive(false);
+        popupAskAgain2.SetActive(false);
+        popupAskAgain.SetActive(false);
     }
 
     public void desativarPopupTutorial()
@@ -565,7 +587,12 @@ public class Detetive : MonoBehaviour
 
     public void desativarPopupAskAgain()
     {
-        popupTutorial.SetActive(false);
+        popupAskAgain.SetActive(false);
+    }
+
+    public void desativarPopupAskAgain2()
+    {
+        popupAskAgain2.SetActive(false);
     }
 
     public void desativarPopupDeny()
