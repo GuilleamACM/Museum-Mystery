@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3738,6 +3738,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52dfb7a8ee17d394b92d7f556f28bc86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PanelImage: {fileID: 1955142889}
+  panelDicas: {fileID: 93643594}
   popupFirstAR: {fileID: 193083831}
   img: {fileID: 2005326305}
   imgAmpliada: {fileID: 5548437}
@@ -18244,7 +18246,7 @@ GameObject:
   - component: {fileID: 1350451826}
   - component: {fileID: 1350451825}
   m_Layer: 5
-  m_Name: OnImageClickPanel
+  m_Name: OnImageClickPanelPistas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18660,7 +18662,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0000076294, y: -228.02}
+  m_AnchoredPosition: {x: 0, y: -228.02002}
   m_SizeDelta: {x: -96.71, y: -584.04}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1370784871
@@ -27765,7 +27767,7 @@ GameObject:
   - component: {fileID: 1955142892}
   - component: {fileID: 1955142891}
   m_Layer: 5
-  m_Name: OnImageClickPanel
+  m_Name: OnImageClickPanelChat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

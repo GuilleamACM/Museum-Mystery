@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
+    public GameObject PanelImage;
+    public GameObject panelDicas;
     public GameObject popupFirstAR;
     public Image img;
     public Image imgAmpliada;
@@ -177,6 +179,16 @@ public class MainMenu : MonoBehaviour
 
     public void BacktoMainMenu()
     {
+        if (PanelImage.activeSelf)
+        {
+            PanelImage.SetActive(false);
+            return;
+        }
+        if (panelDicas.activeSelf)
+        {
+            panelDicas.SetActive(false);
+            return;
+        }
         if (firstOpenchat)
         {
             arBotao.interactable = true;
