@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PinchableScrollRect : ScrollRect {
+public class PinchableScrollRect : ScrollRect
+{
 
     float _minZoom = .35f;
     float _maxZoom = 3.5f;
@@ -14,14 +15,16 @@ public class PinchableScrollRect : ScrollRect {
     float _startPinchZoom;
     Vector2 _startPinchCenterPosition;
     Vector2 _startPinchScreenPosition;
+    Vector3 defaultContentPosition;
     float _mouseWheelSensitivity = 1;
     bool blockPan = false;
 
     protected override void Awake()
     {
         Input.multiTouchEnabled = true;
+        defaultContentPosition = new Vector3(180.12f, 320f, 0f);
     }
-    
+
     private void Update()
     {
         if (Input.touchCount == 2)
@@ -104,16 +107,22 @@ public class PinchableScrollRect : ScrollRect {
         return Vector2.Distance(pos1, pos2);
     }
 
-     static void SetPivot(RectTransform rectTransform, Vector2 pivot)
-     {
-         if (rectTransform == null) return;
- 
-         Vector2 size = rectTransform.rect.size;
-         Vector2 deltaPivot = rectTransform.pivot - pivot;
-         Vector3 deltaPosition = new Vector3(deltaPivot.x * size.x, deltaPivot.y * size.y) * rectTransform.localScale.x;
-         rectTransform.pivot = pivot;
-         rectTransform.localPosition -= deltaPosition;
-     }
+    static void SetPivot(RectTransform rectTransform, Vector2 pivot)
+    {
+        if (rectTransform == null) return;
+
+        Vector2 size = rectTransform.rect.size;
+        Vector2 deltaPivot = rectTransform.pivot - pivot;
+        Vector3 deltaPosition = new Vector3(deltaPivot.x * size.x, deltaPivot.y * size.y) * rectTransform.localScale.x;
+        rectTransform.pivot = pivot;
+        rectTransform.localPosition -= deltaPosition;
+    }
+
+    public void ResetZoom()
+    {
+        _currentZoom = 1;
+        content.transform.position = defaultContentPosition;
+    }
 
     IEnumerator KeepsInLimits()
     {
