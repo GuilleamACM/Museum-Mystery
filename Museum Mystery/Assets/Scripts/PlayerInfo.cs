@@ -26,7 +26,7 @@ public class PlayerInfo : MonoBehaviour
     {
         etapaAtual = 0;
         //Todas as pistas serão criadas aqui junto com o array de pistas
-        pistas = new Pista[] { new Pista("enzoCamera"),new Pista("discoContinental"), new Pista("musicBox"),
+        pistas = new Pista[] { new Pista("enzoCamera"),new Pista("discoContinental"),
                                                                          new Pista("gonzaga"), new Pista("mapaCigarro"), new Pista("livro"), new Pista("albumLuizCostas"), new Pista("albumLuizCostas2"),
                                                                          new Pista("mapaCalor"), new Pista("faca"), new Pista("santo"),
                                                                          new Pista("xilogravuraMoldura"), new Pista("caixaPoesia"), new Pista("suspeitos"), new Pista("frase"), new Pista("cacto"),

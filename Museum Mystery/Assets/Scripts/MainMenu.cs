@@ -41,6 +41,10 @@ public class MainMenu : MonoBehaviour
     public Button arquivoBotao;
     public static bool arquivoBotaoInteractable = false;
     public bool firstAR = true;
+    public static bool gameOver = false;
+    public GameObject continua;
+    public Button configurationButton;
+    public GameObject configurationCanvas;
 
     void Awake()
     {
@@ -154,19 +158,6 @@ public class MainMenu : MonoBehaviour
             }
         }
 
-        /*else if (Detetive.etapa == 3)
-        {
-            if (Detetive.automatico[Detetive.etapa].enviado && !check)
-            {
-                PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("cordel"), false);
-                check = true;
-            }
-        }*/
-
-        /* else if(Detetive.etapa == 4)
-        {
-            não tem nada para habilitar.
-        } */
 
     }
 
@@ -175,6 +166,12 @@ public class MainMenu : MonoBehaviour
         PistasCanvas.SetActive(true);
         MenuCanvas.SetActive(false);
         TurnOffDicasNofication();
+    }
+
+    public void OpenConfiguration()
+    {
+        configurationCanvas.SetActive(true);
+        MenuCanvas.SetActive(false);
     }
 
     public void BacktoMainMenu()
@@ -195,6 +192,7 @@ public class MainMenu : MonoBehaviour
             arquivoBotao.interactable = true;
             arquivoBotaoInteractable = true;
             firstOpenchat = false;
+            configurationButton.interactable = true;
         }
 
         AR.SetActive(false);
@@ -218,8 +216,23 @@ public class MainMenu : MonoBehaviour
             PistasCanvas.SetActive(false);
             PlayerInfo.resetNewPistas();
         }
+        if (configurationCanvas.activeSelf)
+        {
+            configurationCanvas.SetActive(false);
+        }
+        if (gameOver)
+        {
+            continua.SetActive(true);
+        }
+
         MenuCanvas.SetActive(true);
         
+    }
+
+    public void continuaBack()
+    {
+       ChatCanvas.SetActive(true);
+        continua.SetActive(false);
     }
 
     public void OpenPista(int i)

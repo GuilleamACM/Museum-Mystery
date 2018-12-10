@@ -397,6 +397,7 @@ public class StaticCoroutine : MonoBehaviour {
             }
             Detetive.exploracao = true;
             Detetive.intro[Detetive.etapa].enviado = true;
+            MainMenu.gameOver = true;
             //acabou o jogo, se for adcionar algo pra quem zerou, é aqui.       }            
         }
 

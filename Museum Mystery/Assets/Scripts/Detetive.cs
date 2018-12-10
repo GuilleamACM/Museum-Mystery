@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -78,12 +76,12 @@ public class Detetive : MonoBehaviour
     public static GameObject popupAskAgainStatic;
     public GameObject popupAskAgain2;
 
-    public static Mensagem[] dicas = new Mensagem[21]; // qdo o jogador envia uma pista habilitada ao detetive, o detetive responde com um breve texto, falando melhor sobre a pista enviada.
+    public static Mensagem[] dicas = new Mensagem[20]; // qdo o jogador envia uma pista habilitada ao detetive, o detetive responde com um breve texto, falando melhor sobre a pista enviada.
     
     public static Mensagem[] intro = new Mensagem[6]; // introducoes do ciclo
     public static Mensagem[] automatico; // msgs automaticas que o detetive manda ao jogador completar alguma coisa
 
-    public static Mensagem[] resposta = new Mensagem[] { new Mensagem("0", new ImgOrTxt[] { new ImgOrTxt("Parece que já me encontraram, mas eu não vou deixar que escondam a verdade. O seu nome não foi esquecido nas", false),
+    public static Mensagem[] resposta = new Mensagem[] { new Mensagem("0", new ImgOrTxt[] { new ImgOrTxt("Parece que já me encontraram. O seu nome não foi esquecido nas", false),
                                                                                             new ImgOrTxt("Olá Jerry. A série de letras e números que eu encontrei no disco, eram parte de um link de um vídeo. ", false),
                                                                                             new ImgOrTxt("O vídeo, continha a chave para traduzir aquelas marcações estranhas que Enzo havia deixado nas obras.", false),
                                                                                             new ImgOrTxt("Pelo que eu consegui identificar, elas traduzem para: “Parece que já me encontraram, mas eu não vou deixar que escondam a verdade. O seu nome não foi esquecido nas”", false), }),
@@ -109,7 +107,7 @@ public class Detetive : MonoBehaviour
     public static string answer; // msg escrita no input
     public static int automatic = 0;
     public static int imgDicas; // referencia da img clicada em anexos.
-    public static pistaDetetive[] pistasDetetive = new pistaDetetive[] { new pistaDetetive("enzoCamera"),new pistaDetetive("discoContinental"), new pistaDetetive("musicBox"),
+    public static pistaDetetive[] pistasDetetive = new pistaDetetive[] { new pistaDetetive("enzoCamera"),new pistaDetetive("discoContinental"),
                                                                          new pistaDetetive("gonzaga"), new pistaDetetive("mapaCigarro"), new pistaDetetive("livro"), new pistaDetetive("albumLuizCostas"), new pistaDetetive("albumLuizCostas2"),
                                                                          new pistaDetetive("mapaCalor"), new pistaDetetive("faca"), new pistaDetetive("santo"),
                                                                          new pistaDetetive("xilogravuraMoldura"), new pistaDetetive("caixaPoesia"), new pistaDetetive("suspeitos"), new pistaDetetive("frase"), new pistaDetetive("cacto"),
@@ -239,92 +237,90 @@ public class Detetive : MonoBehaviour
                                                               new ImgOrTxt("Elas parecem ter sido colocadas ali pelo próprio Sanfonatti, continue procurando, talvez isso signifique algo.", true) });
         dicas[1] = dicas1; //Disco
 
-        Mensagem dicas2 = new Mensagem("3", new ImgOrTxt[] { new ImgOrTxt("Estranho, acho que nunca vi essas marcas antes", true),
-                                                              new ImgOrTxt("Elas parecem ter sido colocadas ali pelo próprio Sanfonatti, continue procurando, talvez isso signifique algo.", true) });
-        dicas[2] = dicas2; //musicBox
-
         Mensagem dicas3 = new Mensagem("4", new ImgOrTxt[] { new ImgOrTxt("Estranho, acho que nunca vi essas marcas antes", true),
                                                               new ImgOrTxt("Elas parecem ter sido colocadas ali pelo próprio Sanfonatti, continue procurando, talvez isso signifique algo.", true) });
-        dicas[3] = dicas3; //gonzaga
+        dicas[2] = dicas3; //gonzaga
 
         Mensagem dicas4 = new Mensagem("5", new ImgOrTxt[] { new ImgOrTxt("Esse pedaço de papel foi encontrado na bolsa de Sanfonatti, pelo que conseguimos identificar, essa e a letra dele mas nenhum de nossos especialistas sabe exatamente o que significa.", true),
                                                              new ImgOrTxt("Achamos que possa ser relevante para o caso.", true) });
-        dicas[4] = dicas4; //mapaCigarro
+        dicas[3] = dicas4; //mapaCigarro
 
         Mensagem dicas5 = new Mensagem("6", new ImgOrTxt[] { new ImgOrTxt("Este livro estava na bolsa de Sanfonatti.", true),
                                                              new ImgOrTxt("Apesar de ser um livro um tanto peculiar, nada nele parece estar fora do lugar.", true) });
-        dicas[5] = dicas5; //livro
+        dicas[4] = dicas5; //livro
 
         Mensagem dicas6 = new Mensagem("7", new ImgOrTxt[] { new ImgOrTxt("Nenhum de nossos especialistas parece saber o que essas marcas significam.", true),                                                            
                                                              new ImgOrTxt("Você acha que consegue descobrir?", true)});
-        dicas[6] = dicas6; //album 1 
+        dicas[5] = dicas6; //album 1 
 
         Mensagem dicas7 = new Mensagem("8", new ImgOrTxt[] { new ImgOrTxt("Me perdoe, jovem, mas estou um tanto ocupado no momento.", true),
                                                              new ImgOrTxt("E para ser bem honesto, eu não faço a menor ideia do que isso significa.", true),
                                                              new ImgOrTxt("Vou lhe mandar uma ferramenta que pode ser útil.", true),
                                                              new ImgOrTxt("www.google.com", true)});
-        dicas[7] = dicas7; //album 2
+        dicas[6] = dicas7; //album 2
 
 
         Mensagem dicas8 = new Mensagem("9", new ImgOrTxt[] { new ImgOrTxt("Este é um mapa de calor que traçamos das atividades de Sanfonatti no museu, as áreas com cor mais intensa indicam os setores de maior atividade.", true),
                                                              new ImgOrTxt("Recomendo você tentar investigar essas áreas.", true) });
-        dicas[8] = dicas8; //mapaCalor
+        dicas[7] = dicas8; //mapaCalor
 
         Mensagem dicas9 = new Mensagem("10", new ImgOrTxt[] { new ImgOrTxt("De acordo com o banco de dados de digitas da nossa agência. Essa digital pertence a Atila Saverin.", true),
                                                              new ImgOrTxt("Vejamos.", true),
                                                              new ImgOrTxt("Atila Saverin, 27 anos, solteiro, sem antecedentes criminais, residente na cidade de Exu, trabalha como vendedor em uma loja de produtos agropecuários.", true), });
-        dicas[9] = dicas9; //faca
+        dicas[8] = dicas9; //faca
 
         Mensagem dicas10 = new Mensagem("11", new ImgOrTxt[] { new ImgOrTxt("Pelo que consegui verificar no nosso banco de dados de digitais, essa digital pertence a Nariadna Gleycielly.", true),
                                                               new ImgOrTxt("Nariadna, 22 anos, casada, sem antecedentes criminais, reside em Salgueiro e é dona de uma loja de tecidos.", true) });
        
-        dicas[10] = dicas10; //santo
+        dicas[9] = dicas10; //santo
 
         Mensagem dicas11 = new Mensagem("12", new ImgOrTxt[]{ new ImgOrTxt("Deixe-me ver.", true),
                                                               new ImgOrTxt("Essa digital pertence a Rajish Al-Habib.", true),
                                                               new ImgOrTxt("25 anos, casado.", true),
                                                               new ImgOrTxt("Humm, tem ficha na delegacia por porte ilegal de arma.", true),
                                                               new ImgOrTxt("Nasceu nos emirados árabes, mas reside na cidade do Recife, trabalha como professor de história em escola pública.", true),});
-        dicas[11] = dicas11; //xilogravura
+        dicas[10] = dicas11; //xilogravura
 
         Mensagem dicas12 = new Mensagem("13", new ImgOrTxt[] { new ImgOrTxt("Estranho esse símbolo.", true),
                                                                new ImgOrTxt("Pelo que eu consegui analisar aqui, ele não foi feito por Sanfonatti.", true),
                                                                new ImgOrTxt("Talvez esteja relacionado com algum dos suspeitos, pode significar algo.", true),});
-        dicas[12] = dicas12; //caixaPoesia
+        dicas[11] = dicas12; //caixaPoesia
 
-        Mensagem dicas13 = new Mensagem("14", new ImgOrTxt[] { new ImgOrTxt("Essas são as fichas com as informações que eu consegui encontrar dos suspeitos.", true),
-                                                              new ImgOrTxt("Infelizmente é o máximo que eu consigo fazer daqui da agência. Talvez você seja capaz de descobrir mais algumas informações se pesquisar um pouco.", true) });
-        dicas[13] = dicas13; //suspeito
+        Mensagem dicas13 = new Mensagem("14", new ImgOrTxt[] { new ImgOrTxt("Essas são as fichas com as informações que eu consegui encontrar dos suspeitos. Infelizmente é o máximo que eu consigo fazer daqui da agência.", true),
+                                                              new ImgOrTxt("Talvez você seja capaz de descobrir mais algumas informações se pesquisar um pouco.", true),
+                                                              new ImgOrTxt("Pode ser que você encontre algo em alguma rede social ou coisa parecida, não sei. Eu não sou muito bom com essas coisas.", true),
+        });
+        dicas[12] = dicas13; //suspeito
 
         Mensagem dicas14 = new Mensagem("15", new ImgOrTxt[] { new ImgOrTxt("Veja se você consegue descobrir o que pode ser a continuação dessa frase. Ela pode conter alguma dica de onde ele pode ter deixado algo.", true),
                                                               new ImgOrTxt("Deve haver algo sobre essa música no museu, afinal, é provavelmente uma música de Luiz Gonzaga. Sanfonatti pode ter escondido algo por perto.", true) });
-        dicas[14] = dicas14; //frase
+        dicas[13] = dicas14; //frase
 
         Mensagem dicas15 = new Mensagem("16", new ImgOrTxt[] { new ImgOrTxt("Esse Sanfonatti parece realmente gostar de escrever em enigmas. A essa altura eu tenho certeza que essa frase significa algo.", true),
                                                               new ImgOrTxt("Tente descobrir o que significa. ", true) });
-        dicas[15] = dicas15; //cacto
+        dicas[14] = dicas15; //cacto
 
         Mensagem dicas16 = new Mensagem("17", new ImgOrTxt[] { new ImgOrTxt("O cordel foi encontrado por um funcionário do museu no mesmo local onde você encontrou a frase deixada por Sanfonatti.", true),
                                                               new ImgOrTxt("É bem provável que tenha algo escondido nele. Você consegue descobrir o que é?", true) });
-        dicas[16] = dicas16; //cordel
+        dicas[15] = dicas16; //cordel
 
         Mensagem dicas17 = new Mensagem("18", new ImgOrTxt[] { new ImgOrTxt("Sanfonatti parece ter nos deixado uma coordenada escrita nesse mapa.", true),
                                                               new ImgOrTxt("39°20'37.9”W", true),
                                                               new ImgOrTxt("Me avise se você descobrir qual é a outra para que possamos mandar algum agente até o local descobrir o que isso significa.", true)});
-        dicas[17] = dicas17; //mapaNordeste
+        dicas[16] = dicas17; //mapaNordeste
 
         Mensagem dicas18 = new Mensagem("19", new ImgOrTxt[] { new ImgOrTxt("Essa carta foi escrita por Raimundo Jacó, e foi encontrada no local indicado pelas coordenadas deixadas por Sanfonatti.", true),
                                                                new ImgOrTxt("Jacó faz parecer que estava sendo perseguido por ter descoberto algo, logo antes de ter sido assassinado.", true) });
-        dicas[18] = dicas18; //cartaJaco
+        dicas[17] = dicas18; //cartaJaco
 
         Mensagem dicas19 = new Mensagem("20", new ImgOrTxt[] { new ImgOrTxt("Esta é a área do museu em que não existe nenhuma imagem de Sanfonatti nas câmeras de segurança.", true),
                                                                new ImgOrTxt("Deve haver algo de importante aí.", true) });
-        dicas[19] = dicas19; //mapaEnzo
+        dicas[18] = dicas19; //mapaEnzo
 
         Mensagem dicas20 = new Mensagem("21", new ImgOrTxt[] { new ImgOrTxt("Eu acredito que a esse ponto você já deve entender como a mente de Sanfonatti funciona melhor do que eu.", true),
                                                               new ImgOrTxt("Essa é a última pista que nos temos. Tente descobrir o que ela significa, é possível que tenha algo que ajude a decifrar nas informações que você já coletou antes.", true),
                                                               new ImgOrTxt("Boa sorte, jovem.", true)});
-        dicas[20] = dicas20; //quadroBoneco
+        dicas[19] = dicas20; //quadroBoneco
 
         //carregando automaticas
 
@@ -649,14 +645,14 @@ public class Detetive : MonoBehaviour
 
         if(etapa == 3) // if elses para o jogador acertar a coordenada, basicamente colocar possiveis respostas.
         {
-            if ((originalLower.Equals("7°51'34.8\"S") || (originalLower.Equals("7°51'34.8S")) || (originalLower.Equals("7°51'34.8 S")) || (originalLower.Equals("7°51 34.8 S")) || (originalLower.Equals("7 51 348S"))))
+            if ((original.Equals("7°51'34.8\"S") || (original.Equals("7°51'34.8S")) || (original.Equals("7°51'34.8 S")) || (original.Equals("7°51 34.8 S")) || (original.Equals("7 51 348S"))))
             {
                 StaticCoroutine.DoCoroutineDelayResposta();
 
-            }else if ((originalLower.Equals("7 51 34.8 S")) || (originalLower.Equals("7 51 348 S")) || (originalLower.Equals("751348S")) || (originalLower.Equals("7°51'34.8\" S")) )
+            }else if ((original.Equals("7 51 34.8 S")) || (original.Equals("7 51 348 S")) || (original.Equals("751348S")) || (original.Equals("7°51'34.8\" S")) )
             {
                 StaticCoroutine.DoCoroutineDelayResposta();
-            }else if ((originalLower.Equals("7° 51' 34.8\" S")) || (originalLower.Equals("7°51'348 S")) || (originalLower.Equals("7°51'348\"S")) || (originalLower.Equals("7 51' 348\" S")))
+            }else if ((original.Equals("7° 51' 34.8\" S")) || (original.Equals("7°51'348 S")) || (original.Equals("7°51'348\"S")) || (original.Equals("7 51' 348\" S")))
             {
                 StaticCoroutine.DoCoroutineDelayResposta();
             }
@@ -682,9 +678,14 @@ public class Detetive : MonoBehaviour
             {
                 if(etapa == 0)
                 {
-                    if (similaridade >= 95)
+                    if (similaridade >= 90)
                     {
                         StaticCoroutine.DoCoroutineDelayResposta(); //aceite
+                    }
+                    else if (similaridade >= 70)
+                    {
+                        ChatListControl.RenderizarTexto("Jerry, a tradução é: \"" + input + "\"", false);
+                        Invoke("detetiveMsgQuaseCerta", 1.5f);
                     }
                     else
                     {
@@ -695,6 +696,9 @@ public class Detetive : MonoBehaviour
                     if (similaridade >= 91)
                     {
                         StaticCoroutine.DoCoroutineDelayResposta(); //aceite
+                    }else if(similaridade >=70){
+                        ChatListControl.RenderizarTexto("Jerry, o símbolo significa: \"" + input + "\"", false);
+                        Invoke("detetiveMsgQuaseCerta", 1.5f);
                     }
                     else
                     {
@@ -706,6 +710,11 @@ public class Detetive : MonoBehaviour
                     if (similaridade >= 88)
                     {
                         StaticCoroutine.DoCoroutineDelayResposta(); //aceite
+                    }
+                    else if (similaridade >= 70)
+                    {
+                        ChatListControl.RenderizarTexto("Jerry, Sanfonatti escreveu isso aqui: \"" + input + "\", o que significa? ", false);
+                        Invoke("detetiveMsgQuaseCerta", 1.5f);
                     }
                     else
                     {
@@ -722,6 +731,10 @@ public class Detetive : MonoBehaviour
         
     }
 
+    public void detetiveMsgQuaseCerta()
+    {
+        ChatListControl.RenderizarTexto("Hmmm, acho que você está chegando perto, não deve ser exatamente isso", true);
+    }
 
     public static void EnviarMsgFeedback()
     {
@@ -759,7 +772,7 @@ public class Detetive : MonoBehaviour
             if (automatic <= 0)
             {
                 int index = PlayerInfo.ProcurarPista("discoContinental");
-                if ((PlayerInfo.pistas[index].descoberta && PlayerInfo.pistas[index + 1].descoberta && PlayerInfo.pistas[index + 2].descoberta) && !(automatico[automatic].enviado)) //as pistas 1,2,3 = Criptografia1,Criptografia2,Criptografia3 e simbolo
+                if ((PlayerInfo.pistas[index].descoberta && PlayerInfo.pistas[index + 1].descoberta) && !(automatico[automatic].enviado)) //as pistas 1,2 = Criptografia1,Criptografia2
                 {
                     automatico[automatic].enviado = true;
                     StaticCoroutine.DoCoroutineAutomatic();
@@ -845,101 +858,5 @@ public class Detetive : MonoBehaviour
 
     }
 }
-/*public void Etapa0()
-{
-    //checa se o jogador descobriu as pistas para mandar uma mensagem automatica.
-    int index = PlayerInfo.ProcurarPista("discoContinental");
-    if ((PlayerInfo.pistas[index].descoberta && PlayerInfo.pistas[index + 1].descoberta && PlayerInfo.pistas[index + 2].descoberta) && !(automatico[automatic].enviado)) //as pistas 1,2,3 = Criptografia1,Criptografia2,Criptografia3
-    {
-        for (int i = 0; i < automatico[automatic].imgOrTxt.Length; i++)
-        {
-            if (automatico[automatic].imgOrTxt[i].isImg())
-            {
-                ChatListControl.RenderizarImagem(automatico[automatic].imgOrTxt[i].img, true);
-            }
-            else
-            {
-                ChatListControl.RenderizarTexto(automatico[automatic].imgOrTxt[i].txt, true);
-            }
-        }
-        automatico[automatic].enviado = true;
-        MainMenu.TurnOnChatNofication();
-        // PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("mapaCigarro"), false);  essa linha terá que ser chamada ao abrir o chat, para só adicionar ao banco de pistas se voce tiver entrado no chat              
-    }
 
-
-    //Checa no update se A DICA JA FOI ENVIADA para poder liberar o pop-up
-    int index1 = procurarPistaDetetive("discoContinental"); // talvez, inicializar todas essas variaveis no start() para só acessar no update ou inves de sempre procurar.
-    int index2 = index1 + 1;
-    int index3 = index2 + 1;
-
-    if ((pistasDetetive[index1].enviado) || (pistasDetetive[index2].enviado) || (pistasDetetive[index3].enviado))
-    {
-        exploracao = false;
-
-    }
-}
-
-public void Etapa1()
-{
-    int index = PlayerInfo.ProcurarPista("faca");
-    if ((PlayerInfo.pistas[index].descoberta) && (PlayerInfo.pistas[index + 1].descoberta) && (PlayerInfo.pistas[index + 2].descoberta) && !(automatico[automatic].enviado))
-    {
-        for (int i = 0; i < automatico[automatic].imgOrTxt.Length; i++)
-        {
-            if (automatico[automatic].imgOrTxt[i].isImg())
-            {
-                ChatListControl.RenderizarImagem(automatico[automatic].imgOrTxt[i].img, true);
-            }
-            else
-            {
-                ChatListControl.RenderizarTexto(automatico[automatic].imgOrTxt[i].txt, true);
-            }
-        }
-        automatico[automatic].enviado = true;
-        MainMenu.TurnOnChatNofication();
-        // PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("Suspeito1"), false);  essa linha terá que ser chamada ao abrir o chat, para só adicionar ao banco de pistas se voce tiver entrado no chat
-    }
-
-    int index1 = procurarPistaDetetive("caixaPoesia");
-
-    if ((pistasDetetive[index1].enviado))
-    {
-        exploracao = false;
-    }
-}
-
-public void Etapa3()
-{
-    int index = PlayerInfo.ProcurarPista("mapaNordeste");
-    if ((PlayerInfo.pistas[index].descoberta) && !(automatico[automatic].enviado))
-    {
-        for (int i = 0; i < automatico[automatic].imgOrTxt.Length; i++)
-        {
-            if (automatico[automatic].imgOrTxt[i].isImg())
-            {
-                ChatListControl.RenderizarImagem(automatico[automatic].imgOrTxt[i].img, true);
-            }
-            else
-            {
-                ChatListControl.RenderizarTexto(automatico[automatic].imgOrTxt[i].txt, true);
-            }
-        }
-        automatico[automatic].enviado = true;
-        exploracao = false;
-        MainMenu.TurnOnChatNofication();
-        //PlayerInfo.DescobrirPista(PlayerInfo.ProcurarPista("Cordel"), false);  essa linha terá que ser chamada ao abrir o chat, para só adicionar ao banco de pistas se voce tiver entrado no chat
-    }
-
-    //aqui coincidentemente a mensagem automatica e a liberação de exploração são iguais
-}
-
-public void Etapa4()
-{
-    int index = procurarPistaDetetive("quadroBoneco");
-    if ((pistasDetetive[index].enviado))
-    {
-        exploracao = false;
-    }
-} */
 
