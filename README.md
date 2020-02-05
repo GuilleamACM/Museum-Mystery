@@ -1,2 +1,2 @@
-# MuseumMystery
-Alternate Reality Games for Museums
+# Museum Mystery
+Alternate Reality Game for Museums
